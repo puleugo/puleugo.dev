@@ -1,0 +1,215 @@
+{
+  "posts": {
+    "2": {
+      "original": {
+        "title": "[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기 (1/2) | 솔루션 찾기",
+        "url": "https://ko.puleugo.dev/201",
+        "language": "ko-KR",
+        "uploadedAt": "2024-07-31"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "[Node.js] Implementing a Test Isolation Environment Using Transactions (1/2) | Finding Solutions",
+            "url": "https://medium.com/@puleugo/node-js-implementing-a-test-isolation-environment-using-transactions-1-2-finding-solutions-0095561fd4e4"
+          }
+        ]
+      }
+    },
+    "3": {
+      "original": {
+        "title": "만개의 테스트를 작성하지 마라.",
+        "url": "https://ko.puleugo.dev/202",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-10"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Don't Write Ten Thousand Tests",
+            "url": "https://medium.com/@puleugo/dont-write-ten-thousand-tests-e0df2a40517a"
+          }
+        ]
+      }
+    },
+    "4": {
+      "original": {
+        "title": "티스토리에 마진 넣는법",
+        "url": "https://ko.puleugo.dev/203",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-11"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "How to Add Margin in Tistory",
+            "url": "https://medium.com/@puleugo/how-to-add-margin-in-tistory-25704c2f63f0"
+          }
+        ]
+      }
+    },
+    "5": {
+      "original": {
+        "title": "[번역] 방금 당신이 작성한 코드는 도메인 로직인가? | What is domain logic?",
+        "url": "https://ko.puleugo.dev/204",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-12"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Is the Code You Just Wrote Domain Logic?",
+            "url": "https://medium.com/@puleugo/is-the-code-you-just-wrote-domain-logic-a1e7ac1b7dc3"
+          }
+        ]
+      }
+    },
+    "6": {
+      "original": {
+        "title": "개발자의 이상적인 해커톤 준비 방법",
+        "url": "https://ko.puleugo.dev/205",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-19"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "How to Prepare for a Hackathon as a Developer",
+            "url": "https://medium.com/@puleugo/how-to-prepare-for-a-hackathon-as-a-developer-bf596d1becc9"
+          }
+        ]
+      }
+    },
+    "7": {
+      "original": {
+        "title": "당신의 블로그, 계왕권을 쓸 수 있다.",
+        "url": "https://ko.puleugo.dev/206",
+     t    "language": "ko-KR",
+        "uploadedAt": "2024-08-19"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Your Blog Can Use Kaio-Ken",
+            "url": "https://medium.com/@puleugo/your-blog-can-use-kaio-ken-fb6c4d6a15d7"
+          }
+        ]
+      }
+    },
+    "8": {
+      "original": {
+        "title": "KAIST GDSC 해커톤 참여, 발표 회고",
+        "url": "https://ko.puleugo.dev/207",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-26"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Reflections on Participating in and Presenting at the KAIST GDSC Hackathon",
+            "url": "https://medium.com/@puleugo/reflections-on-participating-in-and-presenting-at-the-kaist-gdsc-hackathon-cfaddf8f47a5"
+          }
+        ]
+      }
+    },
+    "9": {
+      "original": {
+        "title": "[리뷰] 자바스크립트 + 리액트 디자인 패턴",
+        "url": "https://ko.puleugo.dev/208",
+        "language": "ko-KR",
+        "uploadedAt": "2024-08-29"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "[Review] JavaScript + React Design Patterns",
+            "url": "https://medium.com/@puleugo/review-javascript-react-design-patterns-67b64e366748"
+          }
+        ]
+      }
+    },
+    "10": {
+      "original": {
+        "title": "괴물 메서드 리팩터링과 성능개선하기 | 안전하게 리팩터링하기",
+        "url": "https://ko.puleugo.dev/209",
+        "language": "ko-KR",
+        "uploadedAt": "2024-09-16"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Refactoring Monster Methods and Improving Performance | Refactor Safely",
+            "url": "https://medium.com/@puleugo/refactoring-monster-methods-and-improving-performance-refactor-safely-0fe2f2140d22"
+          }
+        ]
+      }
+    },
+    "11": {
+      "original": {
+        "title": "[계왕권 프로젝트] 베타버전 개발기",
+        "url": "https://ko.puleugo.dev/210",
+        "language": "ko-KR",
+        "uploadedAt": "2024-11-11"
+      },
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "[King Kai Fist Project] Beta Version Development Story",
+            "url": "https://medium.com/@puleugo/king-kai-fist-project-beta-version-development-story-032cb30c3aea"
+          }
+        ]
+      }
+    }
+  },
+  "blogs": [
+    {
+      "title": "푸르고의 개발 블로그",
+      "platform": "Tistory",
+      "language": "ko-KR",
+      "rssUrl": "https://ko.puleugo.dev/rss",
+      "lastPublishedIndex": 11,
+      "lastPublishedAt": "2024-11-13",
+      "type": "PUBLISHER"
+    },
+    {
+      "title": "푸르고의 개발 블로그",
+      "platform": "Medium",
+      "language": "en",
+      "rssUrl": "https://-.or.kr/",
+      "lastPublishedIndex": 11,
+      "lastPublishedAt": "2024-11-12",
+      "type": "SUBSCRIBER"
+    }
+  ],
+  "lastExecutedAt": "2024-11-13"
+}
