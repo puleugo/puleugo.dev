@@ -2,6 +2,8 @@ name: 'Auto Translate'
 
 on:
   workflow_dispatch: # 수동 실행
+  schedule:
+    - cron: '0 0 * * *' # 매일 00:00
 
 env:
   REPOSITORY: github.repository
@@ -14,7 +16,7 @@ jobs:
       - name: Auto Translate
         uses: puleugo/kablog@main
         with:
-          GH_REPOSITORY: 'kablog-test'
+          GH_REPOSITORY: 'puleugo.dev'
           GH_USER: 'puleugo'
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
