@@ -189,6 +189,36 @@
           }
         ]
       }
+    },
+    "19": {
+      "original": {
+        "title": "[계왕권 출시] 당신의 블로그 가치를 44배 향상시켜주는 서비스",
+        "url": "https://ko.puleugo.dev/211",
+        "language": "ko-KR",
+        "uploadedAt": "2024-11-12"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "20": {
+      "original": {
+        "title": "가장 후회하는 블로그 커스터마이징",
+        "url": "https://ko.puleugo.dev/212",
+        "language": "ko-KR",
+        "uploadedAt": "2024-11-13"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "21": {
+      "original": {
+        "title": "이미지 로드 속도 향상하기",
+        "url": "https://ko.puleugo.dev/213",
+        "language": "ko-KR",
+        "uploadedAt": "2024-11-17"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -197,8 +227,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 11,
-      "lastPublishedAt": "2024-11-13",
+      "lastPublishedIndex": 21,
+      "lastPublishedAt": "2024-11-20",
       "type": "PUBLISHER"
     },
     {
@@ -211,5 +241,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2024-11-13"
+  "lastExecutedAt": "2024-11-20"
 }
