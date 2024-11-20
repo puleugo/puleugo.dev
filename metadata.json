@@ -197,8 +197,17 @@
         "language": "ko-KR",
         "uploadedAt": "2024-11-12"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "[Kaio-Ken Launch] A Service That Boosts Your Blog's Value by 44 Times",
+            "url": "https://medium.com/@puleugo/kaio-ken-launch-a-service-that-boosts-your-blogs-value-by-44-times-eb16ac434b13"
+          }
+        ]
+      }
     },
     "20": {
       "original": {
@@ -207,8 +216,17 @@
         "language": "ko-KR",
         "uploadedAt": "2024-11-13"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "The Most Regrettable Blog Customization",
+            "url": "https://medium.com/@puleugo/the-most-regrettable-blog-customization-992442654f4b"
+          }
+        ]
+      }
     },
     "21": {
       "original": {
@@ -217,8 +235,17 @@
         "language": "ko-KR",
         "uploadedAt": "2024-11-17"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Enhancing Image Load Speed",
+            "url": "https://medium.com/@puleugo/enhancing-image-load-speed-c657cb815b85"
+          }
+        ]
+      }
     }
   },
   "blogs": [
@@ -236,8 +263,8 @@
       "platform": "Medium",
       "language": "en",
       "rssUrl": "https://-.or.kr/",
-      "lastPublishedIndex": 11,
-      "lastPublishedAt": "2024-11-12",
+      "lastPublishedIndex": 21,
+      "lastPublishedAt": "2024-11-20",
       "type": "SUBSCRIBER"
     }
   ],
