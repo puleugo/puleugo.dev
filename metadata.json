@@ -246,6 +246,16 @@
           }
         ]
       }
+    },
+    "31": {
+      "original": {
+        "title": "상호 존중하는 PR 만들기",
+        "url": "https://ko.puleugo.dev/214",
+        "language": "ko-KR",
+        "uploadedAt": "2024-11-24"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -254,8 +264,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 21,
-      "lastPublishedAt": "2024-11-24",
+      "lastPublishedIndex": 31,
+      "lastPublishedAt": "2024-11-25",
       "type": "PUBLISHER"
     },
     {
@@ -268,5 +278,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2024-11-24"
+  "lastExecutedAt": "2024-11-25"
 }
