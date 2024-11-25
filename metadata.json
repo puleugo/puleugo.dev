@@ -254,8 +254,17 @@
         "language": "ko-KR",
         "uploadedAt": "2024-11-24"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Creating a Mutually Respectful PR",
+            "url": "https://medium.com/@puleugo/creating-a-mutually-respectful-pr-7c8f3de829c6"
+          }
+        ]
+      }
     }
   },
   "blogs": [
@@ -273,8 +282,8 @@
       "platform": "Medium",
       "language": "en",
       "rssUrl": "https://-.or.kr/",
-      "lastPublishedIndex": 21,
-      "lastPublishedAt": "2024-11-20",
+      "lastPublishedIndex": 31,
+      "lastPublishedAt": "2024-11-25",
       "type": "SUBSCRIBER"
     }
   ],
