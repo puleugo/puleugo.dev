@@ -274,7 +274,7 @@
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
       "lastPublishedIndex": 31,
-      "lastPublishedAt": "2024-12-01",
+      "lastPublishedAt": "2024-12-02",
       "type": "PUBLISHER"
     },
     {
@@ -287,5 +287,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2024-12-01"
+  "lastExecutedAt": "2024-12-02"
 }
