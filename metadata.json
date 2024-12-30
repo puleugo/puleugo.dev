@@ -273,8 +273,17 @@
         "language": "ko-KR",
         "uploadedAt": "2024-12-29"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Is Redis Always the Right Choice? (Redis vs Another Plan)",
+            "url": "https://medium.com/@puleugo/is-redis-always-the-right-choice-redis-vs-another-plan-91045182dd78"
+          }
+        ]
+      }
     }
   },
   "blogs": [
@@ -292,8 +301,8 @@
       "platform": "Medium",
       "language": "en",
       "rssUrl": "https://-.or.kr/",
-      "lastPublishedIndex": 31,
-      "lastPublishedAt": "2024-11-25",
+      "lastPublishedIndex": 41,
+      "lastPublishedAt": "2024-12-30",
       "type": "SUBSCRIBER"
     }
   ],
