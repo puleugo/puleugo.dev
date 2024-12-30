@@ -265,6 +265,16 @@
           }
         ]
       }
+    },
+    "41": {
+      "original": {
+        "title": "Redis는 항상 옳은가? (Redis vs Another Plan)",
+        "url": "https://ko.puleugo.dev/215",
+        "language": "ko-KR",
+        "uploadedAt": "2024-12-29"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -273,8 +283,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 31,
-      "lastPublishedAt": "2024-12-29",
+      "lastPublishedIndex": 41,
+      "lastPublishedAt": "2024-12-30",
       "type": "PUBLISHER"
     },
     {
@@ -287,5 +297,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2024-12-29"
+  "lastExecutedAt": "2024-12-30"
 }
