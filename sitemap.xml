@@ -714,4 +714,8 @@
     <loc>https://ko.puleugo.dev/214</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://medium.com/@puleugo/creating-a-mutually-respectful-pr-7c8f3de829c6"/>
   </url>
+  <url>
+    <loc>https://ko.puleugo.dev/215</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://medium.com/@puleugo/is-redis-always-the-right-choice-redis-vs-another-plan-91045182dd78"/>
+  </url>
 </urlset>
