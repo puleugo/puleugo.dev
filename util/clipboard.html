@@ -8,30 +8,32 @@
   <script>
     function isAutoClose() {
       var urlParams = new URLSearchParams(window.location.search);
-      const autoClose = urlParams.get('autoClose');
 	    const first = urlParams.get('first');
 	    const text = urlParams.get('text');
-      return autoClose === 'true' || first === 'true' || text !== null;
+			console.log(first !== 'true', text !== null);
+      return first !== 'true' && text !== null;
     }
 		async function addFirstIfFirstLogin() {
 			// 만약 Clipboard가 거부되어있다면
+      const alreadyFirstChecked = window.location.search.includes('first=true');
       let state;
 			await navigator.permissions
-				.query({ name: "clipboard-write" })
+				.query({ name: "clipboard-read" })
 				.then((permissionStatus) => {
-					console.log(permissionStatus.name, permissionStatus.state);
 					state = permissionStatus.state;
 				});
-      if (state !== 'granted') {
+      if (state !== 'granted' && !alreadyFirstChecked) {
 				// url query에 first key에 true를 넣어준다.
         var urlParams = new URLSearchParams(window.location.search);
         urlParams.append('first', 'true');
+	      window.location.search = urlParams.toString();
       }
     }
     function getQueryText() {
 			var urlParams = new URLSearchParams(window.location.search);
 			const text = urlParams.get('text');
 			if (isAutoClose()) {
+				console.log("Auto Close");
 				window.close();
       }
 			return text;
@@ -40,6 +42,7 @@
 			let output = document.getElementById("output");
 			navigator.clipboard.writeText(text).then(function() {
 				if (isAutoClose()) {
+					console.log("Auto Close");
 					window.close();
         }
 				output.textContent = "✅ Copied";
