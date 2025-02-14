@@ -10,7 +10,6 @@
       var urlParams = new URLSearchParams(window.location.search);
 	    const first = urlParams.get('first');
 	    const text = urlParams.get('text');
-			console.log(first !== 'true', text !== null);
       return first !== 'true' && text !== null;
     }
 		async function addFirstIfFirstLogin() {
@@ -24,28 +23,22 @@
 				});
       if (state !== 'granted' && !alreadyFirstChecked) {
 				// url query에 first key에 true를 넣어준다.
-        var urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
         urlParams.append('first', 'true');
 	      window.location.search = urlParams.toString();
       }
     }
     function getQueryText() {
-			var urlParams = new URLSearchParams(window.location.search);
-			const text = urlParams.get('text');
-			if (isAutoClose()) {
-				console.log("Auto Close");
-				window.close();
-      }
-			return text;
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get('text');
     }
 		function copyToClipboard(text) {
 			let output = document.getElementById("output");
 			navigator.clipboard.writeText(text).then(function() {
 				if (isAutoClose()) {
-					console.log("Auto Close");
-					window.close();
+          window.close();
         }
-				output.textContent = "✅ Copied";
+				output.textContent = "✅ Copied, Next Run automatically turns off the tab. 👍";
 			}, function() {
 				output.textContent = "❗Didn't copied, Please allow the Clipboard permission.";
 			});
