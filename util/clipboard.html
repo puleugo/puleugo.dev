@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clipboard Copy Site</title>
+
+  <script>
+    function getQueryText() {
+			var urlParams = new URLSearchParams(window.location.search);
+			const text = urlParams.get('text');
+			// if (text === null) {
+			// 	window.close();
+      // }
+			return text;
+    }
+		function copyToClipboard(text, autoClose=true) {
+			document.execCommand("copy");
+			var output = document.getElementById("output");
+			navigator.clipboard.writeText(text).then(function() {
+				if (autoClose) {
+					window.close();
+        }
+				output.textContent = "✅ Copied";
+			}, function() {
+				output.textContent = "❗Didn't copied, Please allow the Clipboard permission.";
+			});
+		}
+
+
+  </script>
+
+</head>
+<body onload="copyToClipboard(getQueryText(), false)">
+<h2 id="title">Clipboard Copy Site</h2>
+<button onclick="copyToClipboard(getQueryText())">Manual Copy</button>
+<p id="output"></p>
+
+<div id="footer-container"></div>
+<script>
+	fetch('footer.html')
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network Error.');
+			}
+			return response.text();
+		})
+		.then(html => {
+			document.getElementById('footer-container').innerHTML = html;
+		})
+		.catch(error => {
+			console.error('footer Load Error:', error);
+		});
+</script>
+</body>
+</html>
