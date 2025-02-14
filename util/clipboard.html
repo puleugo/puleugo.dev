@@ -13,18 +13,19 @@
 	    const text = urlParams.get('text');
       return autoClose === 'true' || first === 'true' || text !== null;
     }
-		function addFirstIfFirstLogin() {
+		async function addFirstIfFirstLogin() {
 			// 만약 Clipboard가 거부되어있다면
       let state;
-			navigator.permissions
+			await navigator.permissions
 				.query({ name: "clipboard-write" })
 				.then((permissionStatus) => {
+					console.log(permissionStatus.name, permissionStatus.state);
 					state = permissionStatus.state;
 				});
       if (state !== 'granted') {
 				// url query에 first key에 true를 넣어준다.
         var urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('first', 'true');
+        urlParams.append('first', 'true');
       }
     }
     function getQueryText() {
@@ -46,7 +47,9 @@
 				output.textContent = "❗Didn't copied, Please allow the Clipboard permission.";
 			});
 		}
-		addFirstIfFirstLogin();
+    document.addEventListener("DOMContentLoaded", async function() {
+	    await addFirstIfFirstLogin();
+    });
   </script>
 
 </head>
