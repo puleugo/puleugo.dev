@@ -67,8 +67,20 @@
   </section>
 </main>
 
-<footer>
-  <p>© 2024 Puleugo. All rights reserved.</p>
-</footer>
+<script>
+	fetch('footer.html')
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network Error.');
+			}
+			return response.text();
+		})
+		.then(html => {
+			document.getElementById('footer-container').innerHTML = html;
+		})
+		.catch(error => {
+			console.error('footer Load Error:', error);
+		});
+</script>
 </body>
 </html>
