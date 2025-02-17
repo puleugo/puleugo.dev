@@ -292,8 +292,17 @@
         "language": "ko-KR",
         "uploadedAt": "2025-02-16"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "Deploying AdminJS to Production in NestJS",
+            "url": "https://medium.com/@puleugo/deploying-adminjs-to-production-in-nestjs-79dfccbf3d3e"
+          }
+        ]
+      }
     }
   },
   "blogs": [
@@ -311,8 +320,8 @@
       "platform": "Medium",
       "language": "en",
       "rssUrl": "https://-.or.kr/",
-      "lastPublishedIndex": 41,
-      "lastPublishedAt": "2024-12-30",
+      "lastPublishedIndex": 51,
+      "lastPublishedAt": "2025-02-17",
       "type": "SUBSCRIBER"
     }
   ],
