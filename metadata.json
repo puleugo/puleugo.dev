@@ -284,6 +284,16 @@
           }
         ]
       }
+    },
+    "51": {
+      "original": {
+        "title": "[NestJS] AdminJS 프로덕션 배포하기",
+        "url": "https://ko.puleugo.dev/216",
+        "language": "ko-KR",
+        "uploadedAt": "2025-02-16"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -292,8 +302,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 41,
-      "lastPublishedAt": "2025-02-16",
+      "lastPublishedIndex": 51,
+      "lastPublishedAt": "2025-02-17",
       "type": "PUBLISHER"
     },
     {
@@ -306,5 +316,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2025-02-16"
+  "lastExecutedAt": "2025-02-17"
 }
