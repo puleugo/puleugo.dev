@@ -311,8 +311,17 @@
         "language": "ko-KR",
         "uploadedAt": "2025-03-03"
       },
-      "translatedLanguages": [],
-      "translated": {}
+      "translatedLanguages": [
+        "en"
+      ],
+      "translated": {
+        "en": [
+          {
+            "title": "[AdminJS Error] Cannot find module '@tiptap/pm/state'",
+            "url": "https://medium.com/@puleugo/adminjs-error-cannot-find-module-tiptap-pm-state-991d8b2be580"
+          }
+        ]
+      }
     }
   },
   "blogs": [
@@ -330,8 +339,8 @@
       "platform": "Medium",
       "language": "en",
       "rssUrl": "https://-.or.kr/",
-      "lastPublishedIndex": 51,
-      "lastPublishedAt": "2025-02-17",
+      "lastPublishedIndex": 61,
+      "lastPublishedAt": "2025-03-04",
       "type": "SUBSCRIBER"
     }
   ],
