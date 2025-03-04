@@ -303,6 +303,16 @@
           }
         ]
       }
+    },
+    "61": {
+      "original": {
+        "title": "[AdminJS 에러] Cannot find module '@tiptap/pm/state'",
+        "url": "https://ko.puleugo.dev/217",
+        "language": "ko-KR",
+        "uploadedAt": "2025-03-03"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -311,8 +321,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 51,
-      "lastPublishedAt": "2025-03-03",
+      "lastPublishedIndex": 61,
+      "lastPublishedAt": "2025-03-04",
       "type": "PUBLISHER"
     },
     {
@@ -325,5 +335,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2025-03-03"
+  "lastExecutedAt": "2025-03-04"
 }
