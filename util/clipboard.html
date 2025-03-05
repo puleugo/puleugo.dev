@@ -29,11 +29,12 @@
       }
     }
     function getQueryText() {
+	    		navigator.clipboard.writeText("ClipBoard Access Request")
+
 			const urlParams = new URLSearchParams(window.location.search);
 			return urlParams.get('text');
     }
 		function copyToClipboard(text) {
-			navigator.clipboard.writeText("ClipBoard Access Request")
 			let output = document.getElementById("output");
 			navigator.clipboard.writeText(text).then(function() {
 				if (isAutoClose()) {
