@@ -322,6 +322,356 @@
           }
         ]
       }
+    },
+    "62": {
+      "original": {
+        "title": "[GO]클래스 없는 객체지향 언어",
+        "url": "https://ko.puleugo.dev/158",
+        "language": "ko-KR",
+        "uploadedAt": "2023-05-24"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "63": {
+      "original": {
+        "title": "내일은 NEXTERS 면접일이다 (2023년 상반기 피드백)",
+        "url": "https://ko.puleugo.dev/159",
+        "language": "ko-KR",
+        "uploadedAt": "2023-06-02"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "64": {
+      "original": {
+        "title": "NEXTERS 23기 면접 후기",
+        "url": "https://ko.puleugo.dev/160",
+        "language": "ko-KR",
+        "uploadedAt": "2023-06-03"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "65": {
+      "original": {
+        "title": "크롬의 탭은 프로세스일까? 스레드일까?",
+        "url": "https://ko.puleugo.dev/162",
+        "language": "ko-KR",
+        "uploadedAt": "2023-06-06"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "66": {
+      "original": {
+        "title": "원클릭 회원가입 승인 구현(telegram bot, AWS s3, Flutter, Nest.js)",
+        "url": "https://ko.puleugo.dev/164",
+        "language": "ko-KR",
+        "uploadedAt": "2023-07-21"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "67": {
+      "original": {
+        "title": "Github Convention 깃헙 컨벤션 정리/모음",
+        "url": "https://ko.puleugo.dev/165",
+        "language": "ko-KR",
+        "uploadedAt": "2023-08-21"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "68": {
+      "original": {
+        "title": "[NestJS] eslint를 작성해보자.",
+        "url": "https://ko.puleugo.dev/166",
+        "language": "ko-KR",
+        "uploadedAt": "2023-08-23"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "69": {
+      "original": {
+        "title": "[MySQL 복구 1] .ibd 파일을 이용하여 데이터 복구하기",
+        "url": "https://ko.puleugo.dev/167",
+        "language": "ko-KR",
+        "uploadedAt": "2023-09-07"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "70": {
+      "original": {
+        "title": "[MySQL 복구 2] binlog를 통해 데이터베이스 복구하기",
+        "url": "https://ko.puleugo.dev/168",
+        "language": "ko-KR",
+        "uploadedAt": "2023-09-07"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "71": {
+      "original": {
+        "title": "vim adventure 6 - 1 solution",
+        "url": "https://ko.puleugo.dev/169",
+        "language": "ko-KR",
+        "uploadedAt": "2023-10-28"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "72": {
+      "original": {
+        "title": "vim adventue 6 - 3 solution",
+        "url": "https://ko.puleugo.dev/170",
+        "language": "ko-KR",
+        "uploadedAt": "2023-10-28"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "73": {
+      "original": {
+        "title": "[회고록] 2023년의 경험으로 가는 인생 방향성",
+        "url": "https://ko.puleugo.dev/174",
+        "language": "ko-KR",
+        "uploadedAt": "2023-12-05"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "74": {
+      "original": {
+        "title": "#0 시리즈 소개",
+        "url": "https://ko.puleugo.dev/175",
+        "language": "ko-KR",
+        "uploadedAt": "2024-01-01"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "75": {
+      "original": {
+        "title": "#1 Java I/OStream이란",
+        "url": "https://ko.puleugo.dev/176",
+        "language": "ko-KR",
+        "uploadedAt": "2024-01-02"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "76": {
+      "original": {
+        "title": "Assert를 통해 좋은 코드 작성하기",
+        "url": "https://ko.puleugo.dev/177",
+        "language": "ko-KR",
+        "uploadedAt": "2024-01-23"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "77": {
+      "original": {
+        "title": "대학생 둘이서 사업단 찾아가서 후원금 받고 해커톤 개최하는 이야기",
+        "url": "https://ko.puleugo.dev/178",
+        "language": "ko-KR",
+        "uploadedAt": "2024-01-28"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "78": {
+      "original": {
+        "title": "html에서 React로 마이그레이션 시 겪었던 문제점",
+        "url": "https://ko.puleugo.dev/179",
+        "language": "ko-KR",
+        "uploadedAt": "2024-02-05"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "79": {
+      "original": {
+        "title": "[리뷰] 헤드퍼스트 자바 -자바로 여는 무한한 객체지향의 세계",
+        "url": "https://ko.puleugo.dev/180",
+        "language": "ko-KR",
+        "uploadedAt": "2024-02-24"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "80": {
+      "original": {
+        "title": "5년차 네이버 면접관이 말하는 함께하고 싶은 개발자",
+        "url": "https://ko.puleugo.dev/181",
+        "language": "ko-KR",
+        "uploadedAt": "2024-03-14"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "81": {
+      "original": {
+        "title": "티스토리 특정 게시글 광고 제거하는 법",
+        "url": "https://ko.puleugo.dev/182",
+        "language": "ko-KR",
+        "uploadedAt": "2024-03-14"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "82": {
+      "original": {
+        "title": "[개발자 셋업 공유] 집에서 누워서 코딩하기",
+        "url": "https://ko.puleugo.dev/183",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-07"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "83": {
+      "original": {
+        "title": "PostgreSQL Check란? Check를 사용하지 말아야하는 이유",
+        "url": "https://ko.puleugo.dev/184",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-11"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "84": {
+      "original": {
+        "title": "[PostgreSQL] 내가 enum을 쓰지 않는 이유",
+        "url": "https://ko.puleugo.dev/185",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-14"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "85": {
+      "original": {
+        "title": "[DDD] 값 객체, Value Object",
+        "url": "https://ko.puleugo.dev/186",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-15"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "86": {
+      "original": {
+        "title": "[DDD] 도메인 엔티티, Domain Entity",
+        "url": "https://ko.puleugo.dev/187",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-16"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "87": {
+      "original": {
+        "title": "[Typescript] builder 패턴 남용 금지",
+        "url": "https://ko.puleugo.dev/188",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-21"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "88": {
+      "original": {
+        "title": "머신러닝과 딥러닝의 차이",
+        "url": "https://ko.puleugo.dev/189",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-21"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "89": {
+      "original": {
+        "title": "css를 활용한 다크모드 이미지 자동 대응",
+        "url": "https://ko.puleugo.dev/190",
+        "language": "ko-KR",
+        "uploadedAt": "2024-04-22"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "90": {
+      "original": {
+        "title": "그냥 하기 (명량한 염세주의)",
+        "url": "https://ko.puleugo.dev/193",
+        "language": "ko-KR",
+        "uploadedAt": "2024-05-17"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "91": {
+      "original": {
+        "title": "[TypeScript] TypeORM 커스텀 함수 구현하기",
+        "url": "https://ko.puleugo.dev/194",
+        "language": "ko-KR",
+        "uploadedAt": "2024-06-06"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "92": {
+      "original": {
+        "title": "가만히 있어도 주변에서 칭찬해주는 챌린지: 도파민 디톡스 후기",
+        "url": "https://ko.puleugo.dev/195",
+        "language": "ko-KR",
+        "uploadedAt": "2024-06-15"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "93": {
+      "original": {
+        "title": "[번역] 개발자 중심 성능 테스트 선언문",
+        "url": "https://ko.puleugo.dev/197",
+        "language": "ko-KR",
+        "uploadedAt": "2024-06-23"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "94": {
+      "original": {
+        "title": "[리뷰] 데브옵스 엔지니어를 위한 실전 관찰 가능성 엔지니어링",
+        "url": "https://ko.puleugo.dev/198",
+        "language": "ko-KR",
+        "uploadedAt": "2024-06-25"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "95": {
+      "original": {
+        "title": "[리뷰] 보고 혁명, 현직 팀장들이 검증하는 실무 보고서 작성법",
+        "url": "https://ko.puleugo.dev/200",
+        "language": "ko-KR",
+        "uploadedAt": "2024-07-28"
+      },
+      "translatedLanguages": [],
+      "translated": {}
+    },
+    "96": {
+      "original": {
+        "title": "[번역] Mocks Aren't Stubs | Classicist vs Mockist",
+        "url": "https://ko.puleugo.dev/199",
+        "language": "ko-KR",
+        "uploadedAt": "2024-07-29"
+      },
+      "translatedLanguages": [],
+      "translated": {}
     }
   },
   "blogs": [
@@ -330,8 +680,8 @@
       "platform": "Tistory",
       "language": "ko-KR",
       "rssUrl": "https://ko.puleugo.dev/rss",
-      "lastPublishedIndex": 61,
-      "lastPublishedAt": "2025-06-24",
+      "lastPublishedIndex": 96,
+      "lastPublishedAt": "2025-06-25",
       "type": "PUBLISHER"
     },
     {
@@ -344,5 +694,5 @@
       "type": "SUBSCRIBER"
     }
   ],
-  "lastExecutedAt": "2025-06-24"
+  "lastExecutedAt": "2025-06-25"
 }
