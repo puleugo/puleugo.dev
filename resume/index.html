@@ -99,7 +99,7 @@
 		letter-spacing: .04em;
 		border-bottom: 1.5px solid var(--ink);
 	}
-	.item { margin-bottom: 16px; break-inside: avoid; page-break-inside: avoid; }
+	.item { margin-bottom: 16px; }
 	.item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 	.item-head h3 { margin: 0; font-size: 11pt; }
 	.item-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
@@ -111,6 +111,8 @@
 	.item-head h3 .wiki { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
 	.date { font-size: 9pt; color: var(--sub); white-space: nowrap; }
 	.context { margin: 2px 0 6px; font-size: 9.5pt; color: var(--sub); }
+	.scale { margin: 0 0 6px; font-size: 9pt; color: var(--sub); }
+	.scale b { color: var(--ink); margin-right: 6px; }
 
 	.block { margin: 13px 0 0; break-inside: avoid; page-break-inside: avoid; }
 	.block > strong { display: block; margin-bottom: 2px; font-size: 10pt; }
@@ -174,8 +176,8 @@
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
 		h2 { margin: 11px 0 5px; }
-		.item { margin-bottom: 11px; }
-		.block { margin-top: 9px; }
+		.item { margin-bottom: 9px; break-inside: auto; }
+		.block { margin-top: 8px; }
 		.ex { font-size: 8.4pt; }
 		.refs { font-size: 7.8pt; margin-top: 8px; }
 		table.mini { font-size: 8.6pt; }
@@ -233,7 +235,8 @@
 		<h3><a href="https://www.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)">어르다</a> <span class="role">· 공동창업자&nbsp;· 개발 총괄 <span class="url">www.auruda-j.com</span></span></h3>
 		<span class="date">2025.09. – 재직 중</span>
 	</div>
-	<p class="context">상담사가 자격증을 따기까지 거치는 <t data-x="수련">교육</t> 과정을 온라인으로 옮긴 플랫폼입니다. 아래 제품 4종을 혼자 설계하고 개발·운영합니다.</p>
+	<p class="context">상담사가 자격증을 따기까지 거치는 <t data-x="수련">교육</t> 과정을 온라인으로 옮긴 플랫폼입니다. 아래 제품 4종을 혼자 설계·운영합니다.</p>
+	<p class="scale"><b>규모</b> <t data-x="수련기관">교육기관</t> 411곳(전국 17개 시·도) · 학회 자격증 15종 · 회원 243명 · 기관 페이지 누적 조회 16만 회 · 도메인 모듈 35개 / API 188개</p>
 	<table class="mini">
 		<thead><tr><th>제품</th><th>하는 일</th><th class="sub">스택과 상태</th></tr></thead>
 		<tbody>
@@ -296,7 +299,7 @@
 		<h3><span class="dead" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span> <span class="role">· 백엔드 개발자 <span class="url dead-url" data-tip="서비스 종료로 인한 링크 미제공">waktaverse.games</span> <a class="wiki" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 「왁타버스 게임즈」. 임베드가 막혀 새 탭에서 열립니다">나무위키</a></span></h3>
 		<span class="date">2024.06. – 2025.08.</span>
 	</div>
-	<p class="context">월 사용자 5만 명 규모의 팬게임 배포 플랫폼입니다(Nest.js, TypeORM, MySQL, Redis, 서버리스).</p>
+	<p class="scale"><b>규모</b> 월 사용자 5만 명 · API 약 135개 · 2023.09. 오픈 베타 출시, 2025년 서비스 종료 · Nest.js, TypeORM, MySQL, Redis, 서버리스</p>
 	<ul>
 		<li><b>구글 엑셀 동기화를 어드민 페이지로 바꾸는 작업을 주도</b>했습니다. 변경 기록을 보니 실제 데이터 변경은 <b>월평균 20회</b>뿐이어서, 이를 근거로 배치를 없애자고 팀을 설득했습니다. <b>하루 쿼리 51,840회가 20회로(99.96% 절감)</b> 줄었고, 사례가 없던 서버리스 환경에 AdminJS를 붙였습니다.</li>
 		<li>사내에서 검증한 서버리스 배포 방법을 정리해 <b>AdminJS 공식 문서에 기여</b>했습니다(채택된 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다">adminjs-docs#15</a> 머지, 2025.06.). 지금은 공식 배포 가이드 <b><a href="https://docs.adminjs.co/deployment/serverless" data-peek data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)">docs.adminjs.co/deployment/serverless</a></b>로 게시돼 있습니다.<sup class="fn"><a href="https://ko.puleugo.dev/216" data-card="1" data-peek data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="fn"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
