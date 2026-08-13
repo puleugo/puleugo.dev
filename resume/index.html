@@ -107,6 +107,7 @@
 	@media (max-width: 860px) { .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 	.hook-stats li { margin: 0; display: flex; flex-direction: column; line-height: 1.25; }
 	.hook-stats b { font-size: 12.5pt; letter-spacing: -.03em; white-space: nowrap; }
+	.hook-stats .from { font-weight: 500; color: var(--sub); }
 	.hook-stats span { font-size: 8pt; color: var(--sub); word-break: keep-all; }
 	.contact { font-size: 9.5pt; color: var(--sub); display: flex; flex-wrap: wrap; gap: 4px 10px; }
 	.contact span::after { content: "·"; margin-left: 10px; color: var(--line); }
@@ -262,9 +263,9 @@
 	<ul class="hook-stats">
 		<li><b>MAU 5만</b><span>운영 서비스 최대 규모</span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
-		<li><b>4.92</b><span>상담사 베타 만족도 (5점)</span></li>
-		<li><b>99.94%↓</b><span>중복 쿼리 통합 후 DB 부하</span></li>
-		<li><b>4종</b><span>단독 개발·운영 제품</span></li>
+		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 (5점)</span></li>
+		<li><b><span class="from">2,304회</span> → 1회</b><span>실행당 중복 쿼리 (DB 부하 99.94%↓)</span></li>
+		<li><b><span class="from">206초</span> → 18초</b><span>공고 처리 시간</span></li>
 		<li><b>5회</b><span>창업 경진대회 (대상 2)</span></li>
 	</ul>
 	<ul class="highlights">
