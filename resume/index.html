@@ -309,23 +309,18 @@
 	</table>
 
 	<div class="work">
-		<strong>어르다 축어록 · 기획부터 앱 출시까지 단독 개발 (2026.01. – 현재)</strong>
+		<strong>어르다 축어록 · 상담사 인터뷰부터 앱 출시까지 단독 수행 (2026.01. – 현재)</strong>
 		<p class="system-line">상담 녹음을 올리면 <t data-x="축어록">녹취록</t>과 슈퍼비전 보고서를 만들어 주는 웹·모바일 앱입니다.</p>
 		<ul>
 			<li class="task"><b>상담사 만족도 범용 STT 2.9점 → 어르다 축어록 <b>4.92점</b> (실무자·석박사 13인 베타)</b>
 				<ul class="how">
-					<li>범용 STT(클로바노트 등)로는 인식이 불가한 침묵·말떨림을 표기하도록 <b>Gemini</b> 프롬프트를 설계하고, 녹음은 청크 분할해 전달합니다.</li>
-					<li>비언어 표현 인식은 92.3%가 "매우 만족"으로 평가했습니다.</li>
+					<li>상담사 인터뷰로 기록 노동의 병목을 좁히고, 범용 STT(클로바노트 등)로는 인식이 불가한 침묵·말떨림을 표기하도록 Gemini 프롬프트를 설계했습니다.</li>
+					<li>실무자·석박사 13인 베타로 검증했고, 비언어 표현 인식은 <b>92.3%가 "매우 만족"</b>으로 평가했습니다.</li>
 				</ul></li>
-			<li class="task"><b>오디오 처리를 기기에서 수행해 서버 비용 없이 <b>iOS·Android 정식 출시</b></b>
+			<li class="task"><b>회기당 <b>6시간</b> 걸리던 기록·보고를 자동화하고 <b>iOS·Android 정식 출시</b></b>
 				<ul class="how">
-					<li>오디오 변환과 청크 분할을 <b>WASM FFmpeg로 기기에서</b> 처리했습니다.</li>
-					<li>같은 코드베이스를 Capacitor로 묶어 두 스토어에 배포했습니다.</li>
-				</ul></li>
-			<li class="task"><b>회기당 <b>6시간</b> 걸리던 기록·보고 작업을 자동화</b>
-				<ul class="how">
-					<li>반복 등장하는 인물 같은 민감 정보를 맥락으로 식별해 가립니다.</li>
-					<li>슈퍼비전 보고서를 HWPX·DOCX로 자동 내보냅니다.</li>
+					<li>오디오 변환·청크 분할을 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용 없이 운영하고, 같은 코드베이스를 Capacitor로 두 스토어에 배포했습니다.</li>
+					<li>반복 등장 인물 같은 민감 정보를 맥락으로 식별해 가리고, 슈퍼비전 보고서를 HWPX·DOCX로 자동 내보냅니다.</li>
 				</ul></li>
 			</ul>
 	</div>
@@ -356,6 +351,14 @@
 		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인</strong>
 		<p class="system-line"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청 웹과 이를 채우는 운영 도구·수집 파이프라인입니다.</p>
 		<ul>
+			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
+				<dl>
+					<dt>문제</dt><dd>DB 장애를 복구했는데도 목록 화면이 계속 비어 있었습니다.</dd>
+					<dt>원인</dt><dd>페처가 5xx를 삼켜 만든 빈 응답이 <b>24시간 캐시</b>에 그대로 저장됐습니다.</dd>
+					<dt>측정</dt><dd>목록 API가 캐시 수명이 끝날 때까지 0건을 반환.</dd>
+					<dt>해결</dt><dd>태그를 무효화해 화면을 즉시 되살린 뒤, 5xx는 throw하고 <b>폴백을 캐시 바깥으로</b> 옮겼습니다.</dd>
+					<dt>평가</dt><dd>이후 같은 유형의 장애는 재발하지 않았습니다.</dd>
+				</dl></li>
 			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>의 콘텐츠를 개발자 배포 없이 운영팀이 직접 반영</b>
 				<ul class="how">
 					<li>디스코드 명령 한 줄로 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보를 고치면 캐시 무효화까지 자동으로 끝납니다.</li>
@@ -363,15 +366,13 @@
 				</ul></li>
 			<li class="task"><b>채용 공고 처리 시간 206초 → <b>18초</b> (91% 단축)</b>
 				<ul class="how">
-					<li>크롤러가 모으면 Gemini가 구조화하고, 디스코드 카드에서 사람이 승인해야 어드민에 등록됩니다.</li>
-					<li>모델의 사고(thinking) 모드를 끄고 응답 스키마를 좁혀 지연을 줄였고, 승인 단계는 남겨 뒀습니다.</li>
+					<li>크롤러 → Gemini 구조화 → 디스코드 카드에서 사람 승인 → 어드민 등록으로 묶고, 모델의 사고(thinking) 모드를 끄고 응답 스키마를 좁혀 지연을 줄였습니다.</li>
 				</ul></li>
 			<li class="task"><b>스키마 불일치 <b>252건 → 0</b>, DB 비용을 무료 한도 안에서 유지</b>
 				<ul class="how">
-					<li>RDS에서 Neon으로 이관하며 마이그레이션을 19개로 합쳤습니다.</li>
-					<li>주기 실행을 이벤트 기반으로 바꾸고 캐시·무효화 웹훅을 붙였습니다.</li>
+					<li>RDS에서 Neon으로 이관하며 마이그레이션을 19개로 합치고, 주기 실행을 이벤트 기반으로 바꿔 캐시·무효화 웹훅을 붙였습니다.</li>
 				</ul></li>
-			</ul>
+						</ul>
 	</div>
 
 	<div class="work">
@@ -379,17 +380,12 @@
 		<ul>
 			<li class="task"><b>AI 에이전트가 낸 코드의 회귀·임상 표기 위반을 <b>사람 리뷰 전에 자동 반려</b> (테스트 파일 499개)</b>
 				<ul class="how">
-					<li>배치 품질 점수, 테스트 중요도 분류, 실제 화면 구동 검증을 명령 하나로 묶었습니다.</li>
-					<li>가계도 230 · 축어록 141 · 백엔드 128개 테스트가 이 게이트 뒤에 있습니다.</li>
+					<li>배치 품질 점수·테스트 중요도 분류·실제 화면 구동 검증을 명령 하나로 묶었고, 가계도 230 · 축어록 141 · 백엔드 128개 테스트가 그 뒤에 있습니다.</li>
 				</ul></li>
-			<li class="task"><b>가계도 자동 배치 개선안 중 임상 표기 표준을 어긴 변경 전량 차단, <b>표준을 지킨 3건만 채택</b></b>
+			<li class="task"><b>합격 판정을 <b>재현 가능한 명령 하나</b>로 대체, 표준 위반 개선안 전량 차단</b>
 				<ul class="how">
-					<li>배치 점수만 올라가는 개선을 막으려 임상 표기 표준(McGoldrick 표기법)을 최우선 규칙으로 뒀습니다.</li>
-				</ul></li>
-			<li class="task"><b>AI 산출물의 합격 판정을 <b>다시 돌릴 수 있는 명령 하나</b>로 대체</b>
-				<ul class="how">
-					<li>에이전트 역할을 오케스트레이터·구현자·검수자로 나눴습니다.</li>
-					<li>모호한 요청은 넘기기 전에 검증할 수 있는 문장으로 고쳐 쓰도록 규칙에 못 박았습니다.</li>
+					<li>에이전트를 오케스트레이터·구현자·검수자로 나누고, 모호한 요청은 검증 가능한 문장으로 고쳐 쓰도록 규칙에 못 박았습니다.</li>
+					<li>배치 점수만 올라가는 개선을 막으려 임상 표기 표준을 최우선 규칙으로 둬, 가계도 자동 배치 개선안 중 <b>표준을 지킨 3건만 채택</b>됐습니다.</li>
 				</ul></li>
 			</ul>
 	</div>
@@ -418,14 +414,14 @@
 				</ul></li>
 		<li class="task"><b><span class="tag">[긴급]</span> 배치 중복 실행으로 유실된 데이터 <b>3시간 만에 복구</b></b>
 				<ul class="how">
-					<li>인스턴스가 5분에 10번 넘게 재시작되며 동기화 배치가 중복 실행됐고, binlog를 확보해 복구하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다.</li>
+					<li>인스턴스가 5분에 10번 넘게 재시작되며 배치가 중복 실행됐고, binlog로 복구하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다.</li>
 					<li>사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 누락을 찾아 <b>하루 만에 캐싱을 적용</b>했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-card="3" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
 				</ul></li>
 		<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
 				<ul class="how">
 					<li>무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
-					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup></li>
-					<li>약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> 약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+					
 				</ul></li>
 	</ul>
 </div>
@@ -436,8 +432,8 @@
 		<span class="period">2022.04. – 활동 중</span>
 	</div>
 	<ul>
-		<li>후배 팀의 통합버스 예약 시스템 최적화를 멘토링해 <b>학과 학술제 1위</b>, 학내 배포 <b>30분 만에 약 100명</b> 접속, 이후 <span class="nowrap">총학생회 5대 공약</span>으로 채택됐습니다.</li>
-		<li>학술 해커톤(<b>14명, 무박 2일</b>)을 열고 지원금 <b>120만원</b>을 조달했습니다. 학술 컨퍼런스를 열어 현직 대기업 개발자를 콜드메일로 섭외했고, 직접 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-card="yt" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>도 했습니다. 알고리즘 채점 서비스는 10일 만에 만들어 학과 공식 대회를 운영했습니다.</li>
+		<li>후배 팀의 통합버스 예약 시스템 최적화를 멘토링해 <b>학과 학술제 1위</b>, 학내 배포 30분 만에 약 100명이 접속했고 <b>총학생회 5대 공약</b>으로 채택됐습니다.</li>
+		<li>학술 해커톤(14명, 무박 2일) 개최와 지원금 <b>120만원</b> 조달, 현직 개발자를 섭외한 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-card="yt" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>, 알고리즘 채점 서비스는 <b>10일 만에</b> 만들어 학과 공식 대회를 운영했습니다.</li>
 	</ul>
 </div>
 
