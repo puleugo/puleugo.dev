@@ -48,3 +48,27 @@ test("OG 이미지가 1200×630 규격으로 존재한다", async ({ page }) => 
 	await page.goto(RESUME);
 	await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", "https://puleugo.dev/resume/og.png");
 });
+
+// 페이지 보기: 두 쪽을 한 화면에 담고, 미리보기 패널이 열려도 문서가 화면 안에 남아야 한다.
+test("페이지 보기에서 전체 내용이 한 화면에 들어간다", async ({ page }) => {
+	await page.setViewportSize({ width: 1512, height: 950 });
+	await page.goto(RESUME);
+	await page.check("#paged-input");
+	const box = () => page.evaluate(() => {
+		const d = document.getElementById("resume").getBoundingClientRect();
+		const last = document.querySelector(".references").getBoundingClientRect();
+		return { inView: d.right <= innerWidth + 1 && d.bottom <= innerHeight + 1,
+			tailInside: last.right <= d.right + 1 && last.bottom <= d.bottom + 1,
+			scroll: document.documentElement.scrollHeight > innerHeight + 1 };
+	});
+	expect(await box()).toEqual({ inView: true, tailInside: true, scroll: false });
+
+	await page.locator('a[data-preview]').first().click();
+	await page.waitForTimeout(600);
+	const withPanel = await page.evaluate(() => {
+		const d = document.getElementById("resume").getBoundingClientRect();
+		const p = document.getElementById("preview").getBoundingClientRect();
+		return { inView: d.right <= innerWidth + 1, overlap: p.right > d.left + 1 };
+	});
+	expect(withPanel).toEqual({ inView: true, overlap: false });
+});

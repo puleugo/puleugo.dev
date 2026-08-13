@@ -93,6 +93,54 @@
 	#resume { transition: transform .2s ease-out; transform-origin: left top; }
 	@media (prefers-reduced-motion: reduce) { #resume { transition: none; } }
 
+
+	/* 페이지 보기: 인쇄와 같은 지면(A4 본문 696×1032px)을 두 열로 나란히 */
+	.page-toggle { position: fixed; top: 18px; right: 210px; z-index: 10;
+		display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+		border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92);
+		backdrop-filter: blur(6px); font-size: 9pt; color: var(--sub); cursor: pointer; user-select: none; }
+	.page-toggle input { accent-color: var(--accent); margin: 0; cursor: pointer; }
+
+	body.paged { padding: 0; max-width: none; overflow: hidden; background: #eceef1; }
+	body.paged #resume {
+		column-count: 2; column-gap: 42px; column-fill: auto;
+		width: 1494px; height: 1100px;
+		position: absolute; top: 24px; left: 24px;
+		padding: 34px 30px; background: #fff;
+		font-size: 8.8pt; line-height: 1.32;
+		box-shadow: 0 14px 40px rgba(16,20,28,.16);
+		transform-origin: left top;
+	}
+	body.paged #resume::after {   /* 두 쪽 사이 접힘선 */
+		content: ""; position: absolute; top: 24px; bottom: 24px; left: 50%;
+		border-left: 1px dashed var(--line); }
+	body.paged .work li, body.paged li.case-study, body.paged li.task,
+	body.paged .entry-head, body.paged table.data-table { break-inside: avoid; }
+	body.paged h2 { break-after: avoid; }
+	body.paged .print-hint { display: none; }
+	@media print { body.paged { overflow: visible; background: #fff; }
+		body.paged #resume { column-count: 1; width: auto; height: auto; position: static;
+			padding: 0; box-shadow: none; transform: none !important; }
+		body.paged #resume::after { display: none; }
+		.page-toggle { display: none !important; } }
+
+
+	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
+	body.paged h1 { font-size: 18pt; }
+	body.paged h2 { margin: 14px 0 6px; }
+	body.paged .entry { margin-bottom: 8px; }
+	body.paged .work { margin-top: 7px; }
+	body.paged .example { font-size: 8.4pt; }
+	body.paged li.case-study dl { gap: 1.5px 9px; }
+	body.paged .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px 10px; padding: 5px 0; }
+	body.paged .hook-stats b { font-size: 11.5pt; }
+	body.paged .hook-stats span { font-size: 7.3pt; }
+	body.paged .references { font-size: 7.5pt; margin-top: 6px; }
+	body.paged .system-line { font-size: 8.2pt; margin: 0 0 2px; }
+	body.paged table.data-table { font-size: 8.6pt; }
+	body.paged table.data-table th, body.paged table.data-table td { padding: 2px 8px 2px 0; }
+	body.paged li { margin-bottom: 1.5px; }
+
 	/* header */
 	header { margin-bottom: 20px; }
 	h1 { margin: 0 0 2px; font-size: 20pt; letter-spacing: -.02em; }
@@ -232,6 +280,7 @@
 </head>
 <body>
 
+<label class="page-toggle"><input type="checkbox" id="paged-input"> 페이지 보기</label>
 <label class="term-toggle"><input type="checkbox" id="term-toggle-input"> 도메인 용어로 보기</label>
 
 <aside class="preview" id="preview">
@@ -572,11 +621,16 @@
 	measureBase();
 
 	// 패널은 최대한 넓게, 본문은 가려지지도 잘리지도 않게. 자리가 모자라면 본문을 비율 그대로 축소한다
-	const layout = () => {
-		const docRect = base;
+	const panelTargetWidth = () => {
 		const vw = document.documentElement.clientWidth;
 		const ideal = view === "mobile" ? VIEW.mobile[0] + 24 : VIEW.pc[0];
-		const width = Math.round(Math.max(320, Math.min(ideal, vw * 0.52, vw - 380)));
+		return Math.round(Math.max(320, Math.min(ideal, vw * 0.52, vw - 380)));
+	};
+	const layout = () => {
+		if (document.body.classList.contains("paged")) { fitPaged(); return; }
+		const docRect = base;
+		const vw = document.documentElement.clientWidth;
+		const width = panelTargetWidth();
 		peek.style.width = width + "px";
 		fit(width);
 		// 폭 트랜지션 중 rect 는 중간값이라 계산에 쓰지 않는다
@@ -593,13 +647,44 @@
 	};
 	const closePeek = () => {
 		peek.classList.remove("on");
-		doc.style.transform = "";
+		if (document.body.classList.contains("paged")) { setTimeout(fitPaged, 0); } else doc.style.transform = "";
+		if (!document.body.classList.contains("paged")) doc.style.transform = "";
 		frame.src = "about:blank";
 	};
 
 	document.querySelectorAll(".device-btn").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
 	document.getElementById("preview-close").addEventListener("click", closePeek);
 	document.addEventListener("keydown", (e) => e.key === "Escape" && closePeek());
+
+	// 페이지 보기: 인쇄 지면을 두 열로 펼쳐 한 화면에 담는다. 패널이 열리면 남은 폭에 맞춰 다시 줄인다.
+	const pagedInput = document.getElementById("paged-input");
+	const PAGE_W = 1494 + 48, PAGE_H = 1100 + 48;   // 지면(696×1032 두 쪽) + 여백
+	let pagedScale = 1;
+	const fitPaged = () => {
+		if (!document.body.classList.contains("paged")) { pagedScale = 1; return; }
+		let panelW = 0;
+		if (peek.classList.contains("on")) {
+			const w = panelTargetWidth();
+			peek.style.width = w + "px";
+			fit(w);
+			panelW = w + GAP * 2;
+		}
+		const vw = document.documentElement.clientWidth - panelW;
+		const vh = document.documentElement.clientHeight;
+		pagedScale = Math.max(0.2, Math.min((vw - 24) / PAGE_W, (vh - 24) / PAGE_H));
+		doc.style.left = (panelW + 24) + "px";
+		doc.style.transform = `scale(${pagedScale.toFixed(4)})`;
+	};
+	pagedInput.addEventListener("change", () => {
+		document.body.classList.toggle("paged", pagedInput.checked);
+		doc.style.transform = "";
+		doc.style.left = "";
+		if (pagedInput.checked) fitPaged();
+		else if (peek.classList.contains("on")) layout();
+		measureBase();
+	});
+	window.addEventListener("resize", fitPaged);
+
 	window.addEventListener("resize", () => {
 		measureBase();
 		if (peek.classList.contains("on")) layout();
