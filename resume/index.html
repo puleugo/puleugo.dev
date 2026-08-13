@@ -340,12 +340,9 @@
 					<li>세대 정렬, 부부 결혼선, 재혼 간선, 자녀 연결선 라우팅을 좌표 계산으로 구현했습니다.</li>
 					<li>렌더 결과가 계산된 영역을 <b>1px 오차 이내</b>로 지키는 불변식을 단위·E2E로 검증합니다.</li>
 				</ul></li>
-			<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
+			<li class="task"><b>FFI 경계 비용 <b>최대 40배</b>를 측정해 Rust/WASM 이식 기준 확립</b>
 				<ul class="how">
-					<li>무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
-					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup></li>
-					<li>약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
-				</ul></li>
+					<li>핫패스를 Rust로 옮겨 WASM으로 컴파일하고, 파리티 테스트로 TS 구현과 결과가 같은지 강제했습니다.</li>
 					<li>순수 수치 연산만 WASM으로 채택하고 나머지는 TS를 유지했습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
 				</ul></li>
 			</ul>
@@ -419,7 +416,12 @@
 					<li>인스턴스가 5분에 10번 넘게 재시작되며 동기화 배치가 중복 실행됐고, binlog를 확보해 복구하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다.</li>
 					<li>사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 누락을 찾아 <b>하루 만에 캐싱을 적용</b>했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-card="3" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
 				</ul></li>
-		<li class="task"><b>테스트 문화 도입과 격리 프레임워크 오픈소스화</b>무중단 운영 중인 API 약 135개 서비스에 <b>테스트 250개</b>를 써 커버리지를 <b>0%에서 19.54%</b>로 올리고, 트랜잭션 롤백 격리 프레임워크를 만들어 팀에 도입·오픈소스로 공개했습니다. 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.</li>
+		<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
+				<ul class="how">
+					<li>무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
+					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup></li>
+					<li>약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+				</ul></li>
 	</ul>
 </div>
 
