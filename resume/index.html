@@ -132,7 +132,8 @@
 	.facts { margin: 0 0 6px; font-size: 9pt; color: var(--sub); }
 	.facts b { color: var(--ink); margin-right: 6px; }
 
-	.work { margin: 13px 0 0; break-inside: avoid; page-break-inside: avoid; }
+	.work { margin: 13px 0 0; }
+	.work li, li.case-study, li.task { break-inside: avoid; page-break-inside: avoid; }
 	.work > strong { display: block; margin-bottom: 2px; font-size: 10pt; }
 	ul { margin: 2px 0 0; padding-left: 15px; }
 	li { margin-bottom: 3px; }
@@ -141,6 +142,10 @@
 	.nowrap { white-space: nowrap; }
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
 	li.case-study > b, li.task > b:first-child { display: block; }
+	ul.how { margin: 1px 0 0; padding-left: 0; list-style: none; }
+	@media print { ul.how li { line-height: 1.28; } }
+	ul.how li { margin: 0; padding-left: 10px; text-indent: -10px; color: var(--ink); }
+	ul.how li::before { content: "– "; color: var(--sub); }
 	li.case-study dl { display: grid; grid-template-columns: 40px 1fr; gap: 2px 10px; margin: 1px 0 0; }
 	li.case-study dt { font-size: 8.5pt; font-weight: 700; color: var(--sub); padding-top: .15em; letter-spacing: .02em; }
 	li.case-study dd { margin: 0; }
@@ -198,24 +203,24 @@
 	.print-hint { margin-top: 20px; font-size: 9pt; color: var(--sub); }
 	@media print {
 		@page { size: A4; margin: 12mm 13mm; }
-		body { padding: 0; max-width: none; font-size: 8.9pt; line-height: 1.35; }
+		body { padding: 0; max-width: none; font-size: 8.8pt; line-height: 1.32; }
 		a { color: var(--ink); border-bottom: none; }
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
 		h2 { margin: 11px 0 5px; }
-		.entry { margin-bottom: 9px; break-inside: auto; }
-		.work { margin-top: 8px; }
+		.entry { margin-bottom: 8px; break-inside: auto; }
+		.work { margin-top: 7px; }
 		.example { font-size: 8.4pt; }
 		li.case-study dl { gap: 1.5px 9px; }
-		.hook-stats { gap: 4px 10px; padding: 6px 0; }
+		.hook-stats { gap: 3px 10px; padding: 5px 0; }
 		.hook-stats b { font-size: 11.5pt; }
 		.hook-stats span { font-size: 7.3pt; }
-		.references { font-size: 7.8pt; margin-top: 8px; }
+		.references { font-size: 7.5pt; margin-top: 6px; }
 		table.data-table { font-size: 8.6pt; }
 		table.data-table th, table.data-table td { padding: 2px 8px 2px 0; }
 		h2 { margin: 14px 0 6px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
-		li { margin-bottom: 2px; }
+		li { margin-bottom: 1.5px; }
 		.term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; }
 	}
@@ -302,46 +307,87 @@
 	<div class="work">
 		<strong>어르다 축어록 · 기획부터 앱 출시까지 단독 개발 (2026.01. – 현재)</strong>
 		<ul>
-			<li>녹음을 청크로 나눠 Gemini에 넘기고, 한숨·침묵·말끝 흐림 같은 비언어 표현을 표기하도록 프롬프트를 설계했습니다. 그 결과 상담사 만족도가 범용 받아쓰기 <b>2.9점에서 4.92점</b>(실무자·석박사 13인 베타)으로 올랐고, 비언어 표현 인식은 <b>92.3%가 "매우 만족"</b>으로 평가했습니다.</li>
-			<li>오디오 변환과 청크 분할을 <b>WASM FFmpeg로 기기에서</b> 처리해 서버 오디오 비용 없이 돌아가게 했고, 같은 코드베이스를 Capacitor로 묶어 <b>iOS·Android 정식 출시</b>까지 마쳤습니다.</li>
-			<li>반복 등장하는 인물 같은 민감 정보를 <b>맥락으로 식별해 가리고</b>, 슈퍼비전 보고서를 HWPX·DOCX로 자동 내보내기 했습니다. 회기당 <b>6시간</b>(핵심 업무의 29.3%) 걸리던 기록·보고 작업이 자동화됐습니다.</li>
-		</ul>
+			<li class="task"><b>상담사 만족도 2.9점 → <b>4.92점</b> (실무자·석박사 13인 베타)</b>
+				<ul class="how">
+					<li>녹음을 청크로 나눠 <b>Gemini</b>에 넘기고, 한숨·침묵·말끝 흐림 같은 비언어 표현을 표기하도록 프롬프트를 설계했습니다.</li>
+					<li>비언어 표현 인식은 92.3%가 "매우 만족"으로 평가했습니다.</li>
+				</ul></li>
+			<li class="task"><b>서버 오디오 비용 없이 <b>iOS·Android 정식 출시</b></b>
+				<ul class="how">
+					<li>오디오 변환과 청크 분할을 <b>WASM FFmpeg로 기기에서</b> 처리했습니다.</li>
+					<li>같은 코드베이스를 Capacitor로 묶어 두 스토어에 배포했습니다.</li>
+				</ul></li>
+			<li class="task"><b>회기당 <b>6시간</b> 걸리던 기록·보고 작업을 자동화</b>
+				<ul class="how">
+					<li>반복 등장하는 인물 같은 민감 정보를 맥락으로 식별해 가립니다.</li>
+					<li>슈퍼비전 보고서를 HWPX·DOCX로 자동 내보냅니다.</li>
+				</ul></li>
+			</ul>
 	</div>
 
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당 (2026.01. – 현재)</strong>
 		<ul>
-			<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도까지 <b>가계도 표기법을 문법으로 정의</b>하고 그래프 모델로 바꾸는 파서를 만들었습니다. 그림 대신 텍스트로 편집·버전 관리가 가능해졌고, 파싱 지연은 <b>p95 120ms 예산</b>을 CI 게이트로 강제합니다.</li>
-			<li>세대 정렬, 부부 결혼선, 재혼 간선, 자녀 연결선 라우팅을 좌표 계산으로 구현했습니다. 관계 하나만 바뀌어도 주변 인물이 연쇄 재배치되는 것이 핵심 난제였고, 렌더 결과가 계산된 영역을 <b>1px 오차 이내</b>로 지키는 불변식을 단위·E2E로 검증해 <b>겹침 0 · 표기 위반 0</b>을 유지합니다.</li>
-			<li>핫패스를 <b>Rust로 옮겨 WASM으로 컴파일</b>하고 파리티 테스트로 TS 구현과 결과가 같은지 강제했습니다. 벤치로 <b>FFI 경계 비용이 최대 40배</b>임을 측정해, 순수 수치 연산만 WASM으로 채택하고 나머지는 TS를 유지하는 이식 기준을 세웠습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
-		</ul>
+			<li class="task"><b>가계도를 <b>텍스트로 편집·버전 관리</b>할 수 있게 만든 표기 언어(DSL)</b>
+				<ul class="how">
+					<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의하고 그래프 모델로 파싱합니다.</li>
+					<li>파싱 지연은 <b>p95 120ms 예산</b>을 CI 게이트로 강제합니다.</li>
+				</ul></li>
+			<li class="task"><b>관계 수정 시 주변 인물 자동 재배치, <b>겹침 0 · 표기 위반 0</b> 유지</b>
+				<ul class="how">
+					<li>세대 정렬, 부부 결혼선, 재혼 간선, 자녀 연결선 라우팅을 좌표 계산으로 구현했습니다.</li>
+					<li>렌더 결과가 계산된 영역을 <b>1px 오차 이내</b>로 지키는 불변식을 단위·E2E로 검증합니다.</li>
+				</ul></li>
+			<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
+				<ul class="how">
+					<li>무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
+					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup></li>
+					<li>약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+				</ul></li>
+					<li>순수 수치 연산만 WASM으로 채택하고 나머지는 TS를 유지했습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
+				</ul></li>
+			</ul>
 	</div>
 
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인</strong>
 		<ul>
-			<li>운영팀용 디스코드 명령 체계를 만들어 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보를 명령 한 줄로 고치고 캐시 무효화까지 자동으로 끝내게 했습니다. <b>기관 410곳의 콘텐츠를 개발자 배포 없이</b> 반영하게 됐고, 사용 의견을 반영해 <b>명령 15개를 8개로</b> 합쳤습니다.</li>
-			<li>채용 공고 수집을 크롤러 → <b>Gemini 구조화</b> → 사람 승인 → 자동 등록으로 파이프라인화했습니다. 사고 모드를 끄고 스키마를 좁혀 <b>건당 206초를 18초로(91% 단축)</b> 줄였고, 승인 단계를 남겨 자동화가 사람 판단을 대신하지 않게 했습니다.</li>
-			<li>RDS에서 Neon으로 이관하며 <b>스키마 불일치 252건을 모두 정리</b>하고 마이그레이션을 19개로 합쳤습니다. 주기 실행을 이벤트 기반으로 바꾸고 캐시·무효화 웹훅을 붙여 <b>DB 비용을 무료 한도 안</b>에서 유지합니다.</li>
-			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
-				<dl>
-					<dt>문제</dt><dd>DB 장애를 복구했는데도 목록 화면이 계속 비어 있었습니다.</dd>
-					<dt>원인</dt><dd>페처가 5xx를 삼켜 만든 빈 응답이 <b>24시간 캐시</b>에 그대로 저장됐습니다.</dd>
-					<dt>측정</dt><dd>목록 API가 캐시 수명이 끝날 때까지 0건을 반환.</dd>
-					<dt>해결</dt><dd>태그를 무효화해 화면을 즉시 되살린 뒤, 5xx는 throw하고 <b>폴백을 캐시 바깥으로</b> 옮겼습니다.</dd>
-					<dt>평가</dt><dd>이후 같은 유형의 장애는 재발하지 않았습니다.</dd>
-				</dl></li>
-			<li>검색 유입이 줄어든 원인을 서치콘솔 실측으로 추적해 예전 색인 제외 정책의 지연 효과임을 확인하고(<b>3개월 클릭 621회 → 277회</b>), 모바일에서 표가 카드로 바뀌던 구조를 표준 표로 되돌려 <b>지역 페이지 17개</b> 재색인을 요청했습니다.</li>
-		</ul>
+			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>의 콘텐츠를 개발자 배포 없이 운영팀이 직접 반영</b>
+				<ul class="how">
+					<li>디스코드 명령 한 줄로 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보를 고치면 캐시 무효화까지 자동으로 끝납니다.</li>
+					<li>사용 의견을 반영해 <b>명령 15개를 8개로</b> 합쳤습니다.</li>
+				</ul></li>
+			<li class="task"><b>채용 공고 처리 시간 206초 → <b>18초</b> (91% 단축)</b>
+				<ul class="how">
+					<li>크롤러가 모으면 Gemini가 구조화하고, 디스코드 카드에서 사람이 승인해야 어드민에 등록됩니다.</li>
+					<li>사고 모드를 끄고 스키마를 좁혀 지연을 줄였고, 승인 단계는 남겨 자동화가 사람 판단을 대신하지 않게 했습니다.</li>
+				</ul></li>
+			<li class="task"><b>스키마 불일치 <b>252건 → 0</b>, DB 비용을 무료 한도 안에서 유지</b>
+				<ul class="how">
+					<li>RDS에서 Neon으로 이관하며 마이그레이션을 19개로 합쳤습니다.</li>
+					<li>주기 실행을 이벤트 기반으로 바꾸고 캐시·무효화 웹훅을 붙였습니다.</li>
+				</ul></li>
+			</ul>
 	</div>
 
 	<div class="work">
 		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
-			<li>에이전트 역할을 <b>오케스트레이터·구현자·검수자</b>로 나누고, 모호한 요청은 넘기기 전에 <b>검증할 수 있는 문장</b>으로 고쳐 쓰도록 규칙에 못 박았습니다. 되묻느라 늘어지던 왕복이 줄고, 지시 한 번으로 끝나는 작업이 늘었습니다.</li>
-			<li>배치 품질 점수·테스트 중요도 분류·실제 화면 구동 검증을 <b>명령 하나로 묶은 게이트</b>를 만들었습니다. 그 뒤에 테스트 파일 <b>499개</b>(가계도 230 · 축어록 141 · 백엔드 128)가 있어 회귀나 표기 위반은 사람이 보기 전에 반려됩니다.</li>
-			<li>점수만 올라가는 개선을 막으려 <b>임상 표기 표준을 최우선 규칙</b>으로 뒀습니다. 폭은 줄었지만 표준을 어긴 변경은 모두 걸러지고 <b>표준을 지킨 3건만 채택</b>됐습니다. 합격 판정이 사람의 감이 아니라 다시 돌릴 수 있는 명령 하나가 되면서, 같은 작업을 반복할수록 품질이 쌓입니다.</li>
-		</ul>
+			<li class="task"><b>에이전트 변경분의 회귀·표기 위반을 <b>사람 리뷰 전에 자동 반려</b> (테스트 파일 499개)</b>
+				<ul class="how">
+					<li>배치 품질 점수, 테스트 중요도 분류, 실제 화면 구동 검증을 명령 하나로 묶었습니다.</li>
+					<li>가계도 230 · 축어록 141 · 백엔드 128개 테스트가 이 게이트 뒤에 있습니다.</li>
+				</ul></li>
+			<li class="task"><b>표준을 어긴 변경 전량 차단, <b>표준을 지킨 3건만 채택</b></b>
+				<ul class="how">
+					<li>점수만 올라가는 개선을 막으려 임상 표기 표준을 최우선 규칙으로 뒀습니다.</li>
+				</ul></li>
+			<li class="task"><b>합격 판정을 <b>다시 돌릴 수 있는 명령 하나</b>로 대체</b>
+				<ul class="how">
+					<li>에이전트 역할을 오케스트레이터·구현자·검수자로 나눴습니다.</li>
+					<li>모호한 요청은 넘기기 전에 검증할 수 있는 문장으로 고쳐 쓰도록 규칙에 못 박았습니다.</li>
+				</ul></li>
+			</ul>
 	</div>
 </div>
 
@@ -361,9 +407,17 @@
 					<dt>해결</dt><dd>이 수치로 배치 폐기를 설득해 어드민 페이지로 전환하고, 사례가 없던 서버리스 환경에 AdminJS를 통합.</dd>
 					<dt>평가</dt><dd>중복 쿼리를 1회로 묶어 <b>DB 부하 99.94% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
-		<li class="task"><b>AdminJS 공식 문서에 서버리스 배포 가이드 기여</b>사내에서 검증한 배포 방법이 공식 문서로 채택됐습니다(PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지). 현재 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co/deployment/serverless</a> 로 게시 중.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-card="1" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
-		<li class="task"><b><span class="tag">[긴급]</span> 배치 중복 실행으로 유실된 데이터 3시간 만에 복구</b>인스턴스가 5분에 10번 넘게 재시작되며 배치가 중복 실행됐고, binlog를 확보해 <b>3시간 만에 복구</b>하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다. 이미지 로딩 지연도 Cache-Control 누락을 찾아 하루 만에 캐싱을 적용했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-card="3" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
-		<li class="task"><b>테스트 문화 도입과 격리 프레임워크 오픈소스화</b>무중단 운영 중인 API 약 135개 서비스에 <b>테스트 250개</b>를 써 커버리지를 <b>0%에서 19.54%</b>로 올리고, 트랜잭션 롤백 격리 프레임워크를 만들어 팀에 도입·오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-card="4" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-card="6" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+		<li class="task"><b>사내 배포 방법이 <b>AdminJS 공식 문서</b>로 채택</b>
+				<ul class="how">
+					<li>사례가 없던 서버리스 환경의 배포 절차를 정리해 PR 로 제안, 머지됐습니다(adminjs-docs#15, 2025.06.).<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-card="1" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
+					<li>현재 공식 배포 가이드 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co/deployment/serverless</a> 로 게시 중입니다.</li>
+				</ul></li>
+		<li class="task"><b><span class="tag">[긴급]</span> 배치 중복 실행으로 유실된 데이터 <b>3시간 만에 복구</b></b>
+				<ul class="how">
+					<li>인스턴스가 5분에 10번 넘게 재시작되며 동기화 배치가 중복 실행됐고, binlog를 확보해 복구하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다.</li>
+					<li>사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 누락을 찾아 <b>하루 만에 캐싱을 적용</b>했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-card="3" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
+				</ul></li>
+		<li class="task"><b>테스트 문화 도입과 격리 프레임워크 오픈소스화</b>무중단 운영 중인 API 약 135개 서비스에 <b>테스트 250개</b>를 써 커버리지를 <b>0%에서 19.54%</b>로 올리고, 트랜잭션 롤백 격리 프레임워크를 만들어 팀에 도입·오픈소스로 공개했습니다. 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.</li>
 	</ul>
 </div>
 
@@ -416,7 +470,7 @@
 
 	<section class="references">
 		<b>참고</b> (본문 대괄호 번호)
-		<span class="reference-list">[1] 블로그 「[NestJS] AdminJS 프로덕션 배포하기」 ko.puleugo.dev/216 · [2] 예제 코드 github.com/puleugo/nestjs-adminjs-serverless · [3] 블로그 「[CloudFlare] 이미지 로드 속도 향상하기」 ko.puleugo.dev/213 · [4] 블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」 ko.puleugo.dev/201 · [5] 오픈소스 github.com/puleugo/typeorm-transaction-rollback · [6] 블로그 「괴물 메서드 리팩터링과 성능개선하기」 ko.puleugo.dev/209</span>
+		<span class="reference-list">[1] 블로그 ko.puleugo.dev/216 · [2] 예제 코드 github.com/puleugo/nestjs-adminjs-serverless · [3] 블로그 ko.puleugo.dev/213 · [4] 블로그 ko.puleugo.dev/201 · [5] 오픈소스 github.com/puleugo/typeorm-transaction-rollback · [6] 블로그 ko.puleugo.dev/209</span>
 	</section>
 </main>
 
