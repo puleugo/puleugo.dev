@@ -130,6 +130,7 @@
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
 	.period { font-size: 9pt; color: var(--sub); white-space: nowrap; }
+	.system-line { margin: 1px 0 3px; font-size: 9pt; color: var(--sub); }
 	.lead { margin: 2px 0 6px; font-size: 9.5pt; color: var(--sub); }
 	.facts { margin: 0 0 6px; font-size: 9pt; color: var(--sub); }
 	.facts b { color: var(--ink); margin-right: 6px; }
@@ -218,6 +219,7 @@
 		.hook-stats b { font-size: 11.5pt; }
 		.hook-stats span { font-size: 7.3pt; }
 		.references { font-size: 7.5pt; margin-top: 6px; }
+		.system-line { font-size: 8.2pt; margin: 0 0 2px; }
 		table.data-table { font-size: 8.6pt; }
 		table.data-table th, table.data-table td { padding: 2px 8px 2px 0; }
 		h2 { margin: 14px 0 6px; }
@@ -308,10 +310,11 @@
 
 	<div class="work">
 		<strong>어르다 축어록 · 기획부터 앱 출시까지 단독 개발 (2026.01. – 현재)</strong>
+		<p class="system-line">상담 녹음을 올리면 <t data-x="축어록">녹취록</t>과 슈퍼비전 보고서를 만들어 주는 웹·모바일 앱입니다.</p>
 		<ul>
-			<li class="task"><b>상담사 만족도 2.9점 → <b>4.92점</b> (실무자·석박사 13인 베타)</b>
+			<li class="task"><b>상담사 만족도 범용 STT 2.9점 → 어르다 축어록 <b>4.92점</b> (실무자·석박사 13인 베타)</b>
 				<ul class="how">
-					<li>녹음을 청크로 나눠 <b>Gemini</b>에 넘기고, 한숨·침묵·말끝 흐림 같은 비언어 표현을 표기하도록 프롬프트를 설계했습니다.</li>
+					<li>범용 받아쓰기(클로바노트 등)가 놓치는 침묵·말떨림을 표기하도록, 녹음을 청크로 나눠 <b>Gemini</b>에 넘기는 프롬프트를 설계했습니다.</li>
 					<li>비언어 표현 인식은 92.3%가 "매우 만족"으로 평가했습니다.</li>
 				</ul></li>
 			<li class="task"><b>서버 오디오 비용 없이 <b>iOS·Android 정식 출시</b></b>
@@ -329,6 +332,7 @@
 
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당 (2026.01. – 현재)</strong>
+		<p class="system-line">내담자 가족 관계를 표준 표기법대로 자동 정렬·렌더링하는 제작 도구입니다.</p>
 		<ul>
 			<li class="task"><b>가계도를 <b>텍스트로 편집·버전 관리</b>할 수 있게 만든 표기 언어(DSL)</b>
 				<ul class="how">
@@ -350,6 +354,7 @@
 
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인</strong>
+		<p class="system-line"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청 웹과 이를 채우는 운영 도구·수집 파이프라인입니다.</p>
 		<ul>
 			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>의 콘텐츠를 개발자 배포 없이 운영팀이 직접 반영</b>
 				<ul class="how">
@@ -396,7 +401,7 @@
 		<span class="period">2024.04. – 2025.06.</span>
 	</div>
 	<p class="facts"><b>역할</b> 백엔드 운영·유지보수·성능 개선 담당. 배치 폐기와 테스트 도입은 근거를 만들어 팀을 설득해 관철했습니다.</p>
-	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬 커뮤니티의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09. 출시, 2025년 서비스 종료</span></p>
+	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 	<ul>
 		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환</b>
 				<dl>
