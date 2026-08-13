@@ -88,10 +88,15 @@
 	.tagline { margin: 0 0 8px; font-size: 10pt; color: var(--sub); }
 	.summary { margin: 0 0 8px; padding-left: 15px; }
 	.summary li { margin-bottom: 2px; }
-	.metrics { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 9px; padding: 7px 0; list-style: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+	.metrics {
+		display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px 14px;
+		margin: 0 0 9px; padding: 7px 0; list-style: none;
+		border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+	}
+	@media (max-width: 620px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 	.metrics li { margin: 0; display: flex; flex-direction: column; line-height: 1.25; }
-	.metrics b { font-size: 12pt; letter-spacing: -.02em; }
-	.metrics span { font-size: 8.5pt; color: var(--sub); }
+	.metrics b { font-size: 12pt; letter-spacing: -.03em; white-space: nowrap; }
+	.metrics span { font-size: 8.3pt; color: var(--sub); word-break: keep-all; }
 	.contact { font-size: 9.5pt; color: var(--sub); display: flex; flex-wrap: wrap; gap: 4px 10px; }
 	.contact span::after { content: "·"; margin-left: 10px; color: var(--line); }
 	.contact span:last-child::after { content: ""; }
@@ -121,8 +126,7 @@
 	li { margin-bottom: 3px; }
 	li ul { margin-top: 1px; }
 	.q { font-weight: 700; }
-	.step { font-size: 8pt; font-weight: 700; color: var(--sub); margin-right: 2px; }
-	.step::after { content: ""; }
+	.nb { white-space: nowrap; }
 	.ic { width: .95em; height: .95em; vertical-align: -.13em; margin-right: 3px; fill: currentColor; color: var(--sub); }
 	a .ic { color: inherit; opacity: .75; }
 	sup.fn { font-size: 7.5pt; line-height: 0; }
@@ -185,6 +189,9 @@
 		.item { margin-bottom: 9px; break-inside: auto; }
 		.block { margin-top: 8px; }
 		.ex { font-size: 8.4pt; }
+		.metrics { gap: 4px 10px; padding: 6px 0; }
+		.metrics b { font-size: 11pt; }
+		.metrics span { font-size: 7.6pt; }
 		.refs { font-size: 7.8pt; margin-top: 8px; }
 		table.mini { font-size: 8.6pt; }
 		table.mini th, table.mini td { padding: 2px 8px 2px 0; }
@@ -241,7 +248,7 @@
 		<li>월 사용자 5만 명 서비스에서 중복 쿼리 <b>2,304회를 1회로 통합해 DB 부하 99.94% 절감</b>, 서버리스 전환으로 <b>운영비 약 70% 절감</b>.</li>
 	</ul>
 	<ul class="metrics">
-		<li><b>4.92</b><span>상담사 만족도 (5점 만점, 베타 13인)</span></li>
+		<li><b>4.92</b><span>상담사 만족도 (베타 13인)</span></li>
 		<li><b>99.94%↓</b><span>중복 쿼리 통합으로 줄인 DB 부하</span></li>
 		<li><b>206초→18초</b><span>공고 처리 자동화</span></li>
 		<li><b>4종</b><span>단독 개발·운영 중인 제품</span></li>
@@ -298,7 +305,7 @@
 			<li>운영팀용 디스코드 명령 체계를 만들어 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보를 명령 한 줄로 고치고 캐시 무효화까지 자동으로 끝내게 했습니다. <b>기관 410곳의 콘텐츠를 개발자 배포 없이</b> 반영하게 됐고, 사용 의견을 반영해 <b>명령 15개를 8개로</b> 합쳤습니다.</li>
 			<li>채용 공고 수집을 크롤러 → <b>Gemini 구조화</b> → 사람 승인 → 자동 등록으로 파이프라인화했습니다. 사고 모드를 끄고 스키마를 좁혀 <b>건당 206초를 18초로(91% 단축)</b> 줄였고, 승인 단계를 남겨 자동화가 사람 판단을 대신하지 않게 했습니다.</li>
 			<li>RDS에서 Neon으로 이관하며 <b>스키마 불일치 252건을 모두 정리</b>하고 마이그레이션을 19개로 합쳤습니다. 주기 실행을 이벤트 기반으로 바꾸고 캐시·무효화 웹훅을 붙여 <b>DB 비용을 무료 한도 안</b>에서 유지합니다.</li>
-			<li><span class="q">[장애 대응]</span> <span class="step">문제</span> DB 장애를 복구한 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보임. <span class="step">원인</span> 페처가 5xx를 삼켜 만든 빈 응답이 24시간 캐시에 저장됨. <span class="step">측정</span> 목록 API가 0건을 캐시 TTL 내내 반환. <span class="step">해결</span> 태그 무효화로 화면을 즉시 복구한 뒤, 5xx는 throw하고 <b>폴백을 캐시 바깥으로 이동</b>. <span class="step">평가</span> 이후 같은 유형의 장애 재발 없음.</li>
+			<li><span class="q">[장애 대응]</span> DB가 멈춘 동안 페처가 5xx를 삼켜 만든 빈 응답이 <b>24시간 캐시에 저장</b>돼, 복구한 뒤에도 목록 API가 캐시 수명 내내 0건을 반환했습니다. 태그를 무효화해 화면부터 되살린 다음 5xx는 throw하도록 고치고 <b>폴백을 캐시 바깥으로 옮겨</b>, 이후 같은 유형의 장애는 재발하지 않았습니다.</li>
 			<li>검색 유입이 줄어든 원인을 서치콘솔 실측으로 추적해 예전 색인 제외 정책의 지연 효과임을 확인하고(<b>3개월 클릭 621회 → 277회</b>), 모바일에서 표가 카드로 바뀌던 구조를 표준 표로 되돌려 <b>지역 페이지 17개</b> 재색인을 요청했습니다.</li>
 		</ul>
 	</div>
@@ -319,9 +326,9 @@
 		<span class="date">2024.04. – 2025.06.</span>
 	</div>
 	<p class="scale"><b>역할</b> 백엔드 운영·유지보수·성능 개선 담당. 배치 폐기와 테스트 도입은 근거를 만들어 팀을 설득해 관철했습니다.</p>
-	<p class="scale"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬 커뮤니티의 게임 배포 플랫폼 · 월 사용자 5만 명 · API 약 135개 · 2023.09. 출시, 2025년 서비스 종료</p>
+	<p class="scale"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬 커뮤니티의 게임 배포 플랫폼 · 월 사용자 5만 명 · API 약 135개 · <span class="nb">2023.09. 출시, 2025년 서비스 종료</span></p>
 	<ul>
-		<li><span class="step">문제</span> 구글 엑셀 동기화 배치가 DB를 반복 조회해 부하를 만듦. <span class="step">원인</span> 변경 여부와 무관하게 전량을 다시 맞추는 구조. <span class="step">측정</span> 실행당 중복 쿼리 <b>2,304회</b>, 실제 데이터 변경은 월평균 20회뿐. <span class="step">해결</span> 근거를 들어 배치 폐기를 설득하고 어드민 페이지로 전환, 사례가 없던 서버리스 환경에 AdminJS 통합. <span class="step">평가</span> 중복 쿼리를 1회 호출로 묶어 <b>DB 부하 99.94% 감소</b>, GCP 모놀리식을 Vercel 서버리스로 옮겨 운영 비용도 약 70% 절감.</li>
+		<li>구글 엑셀 동기화 배치가 변경 여부와 무관하게 전량을 다시 맞추느라 <b>실행당 중복 쿼리 2,304회</b>를 만들고 있었습니다. 변경 기록을 보니 실제 데이터 변경은 월평균 20회뿐이어서 이를 근거로 배치 폐기를 설득해 어드민 페이지로 전환했고, 사례가 없던 서버리스 환경에 AdminJS를 붙였습니다. 중복 쿼리를 1회 호출로 묶어 <b>DB 부하를 99.94% 줄였고</b>, GCP 모놀리식을 Vercel 서버리스로 옮겨 운영 비용도 약 70% 절감했습니다.</li>
 		<li>사내에서 검증한 서버리스 배포 방법을 정리해 <b>AdminJS 공식 문서에 기여</b>했습니다(채택된 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다"><svg class="ic"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, 2025.06.). 지금은 공식 배포 가이드 <b><a href="https://docs.adminjs.co/deployment/serverless" data-peek data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)"><svg class="ic"><use href="#i-doc-b"/></svg>docs.adminjs.co/deployment/serverless</a></b>로 게시돼 있습니다.<sup class="fn"><a href="https://ko.puleugo.dev/216" data-card="1" data-peek data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="fn"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
 		<li><span class="q">[긴급]</span> 서버리스로 옮긴 뒤 <b>인스턴스가 5분에 10번 넘게 재시작</b>되면서 동기화 배치가 중복 실행돼 데이터가 유실됐습니다. binlog를 확보해 <b>3시간 만에 복구</b>했고, 대규모 쿼리를 부르는 구조 자체가 원인임을 밝혔습니다. 사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 헤더 누락을 찾아 하루 만에 캐싱을 적용했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/213" data-card="3" data-peek data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
 		<li>테스트 문화를 처음 들여왔습니다. 무중단 운영 중인 API 약 135개 규모 서비스에 <b>테스트 250개</b>를 쓰고 커버리지를 <b>0%에서 19.54%</b>로 올렸으며, 트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/201" data-card="4" data-peek data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="fn"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/209" data-card="6" data-peek data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
@@ -334,7 +341,7 @@
 		<span class="date">2022.04. – 활동 중</span>
 	</div>
 	<ul>
-		<li>후배 팀의 통합버스 예약 시스템 최적화를 멘토링해 <b>학과 학술제 1위</b>, 학내 배포 <b>30분 만에 약 100명</b> 접속, 이후 총학생회 5대 공약으로 채택됐습니다.</li>
+		<li>후배 팀의 통합버스 예약 시스템 최적화를 멘토링해 <b>학과 학술제 1위</b>, 학내 배포 <b>30분 만에 약 100명</b> 접속, 이후 <span class="nb">총학생회 5대 공약</span>으로 채택됐습니다.</li>
 		<li>학술 해커톤(<b>14명, 무박 2일</b>)을 열고 지원금 <b>120만원</b>을 조달했습니다. 학술 컨퍼런스를 열어 현직 대기업 개발자를 콜드메일로 섭외했고, 직접 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-card="yt" data-peek="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」"><svg class="ic"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>도 했습니다. 알고리즘 채점 서비스는 10일 만에 만들어 학과 공식 대회를 운영했습니다.</li>
 	</ul>
 </div>
