@@ -100,14 +100,14 @@
 	.summary { margin: 0 0 8px; padding-left: 15px; }
 	.summary li { margin-bottom: 2px; }
 	.metrics {
-		display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px 14px;
+		display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px 12px;
 		margin: 0 0 9px; padding: 7px 0; list-style: none;
 		border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 	}
-	@media (max-width: 620px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+	@media (max-width: 860px) { .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 	.metrics li { margin: 0; display: flex; flex-direction: column; line-height: 1.25; }
-	.metrics b { font-size: 12pt; letter-spacing: -.03em; white-space: nowrap; }
-	.metrics span { font-size: 8.3pt; color: var(--sub); word-break: keep-all; }
+	.metrics b { font-size: 12.5pt; letter-spacing: -.03em; white-space: nowrap; }
+	.metrics span { font-size: 8pt; color: var(--sub); word-break: keep-all; }
 	.contact { font-size: 9.5pt; color: var(--sub); display: flex; flex-wrap: wrap; gap: 4px 10px; }
 	.contact span::after { content: "·"; margin-left: 10px; color: var(--line); }
 	.contact span:last-child::after { content: ""; }
@@ -207,8 +207,8 @@
 		.ex { font-size: 8.4pt; }
 		li.case dl { gap: 1.5px 9px; }
 		.metrics { gap: 4px 10px; padding: 6px 0; }
-		.metrics b { font-size: 11pt; }
-		.metrics span { font-size: 7.6pt; }
+		.metrics b { font-size: 11.5pt; }
+		.metrics span { font-size: 7.3pt; }
 		.refs { font-size: 7.8pt; margin-top: 8px; }
 		table.mini { font-size: 8.6pt; }
 		table.mini th, table.mini td { padding: 2px 8px 2px 0; }
@@ -259,17 +259,17 @@
 	<h1>임채성 <small>프로덕트 엔지니어 (풀스택)</small></h1>
 	<p class="keywords">비즈니스를 코드로 · 평가 기준의 자동화 · 제품 단독 소유</p>
 	<p class="tagline">사업의 흐름을 스키마와 API로 옮기고, AI 에이전트가 통과해야 할 기준을 코드로 고정해 개선이 쌓이는 환경을 만듭니다.</p>
+	<ul class="metrics">
+		<li><b>MAU 5만</b><span>운영 서비스 최대 월 사용자</span></li>
+		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
+		<li><b>4.92</b><span>상담사 베타 만족도 (5점)</span></li>
+		<li><b>99.94%↓</b><span>중복 쿼리 통합 후 DB 부하</span></li>
+		<li><b>4종</b><span>단독 개발·운영 제품</span></li>
+		<li><b>5회</b><span>창업 경진대회 (대상 2)</span></li>
+	</ul>
 	<ul class="summary">
 		<li>상담사가 되기까지 평균 <b>비용 1천만원 · 실무 3년 · 석·박사 학위</b>가 드는 준비 과정을 온라인으로 옮긴 플랫폼 <b>어르다</b>를 공동창업하고 개발을 총괄합니다. 제품 4종을 혼자 설계·개발·운영합니다.</li>
 		<li>상담 1회당 <b>6시간</b> 걸리던 기록 노동을 AI로 자동화해, 실무자·석박사 13인 베타에서 만족도를 범용 STT <b>2.9점 → 4.92점</b>(5점 만점)으로 올렸습니다. 창업 경진대회 대상 2회 · 최우수상 3회.</li>
-		<li>월 사용자 5만 명 서비스에서 중복 쿼리 <b>2,304회를 1회로 통합해 DB 부하 99.94% 절감</b>, 서버리스 전환으로 <b>운영비 약 70% 절감</b>.</li>
-	</ul>
-	<ul class="metrics">
-		<li><b>4.92</b><span>상담사 만족도 (베타 13인)</span></li>
-		<li><b>99.94%↓</b><span>중복 쿼리 통합으로 줄인 DB 부하</span></li>
-		<li><b>206초→18초</b><span>공고 처리 자동화</span></li>
-		<li><b>4종</b><span>단독 개발·운영 중인 제품</span></li>
-		<li><b>5회</b><span>창업 경진대회 수상 (대상 2)</span></li>
 	</ul>
 	<div class="contact">
 		<span><a href="https://ko.puleugo.dev" data-peek data-tip="티스토리 블로그 미리보기 (ko.puleugo.dev)"><svg class="ic"><use href="#i-blog"/></svg>ko.puleugo.dev</a></span>
