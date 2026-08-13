@@ -236,60 +236,51 @@
 		<h3><a href="https://www.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)">어르다</a> <span class="role">· 공동창업자 · 개발 총괄 <span class="url">www.auruda-j.com</span></span></h3>
 		<span class="date">2025.09. – 재직 중</span>
 	</div>
-	<p class="scale"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳(전국 17개 시·도) · 학회 자격증 15종 · 기관 페이지 누적 조회 16만 회 · 도메인 모듈 35개 / API 188개</p>
+	<p class="scale"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳(전국 17개 시·도) · 학회 자격증 15종 · 기관 페이지 누적 조회 16만 회 · 도메인 모듈 35개 / API 188개 · 테스트 파일 499개</p>
 	<table class="mini">
-		<thead><tr><th>제품</th><th>하는 일</th><th class="sub">스택과 상태</th></tr></thead>
+		<thead><tr><th>제품</th><th>하는 일</th><th class="sub">내 역할과 스택</th></tr></thead>
 		<tbody>
-			<tr><td><a href="https://verbatim.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)">어르다 축어록</a></td><td>상담 <t data-x="축어록">녹취록</t>과 보고서를 만들어 주는 AI 도구</td><td class="sub">Gemini · WASM FFmpeg · iOS/Android 출시</td></tr>
-			<tr><td><a href="https://genogram.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)">어르다 가계도</a></td><td>표준 표기법에 맞춘 <t data-x="가계도">가족관계도</t> 제작 도구</td><td class="sub">DSL 파서 · Rust/WASM · Capacitor</td></tr>
-			<tr><td><a href="https://www.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)">어르다 웹</a></td><td><t data-x="수련기관">교육기관</t> 검색과 <t data-x="슈퍼비전">멘토링</t> 신청</td><td class="sub">Next.js · NestJS · PostgreSQL</td></tr>
-			<tr><td>운영 어드민 · 디스코드 봇</td><td>비개발자가 쓰는 콘텐츠 운영 도구</td><td class="sub">사내 운영 중</td></tr>
+			<tr><td><a href="https://verbatim.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)">어르다 축어록</a></td><td>상담 <t data-x="축어록">녹취록</t>과 보고서를 만들어 주는 AI 도구</td><td class="sub">기획·풀스택 단독 · Gemini · WASM FFmpeg · iOS/Android 출시</td></tr>
+			<tr><td><a href="https://genogram.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)">어르다 가계도</a></td><td>표준 표기법에 맞춘 <t data-x="가계도">가족관계도</t> 제작 도구</td><td class="sub">렌더링 엔진·DSL · Rust/WASM · Capacitor</td></tr>
+			<tr><td><a href="https://www.auruda-j.com" data-peek data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)">어르다 웹</a></td><td><t data-x="수련기관">교육기관</t> 검색과 <t data-x="슈퍼비전">멘토링</t> 신청</td><td class="sub">도메인 설계·백엔드 · Next.js · NestJS · PostgreSQL</td></tr>
+			<tr><td>운영 어드민 · 디스코드 봇</td><td>비개발자가 쓰는 콘텐츠 운영 도구</td><td class="sub">설계·운영 · 사내 상시 사용</td></tr>
 		</tbody>
 	</table>
 
 	<div class="block">
-		<strong>어르다 축어록 · 기록 노동 6시간 자동화, 만족도 2.9점 → 4.92점 (2026.01. – 현재)</strong>
+		<strong>어르다 축어록 · 기획부터 앱 출시까지 단독 개발 (2026.01. – 현재)</strong>
 		<ul>
-			<li>상담사는 50분 상담 한 번에 전사와 보고서로 <b>평균 6시간</b>(핵심 업무의 29.3%)을 씁니다. 범용 받아쓰기는 침묵·말떨림을 놓치고 맥락 기반 개인정보 가리기가 없어 실무 만족도가 <b>2.9점</b>에 그쳤습니다.</li>
-			<li>녹음을 청크로 나눠 <b>Gemini</b>에 넘기고, 한숨·침묵·말끝 흐림 같은 <b>비언어 표현을 표기하도록 프롬프트를 설계</b>했습니다. 반복 등장하는 인물 같은 민감 정보는 <b>맥락으로 식별해 가립니다</b>.</li>
-			<li>오디오 변환과 청크 분할은 <b>WASM FFmpeg로 기기에서</b> 처리하고, 같은 코드베이스를 Capacitor로 iOS·Android까지 출시했습니다. 슈퍼비전 보고서는 HWPX·DOCX로 자동 내보냅니다.</li>
-			<li>결과: 실무자와 상담심리학 석·박사 <b>13인 베타에서 4.92점</b>, 변환·비언어 표현 정확도는 <b>92.3%가 "매우 만족"</b>. 이 제품으로 창업 경진대회 대상과 최우수상을 받았습니다.</li>
+			<li>녹음을 청크로 나눠 <b>Gemini</b>에 넘기고, 한숨·침묵·말끝 흐림 같은 <b>비언어 표현을 표기하도록 프롬프트를 설계</b>했습니다. 그 결과 상담사 만족도가 범용 받아쓰기 <b>2.9점에서 4.92점</b>(실무자·석박사 13인 베타)으로 올랐고, 비언어 표현 인식은 <b>92.3%가 "매우 만족"</b>으로 평가했습니다.</li>
+			<li>오디오 변환과 청크 분할을 <b>WASM FFmpeg로 기기에서</b> 처리해 서버 오디오 비용 없이 돌아가게 했고, 같은 코드베이스를 Capacitor로 묶어 <b>iOS·Android 정식 출시</b>까지 마쳤습니다.</li>
+			<li>반복 등장하는 인물 같은 민감 정보를 <b>맥락으로 식별해 가리고</b>, 슈퍼비전 보고서를 <b>HWPX·DOCX로 자동 내보내기</b> 했습니다. 회기당 <b>6시간</b>(핵심 업무의 29.3%) 걸리던 기록·보고 작업이 자동화됐습니다.</li>
 		</ul>
 	</div>
 
 	<div class="block">
-		<strong>어르다 가계도 · 표기 언어(DSL)와 자동 배치 엔진, Rust→WASM 이식 (2026.01. – 현재)</strong>
+		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당 (2026.01. – 현재)</strong>
 		<ul>
-			<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도까지 <b>가계도 표기법을 문법으로 정의</b>하고, 파싱해 그래프 모델로 바꾸는 파이프라인을 만들었습니다.</li>
-			<li>세대 정렬, 부부 결혼선, 재혼 간선, 자녀 연결선 라우팅을 좌표 계산으로 구현했습니다. <b>관계 하나만 바뀌어도 주변 인물이 연쇄로 재배치</b>되는 것이 이 도구의 핵심 난제이고, 수작업이면 인물이 늘수록 실수가 급증하는 지점입니다. 렌더 결과가 계산된 영역을 벗어나지 않는 <b>기하 불변식을 1px 오차 이내</b>로 단위·E2E 테스트에서 지킵니다.</li>
-			<li>파서와 좌표 계산 같은 무거운 경로를 <b>Rust로 옮겨 WASM으로 컴파일</b>했습니다. WASM 우선에 TS 폴백을 두고 <b>파리티 테스트로 두 구현의 결과가 같은지 강제</b>해 회귀 없이 이식합니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 <b>이름 숨김</b>도 넣었습니다.</li>
+			<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도까지 <b>가계도 표기법을 문법으로 정의</b>하고 그래프 모델로 바꾸는 파서를 만들었습니다. 그림 대신 <b>텍스트로 편집·버전 관리</b>가 가능해졌고, 파싱 지연은 <b>p95 120ms 예산</b>을 CI 게이트로 강제합니다.</li>
+			<li>세대 정렬, 부부 결혼선, 재혼 간선, 자녀 연결선 라우팅을 좌표 계산으로 구현했습니다. <b>관계 하나만 바뀌어도 주변 인물이 연쇄 재배치</b>되는 것이 핵심 난제였고, 렌더 결과가 계산된 영역을 <b>1px 오차 이내</b>로 지키는 불변식을 단위·E2E로 검증해 <b>겹침 0 · 표기 위반 0</b>을 유지합니다.</li>
+			<li>핫패스를 <b>Rust로 옮겨 WASM으로 컴파일</b>하고 <b>파리티 테스트</b>로 TS 구현과 결과가 같은지 강제했습니다. 벤치로 <b>FFI 경계 비용이 최대 40배</b>임을 측정해, 순수 수치 연산만 WASM으로 채택하고 나머지는 TS를 유지하는 <b>이식 기준</b>을 세웠습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 <b>이름 숨김</b>도 넣었습니다.</li>
 		</ul>
 	</div>
 
 	<div class="block">
-		<strong>운영팀이 콘텐츠를 직접 고치는 디스코드 명령 체계 구축</strong>
+		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인</strong>
 		<ul>
-			<li><t data-x="수련기관">교육기관</t> 소개글과 배너, <t data-x="슈퍼바이저">멘토</t> 정보를 명령 한 줄로 등록·수정하면 <b>캐시 무효화까지 자동</b>으로 끝납니다. <b>기관 410곳의 콘텐츠를 개발자 배포 없이</b> 운영팀이 직접 고치게 됐고, 쓰면서 나온 의견을 반영해 <b>명령 15개를 8개로</b> 합쳤습니다.</li>
-			<li>채용 공고 수집도 자동화했습니다. 크롤러가 모으면 <b>Gemini가 구조화</b>하고, 디스코드 카드에서 사람이 승인해야 어드민에 등록됩니다. 사고 모드를 끄고 스키마를 좁혀 <b>건당 206초를 18초로(91% 단축)</b> 줄였습니다.</li>
-			<li>초기 자동화가 <b>한 건도 처리하지 못하고 성공으로 보고한 적</b>이 있어, 그 뒤로 모든 자동화 작업에 결과 지표와 경보를 반드시 붙입니다.</li>
+			<li>운영팀용 <b>디스코드 명령 체계</b>를 만들어 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보를 명령 한 줄로 고치고 <b>캐시 무효화까지 자동</b>으로 끝내게 했습니다. <b>기관 410곳의 콘텐츠를 개발자 배포 없이</b> 반영하게 됐고, 사용 의견을 반영해 <b>명령 15개를 8개로</b> 합쳤습니다.</li>
+			<li>채용 공고 수집을 크롤러 → <b>Gemini 구조화</b> → 사람 승인 → 자동 등록으로 파이프라인화했습니다. 사고 모드를 끄고 스키마를 좁혀 <b>건당 206초를 18초로(91% 단축)</b> 줄였고, 승인 단계를 남겨 자동화가 사람 판단을 대신하지 않게 했습니다.</li>
+			<li>RDS에서 Neon으로 이관하며 <b>스키마 불일치 252건을 모두 정리</b>하고 마이그레이션을 19개로 합쳤습니다. 주기 실행을 이벤트 기반으로 바꾸고 캐시·무효화 웹훅을 붙여 <b>DB 비용을 무료 한도 안</b>에서 유지합니다.</li>
+			<li><span class="q">[장애 대응]</span> DB가 멈춘 동안 <b>빈 응답이 24시간 캐시에 저장</b>돼 복구 뒤에도 목록이 비어 보였습니다. 태그 무효화로 화면을 되살린 뒤 <b>폴백을 캐시 바깥으로 옮기고</b> 5xx를 삼키지 않게 고쳐 <b>같은 장애가 재발하지 않도록</b> 했습니다. 검색 유입 급감도 색인 정책의 지연 효과로 규명해(<b>3개월 클릭 621회 → 277회</b>) 표 구조를 되돌리고 <b>지역 페이지 17개</b> 재색인을 요청했습니다.</li>
 		</ul>
 	</div>
 
 	<div class="block">
-		<strong>AI 산출물을 기계가 채점하는 게이트 구축 (테스트 파일 499개)</strong>
+		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
-			<li>에이전트 역할을 <b>오케스트레이터·구현자·검수자</b>로 나누고, 모호한 요청은 넘기기 전에 <b>검증할 수 있는 문장</b>으로 고쳐 쓰도록 규칙에 못 박았습니다. 기준이 약하면 되묻는 일만 늘기 때문입니다.</li>
-			<li>합격 여부는 <b>기계가 채점</b>합니다. 배치 품질 점수, 테스트 중요도 분류, 실제 화면 구동 검증을 명령 하나로 묶었고, 그 뒤에 <b>테스트 파일 499개</b>(가계도 230 · 축어록 141 · 백엔드 128)가 있어 회귀나 표기 위반은 <b>사람이 보기 전에 걸러집니다</b>.</li>
-			<li>점수만 올라가는 개선을 막으려고 <b>임상 표기 표준을 가장 위 규칙</b>으로 뒀습니다. 폭은 줄었지만 표준을 어긴 변경은 모두 걸러졌고, <b>표준을 지킨 3건만 채택</b>됐습니다. 합격 판정이 사람의 감이 아니라 <b>다시 돌릴 수 있는 명령 하나</b>가 되면서, 같은 작업을 반복할수록 품질이 쌓입니다.</li>
-		</ul>
-	</div>
-
-	<div class="block">
-		<strong>DB 이관과 캐시 오염 장애의 근본 수정, 검색 유입 회복</strong>
-		<ul>
-			<li>RDS에서 Neon으로 옮기며 <b>스키마 불일치 252건을 모두 정리</b>하고 마이그레이션을 19개로 합쳤습니다. 주기 실행 작업을 이벤트 기반으로 바꾸고 캐시와 무효화 웹훅을 붙여 <b>DB 비용을 무료 한도 안</b>에서 유지합니다.</li>
-			<li><span class="q">[장애 대응]</span> DB가 멈춘 동안 <b>빈 응답이 24시간 캐시에 저장</b>돼 복구 뒤에도 목록이 비어 보였습니다. 태그를 무효화해 화면부터 되살린 다음, 데이터를 가져오는 계층이 5xx를 삼키지 않게 고치고 <b>폴백을 캐시 바깥으로 옮겨</b> 원인을 없앴습니다.</li>
-			<li>검색 유입이 줄어든 원인을 서치콘솔 실측으로 추적해 <b>예전 색인 제외 정책의 지연 효과</b>임을 확인했고(<b>3개월 클릭 621회 → 277회</b>), 지역별 표가 모바일에서 카드로 바뀌던 구조를 표준 표로 되돌려 <b>지역 페이지 17개</b>의 재색인을 요청했습니다.</li>
+			<li>에이전트 역할을 <b>오케스트레이터·구현자·검수자</b>로 나누고, 모호한 요청은 넘기기 전에 <b>검증할 수 있는 문장</b>으로 고쳐 쓰도록 규칙에 못 박았습니다. 되묻느라 늘어지던 왕복이 줄고, 지시 한 번으로 끝나는 작업이 늘었습니다.</li>
+			<li>배치 품질 점수·테스트 중요도 분류·실제 화면 구동 검증을 <b>명령 하나로 묶은 게이트</b>를 만들었습니다. 그 뒤에 테스트 파일 <b>499개</b>(가계도 230 · 축어록 141 · 백엔드 128)가 있어 회귀나 표기 위반은 <b>사람이 보기 전에 반려</b>됩니다.</li>
+			<li>점수만 올라가는 개선을 막으려 <b>임상 표기 표준을 최우선 규칙</b>으로 뒀습니다. 폭은 줄었지만 표준을 어긴 변경은 모두 걸러지고 <b>표준을 지킨 3건만 채택</b>됐습니다. 합격 판정이 사람의 감이 아니라 <b>다시 돌릴 수 있는 명령 하나</b>가 되면서, 같은 작업을 반복할수록 품질이 쌓입니다.</li>
 		</ul>
 	</div>
 </div>
@@ -304,7 +295,7 @@
 		<li><b>데이터 정합성 동기화 로직을 최적화해 중복 쿼리 2,304회를 1회 호출로 통합, DB 부하를 99.94% 줄였습니다.</b> 변경 기록을 보니 실제 데이터 변경은 월평균 20회뿐이어서, 이를 근거로 구글 엑셀 동기화 배치를 없애고 어드민 페이지로 전환하자고 팀을 설득했습니다. 사례가 없던 서버리스 환경에 AdminJS를 붙였고, GCP 모놀리식을 Vercel 서버리스로 옮겨 <b>운영 비용도 약 70% 절감</b>했습니다.</li>
 		<li>사내에서 검증한 서버리스 배포 방법을 정리해 <b>AdminJS 공식 문서에 기여</b>했습니다(채택된 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다">adminjs-docs#15</a> 머지, 2025.06.). 지금은 공식 배포 가이드 <b><a href="https://docs.adminjs.co/deployment/serverless" data-peek data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)">docs.adminjs.co/deployment/serverless</a></b>로 게시돼 있습니다.<sup class="fn"><a href="https://ko.puleugo.dev/216" data-card="1" data-peek data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="fn"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
 		<li><span class="q">[긴급]</span> 서버리스로 옮긴 뒤 <b>인스턴스가 5분에 10번 넘게 재시작</b>되면서 동기화 배치가 중복 실행돼 데이터가 유실됐습니다. binlog를 확보해 <b>3시간 만에 복구</b>했고, 대규모 쿼리를 부르는 구조 자체가 원인임을 밝혔습니다. 사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 헤더 누락을 찾아 <b>하루 만에 캐싱을 적용</b>했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/213" data-card="3" data-peek data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
-		<li><b>테스트 문화를 처음 들여왔습니다.</b> 무중단 운영 중인 API 약 135개 규모 서비스에 <b>테스트 250개</b>를 쓰고 커버리지를 <b>0%에서 19.54%</b>로 올렸으며, 트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다. <b>약 600줄</b>짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/209" data-card="6" data-peek data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup><sup class="fn"><a href="https://ko.puleugo.dev/201" data-card="4" data-peek data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="fn"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup></li>
+		<li><b>테스트 문화를 처음 들여왔습니다.</b> 무중단 운영 중인 API 약 135개 규모 서비스에 <b>테스트 250개</b>를 쓰고 커버리지를 <b>0%에서 19.54%</b>로 올렸으며, 트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/201" data-card="4" data-peek data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="fn"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> <b>약 600줄</b>짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/209" data-card="6" data-peek data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
 	</ul>
 </div>
 
