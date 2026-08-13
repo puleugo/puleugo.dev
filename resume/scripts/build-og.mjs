@@ -26,16 +26,18 @@ const shots = fs.readdirSync(tmp).filter((f) => f.startsWith("p-")).sort()
 
 await page.setViewportSize({ width: 1200, height: 630 });
 await page.setContent(`<!doctype html><meta charset="utf-8"><body style="margin:0">
-<div id="og" style="width:1200px;height:630px;background:#f2f3f5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+<div id="og" style="position:relative;width:1200px;height:630px;overflow:hidden;background:#edeff2;
 	font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo',sans-serif;color:#16181d">
-	<div style="display:flex;align-items:baseline;gap:12px">
-		<span style="font-size:34px;font-weight:800;letter-spacing:-.02em">임채성</span>
-		<span style="font-size:19px;font-weight:600;color:#52565f">프로덕트 엔지니어 (풀스택)</span>
+	<div style="position:absolute;left:54px;top:46px;display:flex;gap:26px">
+		${shots.map((src) => `<img src="${src}" style="width:440px;background:#fff;border:1px solid #d5d9df;box-shadow:0 18px 40px rgba(16,20,28,.16)">`).join("")}
 	</div>
-	<div style="display:flex;gap:22px">
-		${shots.map((src) => `<img src="${src}" style="height:400px;background:#fff;border:1px solid #dcdfe4;box-shadow:0 10px 26px rgba(0,0,0,.10)">`).join("")}
+	<div style="position:absolute;inset:0;background:linear-gradient(112deg,
+		rgba(237,239,242,0) 38%, rgba(233,236,240,.78) 56%, rgba(226,229,235,.96) 70%, #dfe3e9 100%)"></div>
+	<div style="position:absolute;right:58px;bottom:54px;text-align:right;line-height:1.2">
+		<div style="font-size:46px;font-weight:800;letter-spacing:-.03em">임채성 이력서</div>
+		<div style="font-size:23px;font-weight:600;color:#3f434b;margin-top:8px">프로덕트 엔지니어 (풀스택)</div>
+		<div style="font-size:18px;color:#6a6f78;margin-top:16px">puleugo.dev/resume · A4 2페이지</div>
 	</div>
-	<div style="font-size:16px;color:#52565f;letter-spacing:.01em">puleugo.dev/resume · A4 2페이지</div>
 </div></body>`);
 await page.locator("#og").screenshot({ path: path.join(ROOT, "og.png") });
 await browser.close();
