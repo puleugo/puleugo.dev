@@ -37,6 +37,8 @@
 		word-break: keep-all;      /* 한국어: 어절 단위 줄바꿈 */
 		overflow-wrap: break-word; /* 긴 영문 토큰만 예외적으로 분할 */
 		text-wrap: pretty;         /* 마지막 줄 한 단어(고아) 방지 */
+		font-variant-numeric: slashed-zero;   /* 0 과 o·O 를 구분 */
+		font-feature-settings: "zero" 1;
 	}
 	h1, h2, .entry-head h3, .work > strong { text-wrap: balance; }
 	a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(26,79,214,.3); }
