@@ -63,12 +63,18 @@ test("페이지 보기에서 전체 내용이 한 화면에 들어간다", async
 	});
 	expect(await box()).toEqual({ inView: true, tailInside: true, scroll: false });
 
+	// 패널을 열면 클릭한 링크가 있는 쪽 하나만 크게 보여준다 (clip-path 로 나머지 쪽을 가림)
 	await page.locator('a[data-preview]').first().click();
-	await page.waitForTimeout(600);
+	await page.waitForTimeout(700);
 	const withPanel = await page.evaluate(() => {
-		const d = document.getElementById("resume").getBoundingClientRect();
+		const el = document.getElementById("resume");
+		const r = el.getBoundingClientRect();
 		const p = document.getElementById("preview").getBoundingClientRect();
-		return { inView: d.right <= innerWidth + 1, overlap: p.right > d.left + 1 };
+		const scale = Number((el.style.transform.match(/scale\(([\d.]+)\)/) || [0, 1])[1]);
+		const showsSecond = /inset\(0px 0px 0px 747px\)/.test(el.style.clipPath);
+		const visLeft = r.left + (showsSecond ? 747 * scale : 0);
+		return { single: el.style.clipPath !== "none" && el.style.clipPath !== "",
+			inView: visLeft + 747 * scale <= innerWidth + 1, overlap: p.right > visLeft + 1 };
 	});
-	expect(withPanel).toEqual({ inView: true, overlap: false });
+	expect(withPanel).toEqual({ single: true, inView: true, overlap: false });
 });

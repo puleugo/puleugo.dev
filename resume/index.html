@@ -45,7 +45,6 @@
 
 	/* 도메인 용어 토글 */
 	.term-toggle {
-		position: fixed; top: 18px; right: 18px; z-index: 10;
 		display: flex; align-items: center; gap: 8px;
 		padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
 		background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
@@ -95,8 +94,9 @@
 
 
 	/* 페이지 보기: 인쇄와 같은 지면(A4 본문 696×1032px)을 두 열로 나란히 */
-	.page-toggle { position: fixed; top: 18px; right: 210px; z-index: 10;
-		display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+	.controls { position: fixed; top: 18px; right: 18px; z-index: 30;
+		display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+	.page-toggle { display: flex; align-items: center; gap: 8px; padding: 8px 12px;
 		border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92);
 		backdrop-filter: blur(6px); font-size: 9pt; color: var(--sub); cursor: pointer; user-select: none; }
 	.page-toggle input { accent-color: var(--accent); margin: 0; cursor: pointer; }
@@ -273,15 +273,17 @@
 		h2 { margin: 14px 0 6px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
 		li { margin-bottom: 1.5px; }
-		.term-toggle, .print-hint, .preview { display: none !important; }
+		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; }
 	}
 </style>
 </head>
 <body>
 
-<label class="page-toggle"><input type="checkbox" id="paged-input"> 페이지 보기</label>
-<label class="term-toggle"><input type="checkbox" id="term-toggle-input"> 도메인 용어로 보기</label>
+<div class="controls">
+	<label class="page-toggle"><input type="checkbox" id="paged-input"> 페이지 보기</label>
+	<label class="term-toggle"><input type="checkbox" id="term-toggle-input"> 도메인 용어로 보기</label>
+</div>
 
 <aside class="preview" id="preview">
 	<header>
@@ -647,8 +649,9 @@
 	};
 	const closePeek = () => {
 		peek.classList.remove("on");
-		if (document.body.classList.contains("paged")) { setTimeout(fitPaged, 0); } else doc.style.transform = "";
-		if (!document.body.classList.contains("paged")) doc.style.transform = "";
+		singlePage = null;
+		if (document.body.classList.contains("paged")) setTimeout(fitPaged, 0);
+		else doc.style.transform = "";
 		frame.src = "about:blank";
 	};
 
@@ -660,6 +663,8 @@
 	const pagedInput = document.getElementById("paged-input");
 	const PAGE_W = 1494 + 48, PAGE_H = 1100 + 48;   // 지면(696×1032 두 쪽) + 여백
 	let pagedScale = 1;
+	let singlePage = null;   // null = 두 쪽, 0/1 = 그 쪽만 표시
+	const PAGE_SPLIT = 747;  // 지면 상자(1494px)의 절반 = 한 쪽 경계
 	const fitPaged = () => {
 		if (!document.body.classList.contains("paged")) { pagedScale = 1; return; }
 		let panelW = 0;
@@ -671,11 +676,22 @@
 		}
 		const vw = document.documentElement.clientWidth - panelW;
 		const vh = document.documentElement.clientHeight;
-		pagedScale = Math.max(0.2, Math.min((vw - 24) / PAGE_W, (vh - 24) / PAGE_H));
-		doc.style.left = (panelW + 24) + "px";
+		if (singlePage === null) {
+			pagedScale = Math.max(0.2, Math.min((vw - 24) / PAGE_W, (vh - 24) / PAGE_H));
+			doc.style.clipPath = "none";
+			doc.style.left = (panelW + 24) + "px";
+		} else {
+			pagedScale = Math.max(0.2, Math.min((vw - 24) / (PAGE_SPLIT + 48), (vh - 24) / PAGE_H));
+			doc.style.clipPath = singlePage === 0
+				? `inset(0 ${PAGE_SPLIT}px 0 0)`
+				: `inset(0 0 0 ${PAGE_SPLIT}px)`;
+			doc.style.left = (panelW + 24 - (singlePage === 1 ? PAGE_SPLIT * pagedScale : 0)) + "px";
+		}
 		doc.style.transform = `scale(${pagedScale.toFixed(4)})`;
 	};
 	pagedInput.addEventListener("change", () => {
+		singlePage = null;
+		doc.style.clipPath = "none";
 		document.body.classList.toggle("paged", pagedInput.checked);
 		doc.style.transform = "";
 		doc.style.left = "";
@@ -704,6 +720,10 @@
 	document.querySelectorAll("a[data-preview]").forEach((a) =>
 		a.addEventListener("click", (e) => {
 			e.preventDefault();
+			if (document.body.classList.contains("paged")) {
+				const d = doc.getBoundingClientRect(), r = a.getBoundingClientRect();
+				singlePage = r.left + r.width / 2 - d.left > d.width / 2 ? 1 : 0;
+			}
 			const src = a.dataset.preview || a.href; // data-preview 값이 있으면 임베드 전용 URL
 			isVideo = src.includes("/embed/");
 			peek.classList.add("on");
