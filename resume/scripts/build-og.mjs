@@ -31,12 +31,12 @@ await page.setContent(`<!doctype html><meta charset="utf-8"><body style="margin:
 	<div style="position:absolute;left:54px;top:46px;display:flex;gap:26px">
 		${shots.map((src) => `<img src="${src}" style="width:440px;background:#fff;border:1px solid #d5d9df;box-shadow:0 18px 40px rgba(16,20,28,.16)">`).join("")}
 	</div>
-	<div style="position:absolute;inset:0;background:linear-gradient(112deg,
-		rgba(237,239,242,0) 38%, rgba(233,236,240,.78) 56%, rgba(226,229,235,.96) 70%, #dfe3e9 100%)"></div>
-	<div style="position:absolute;right:58px;bottom:54px;text-align:right;line-height:1.2">
-		<div style="font-size:46px;font-weight:800;letter-spacing:-.03em">임채성 이력서</div>
-		<div style="font-size:23px;font-weight:600;color:#3f434b;margin-top:8px">프로덕트 엔지니어 (풀스택)</div>
-		<div style="font-size:18px;color:#6a6f78;margin-top:16px">puleugo.dev/resume · A4 2페이지</div>
+	<div style="position:absolute;right:0;bottom:0;width:560px;height:300px;background:radial-gradient(120% 120% at 100% 100%,
+		#dfe3e9 12%, rgba(226,229,235,.92) 34%, rgba(233,236,240,.55) 58%, rgba(237,239,242,0) 78%)"></div>
+	<div style="position:absolute;right:52px;bottom:46px;text-align:right;line-height:1.2">
+		<div style="font-size:40px;font-weight:800;letter-spacing:-.03em">임채성 이력서</div>
+		<div style="font-size:20px;font-weight:600;color:#3f434b;margin-top:6px">프로덕트 엔지니어 (풀스택)</div>
+		<div style="font-size:16px;color:#6a6f78;margin-top:12px">puleugo.dev/resume · A4 2페이지</div>
 	</div>
 </div></body>`);
 await page.locator("#og").screenshot({ path: path.join(ROOT, "og.png") });
