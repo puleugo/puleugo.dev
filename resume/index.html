@@ -367,8 +367,12 @@
 
 	// 인쇄(PDF 저장) 기본 파일명은 문서 제목에서 따온다. 제출용 이름으로 바꿨다가 인쇄 후 되돌린다.
 	const PAGE_TITLE = document.title;
-	const PRINT_TITLE = "임채성_이력서_프로덕트엔지니어";
-	window.addEventListener("beforeprint", () => (document.title = PRINT_TITLE));
+	const printName = () => {
+		const d = new Date();
+		const stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+		return `임채성_이력서_프로덕트엔지니어_${stamp}`;
+	};
+	window.addEventListener("beforeprint", () => (document.title = printName()));
 	window.addEventListener("afterprint", () => (document.title = PAGE_TITLE));
 
 	// 링크 미리보기 카드. 썸네일과 본문 발췌를 인라인으로 갖고 있어 네트워크 요청 없이 바로 뜬다
