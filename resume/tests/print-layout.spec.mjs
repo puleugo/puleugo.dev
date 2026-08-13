@@ -30,7 +30,7 @@ test("인쇄 폭에서 가로 넘침이 없다", async ({ page }) => {
 	await page.emulateMedia({ media: "print" });
 	const overflow = await page.evaluate(() => {
 		const doc = document.documentElement;
-		const wide = [...document.querySelectorAll("#doc *")].filter((el) => el.getBoundingClientRect().right > doc.clientWidth + 1);
+		const wide = [...document.querySelectorAll("#resume *")].filter((el) => el.getBoundingClientRect().right > doc.clientWidth + 1);
 		return wide.slice(0, 3).map((el) => el.tagName + "." + (el.className || ""));
 	});
 	expect(overflow).toEqual([]);
