@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>임채성 이력서 · 프로덕트 엔지니어</title>
 <meta name="description" content="상담사 교육 플랫폼 '어르다' 공동창업자 겸 개발 총괄. 비즈니스 흐름을 코드로 옮기고, AI 에이전트가 통과해야 할 평가 기준을 코드로 고정하는 프로덕트 엔지니어.">
+<link rel="canonical" href="https://puleugo.dev/resume/">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://puleugo.dev/resume/">
+<meta property="og:title" content="임채성 이력서 · 프로덕트 엔지니어 (풀스택)">
+<meta property="og:description" content="상담사 교육 플랫폼 어르다 공동창업자 겸 개발 총괄. A4 2페이지 이력서.">
+<meta property="og:image" content="https://puleugo.dev/resume/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A4 2페이지로 정리된 임채성 이력서 미리보기">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://puleugo.dev/resume/og.png">
 <style>
 	:root {
 		--ink: #16181d;
@@ -128,7 +139,7 @@
 	.q { font-weight: 700; }
 	.nb { white-space: nowrap; }
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
-	li.case > b { display: block; }
+	li.case > b, li.titled > b:first-child { display: block; }
 	li.case dl { display: grid; grid-template-columns: 40px 1fr; gap: 2px 10px; margin: 1px 0 0; }
 	li.case dt { font-size: 8.5pt; font-weight: 700; color: var(--sub); padding-top: .15em; letter-spacing: .02em; }
 	li.case dd { margin: 0; }
@@ -346,12 +357,12 @@
 					<dt>문제</dt><dd>동기화 배치가 DB에 반복 부하를 주고 있었습니다.</dd>
 					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 다시 맞추는 구조.</dd>
 					<dt>측정</dt><dd>실행당 <b>중복 쿼리 2,304회</b>, 실제 데이터 변경은 월평균 20회뿐.</dd>
-					<dt>해결</dt><dd>이 수치를 근거로 배치 폐기를 설득해 어드민 페이지로 전환하고, 사례가 없던 서버리스 환경에 AdminJS를 통합했습니다.</dd>
-					<dt>평가</dt><dd>중복 쿼리를 1회 호출로 묶어 <b>DB 부하 99.94% 감소</b>, 서버리스 전환으로 운영 비용도 약 70% 절감.</dd>
+					<dt>해결</dt><dd>이 수치로 배치 폐기를 설득해 어드민 페이지로 전환하고, 사례가 없던 서버리스 환경에 AdminJS를 통합.</dd>
+					<dt>평가</dt><dd>중복 쿼리를 1회로 묶어 <b>DB 부하 99.94% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
-		<li>사내에서 검증한 서버리스 배포 방법을 정리해 <b>AdminJS 공식 문서에 기여</b>했습니다(채택된 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다"><svg class="ic"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, 2025.06.). 지금은 공식 배포 가이드 <b><a href="https://docs.adminjs.co/deployment/serverless" data-peek data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)"><svg class="ic"><use href="#i-doc-b"/></svg>docs.adminjs.co/deployment/serverless</a></b>로 게시돼 있습니다.<sup class="fn"><a href="https://ko.puleugo.dev/216" data-card="1" data-peek data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="fn"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
-		<li><span class="q">[긴급]</span> 서버리스로 옮긴 뒤 <b>인스턴스가 5분에 10번 넘게 재시작</b>되면서 동기화 배치가 중복 실행돼 데이터가 유실됐습니다. binlog를 확보해 <b>3시간 만에 복구</b>했고, 대규모 쿼리를 부르는 구조 자체가 원인임을 밝혔습니다. 사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 헤더 누락을 찾아 하루 만에 캐싱을 적용했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/213" data-card="3" data-peek data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
-		<li>테스트 문화를 처음 들여왔습니다. 무중단 운영 중인 API 약 135개 규모 서비스에 <b>테스트 250개</b>를 쓰고 커버리지를 <b>0%에서 19.54%</b>로 올렸으며, 트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/201" data-card="4" data-peek data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="fn"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/209" data-card="6" data-peek data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
+		<li class="titled"><b>AdminJS 공식 문서에 서버리스 배포 가이드 기여</b>사내에서 검증한 배포 방법이 공식 문서로 채택됐습니다(PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-tip="깃허브 PR · adminjs-docs#15 (2025-06-24 머지). 새 탭에서 열립니다"><svg class="ic"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지). 현재 <a href="https://docs.adminjs.co/deployment/serverless" data-peek data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)"><svg class="ic"><use href="#i-doc-b"/></svg>docs.adminjs.co/deployment/serverless</a> 로 게시 중.<sup class="fn"><a href="https://ko.puleugo.dev/216" data-card="1" data-peek data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」">1</a></sup><sup class="fn"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다">2</a></sup></li>
+		<li class="titled"><b><span class="q">[긴급]</span> 배치 중복 실행으로 유실된 데이터 3시간 만에 복구</b>인스턴스가 5분에 10번 넘게 재시작되며 배치가 중복 실행됐고, binlog를 확보해 <b>3시간 만에 복구</b>하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다. 이미지 로딩 지연도 Cache-Control 누락을 찾아 하루 만에 캐싱을 적용했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/213" data-card="3" data-peek data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」">3</a></sup></li>
+		<li class="titled"><b>테스트 문화 도입과 격리 프레임워크 오픈소스화</b>무중단 운영 중인 API 약 135개 서비스에 <b>테스트 250개</b>를 써 커버리지를 <b>0%에서 19.54%</b>로 올리고, 트랜잭션 롤백 격리 프레임워크를 만들어 팀에 도입·오픈소스로 공개했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/201" data-card="4" data-peek data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」">4</a></sup><sup class="fn"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다">5</a></sup> 약 600줄짜리 절차지향 엑셀 업로더도 책임 단위 객체(ExcelRow 추상 클래스)로 리팩터링했습니다.<sup class="fn"><a href="https://ko.puleugo.dev/209" data-card="6" data-peek data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」">6</a></sup></li>
 	</ul>
 </div>
 

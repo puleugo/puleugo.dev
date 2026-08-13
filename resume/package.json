@@ -1,6 +1,12 @@
 {
 	"name": "resume",
 	"private": true,
-	"scripts": { "test": "playwright test" },
-	"devDependencies": { "@playwright/test": "^1.49.0" }
+	"scripts": {
+		"test": "playwright test",
+		"og": "node scripts/build-og.mjs",
+		"check": "playwright test && node scripts/build-og.mjs"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.49.0"
+	}
 }
