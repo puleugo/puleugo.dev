@@ -462,23 +462,12 @@
 				<ul class="how">
 					<li>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 공식 가이드 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 에 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></li>
 				</ul></li>
-		<li class="task"><b>사용자 문의로 접수된 이미지 로딩 지연을 Cache-Control 누락에서 찾아 <b>하루 만에</b> 해결<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」" data-card="https://ko.puleugo.dev/213">3</a></sup></b></li>
 		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b>로 덮어 테스트 250개(커버리지 19.54%)</b>
 				<ul class="how">
 					<li>팀에 테스트는 물론 레이어별 책임과 도메인 객체 개념이 없어 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 공부했고, 커버리지 숫자를 올리는 단위 테스트보다 <b>E2E를 먼저</b> 깔아야 무중단 운영 중인 API 135개를 지킨다고 판단했습니다.</li>
-					<li>걸림돌이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 만들어 없애고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">5</a></sup> 테스트가 붙지 않던 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안해 책임 단위로 분리했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">6</a></sup></li>
+					<li>걸림돌이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 만들어 없애고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> 테스트가 붙지 않던 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안해 책임 단위로 분리했고, 그 과정을 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>로 공유했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></li>
 					
 				</ul></li>
-	</ul>
-</div>
-
-<div class="entry">
-	<div class="entry-head">
-		<h3><a href="https://megabrain.kr" data-preview data-tip="사이트 미리보기 · 메가브레인" data-card="https://megabrain.kr"><svg class="icon"><use href="#i-site-b"/></svg>메가브레인</a> <span class="role">· 학술 동아리 (팀장 2023.06.–2024.12.)</span></h3>
-		<span class="leader" aria-hidden="true"></span><span class="period">2022.04. – 활동 중</span>
-	</div>
-	<ul>
-		<li>학술 동아리를 운영하며 후배 팀을 멘토링했고, 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>를 했습니다.</li>
 	</ul>
 </div>
 
@@ -512,7 +501,7 @@
 
 	<section class="references">
 		<b>참고</b>
-		<span class="reference-list">블로그 ko.puleugo.dev [1] /216 · [3] /213 · [4] /201 · [6] /209 &nbsp; 깃허브 github.com/puleugo [2] nestjs-adminjs-serverless · [5] typeorm-transaction-rollback</span>
+		<span class="reference-list">블로그 ko.puleugo.dev [1] /216 · [3] /201 · [5] /209 &nbsp; 깃허브 github.com/puleugo [2] nestjs-adminjs-serverless · [4] typeorm-transaction-rollback</span>
 	</section>
 </main>
 
