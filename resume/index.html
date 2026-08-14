@@ -330,7 +330,7 @@
 		<li><b>MAU 5만</b><span>운영 서비스 최대 규모</span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
 		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 (5점)</span></li>
-		<li><b><span class="from">51,840회</span> → 20회</b><span>하루 중복 쿼리 (DB 부하 99.96%↓)</span></li>
+		<li><b><span class="from">월 155만회</span> → 20회</b><span>중복 쿼리 (DB 부하 99.99%↓)</span></li>
 		<li><b><span class="from">206초</span> → 18초</b><span>공고 1건 AI 처리 시간</span></li>
 		<li><b>5회</b><span>창업 경진대회 (대상 2)</span></li>
 	</ul>
@@ -451,11 +451,11 @@
 	<ul>
 		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환</b>
 				<dl>
-					<dt>문제</dt><dd>구글 스프레드시트의 게임 데이터를 DB에 반영하는 배치가 <b>5분마다(하루 288회)</b> 돌며 반복 부하를 주고 있었습니다.</dd>
+					<dt>문제</dt><dd>구글 스프레드시트의 게임 데이터를 DB에 반영하는 배치가 <b>5분 주기</b>(하루 288회 · 월 8,640회)로 돌며 반복 부하를 주고 있었습니다.</dd>
 					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 다시 맞추는 구조.</dd>
-					<dt>측정</dt><dd>중복 쿼리 <b>하루 51,840회</b>(실행당 180회), 실제 데이터 변경은 월평균 20회뿐.</dd>
+					<dt>측정</dt><dd>실행당 중복 쿼리 180회 · <b>월 155만 회</b>, 실제 데이터 변경은 월평균 20회뿐.</dd>
 					<dt>해결</dt><dd>이 수치를 근거로 배치 폐기를 건의해 합의를 얻고, 사례가 없던 서버리스 환경에 AdminJS를 통합해 어드민으로 전환.</dd>
-					<dt>평가</dt><dd>하루 51,840회를 <b>20회로 줄여 DB 부하 99.96% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
+					<dt>평가</dt><dd>월 155만 회를 <b>변경 시점 20회로 줄여 DB 부하 99.99% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
 		<li class="task"><b>서버리스 배포 가이드가 <b>AdminJS 공식 문서</b>로 채택</b>
 				<ul class="how">
@@ -464,7 +464,7 @@
 				</ul></li>
 		<li class="task"><b><span class="tag">[긴급]</span> 배치 중복 실행으로 유실된 데이터 <b>3시간 만에 복구</b></b>
 				<ul class="how">
-					<li>인스턴스가 5분에 10번 넘게 재시작되며 배치가 중복 실행됐고, binlog로 복구하면서 대규모 쿼리를 부르는 구조가 원인임을 밝혔습니다.</li>
+					<li>인스턴스가 5분에 10번 넘게 재시작될 때마다 위 <b>5분 주기 배치</b>가 새로 떠 중복 실행됐고, 그 구조가 대규모 쿼리를 부른 원인임을 binlog로 복구하며 밝혔습니다.</li>
 					<li>사용자 메일로 접수된 이미지 로딩 지연은 Cache-Control 누락을 찾아 <b>하루 만에 캐싱을 적용</b>했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」" data-card="https://ko.puleugo.dev/213">3</a></sup></li>
 				</ul></li>
 		<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
