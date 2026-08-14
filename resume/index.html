@@ -352,7 +352,7 @@
 	<table class="data-table">
 		<thead><tr><th>제품</th><th>하는 일</th><th class="sub">내 역할과 스택</th></tr></thead>
 		<tbody>
-			<tr><td><a href="https://verbatim.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)"><svg class="icon"><use href="#i-site-b"/></svg>어르다 축어록</a></td><td>상담 <t data-x="축어록">녹취록</t>과 보고서를 만들어 주는 AI 도구</td><td class="sub">기획·풀스택 단독 · Gemini · WASM FFmpeg · iOS/Android 출시</td></tr>
+			<tr><td><a href="https://verbatim.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)"><svg class="icon"><use href="#i-site-b"/></svg>어르다 축어록</a></td><td>상담 <t data-x="축어록">녹취록</t>과 보고서를 만들어 주는 AI 도구</td><td class="sub">기획·풀스택 단독 · LLM · WASM FFmpeg · iOS/Android 출시</td></tr>
 			<tr><td><a href="https://genogram.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)"><svg class="icon"><use href="#i-site-b"/></svg>어르다 가계도</a></td><td>표준 표기법에 맞춘 <t data-x="가계도">가족관계도</t> 제작 도구</td><td class="sub">렌더링 엔진·DSL · Rust/WASM · Capacitor</td></tr>
 			<tr><td><a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)"><svg class="icon"><use href="#i-site-b"/></svg>어르다 매칭</a></td><td><t data-x="수련기관">교육기관</t> 검색과 <t data-x="슈퍼비전">멘토링</t> 신청</td><td class="sub">도메인 설계·백엔드 · Next.js · NestJS · PostgreSQL</td></tr>
 			<tr><td>운영 어드민 · 디스코드 봇</td><td>비개발자가 쓰는 콘텐츠 운영 도구</td><td class="sub">설계·운영 · 사내 상시 사용</td></tr>
@@ -366,7 +366,7 @@
 			<li class="task"><b>회기당 <b>6시간</b> 걸리던 전사·보고를 <b>5분</b>으로 줄이고, 만족도 2.9점 → 4.92점</b>
 				<ul class="how">
 					<li>상담사는 50분 상담 한 번에 전사·보고서로 평균 6시간(핵심 업무의 29.3%)을 씁니다. 범용 STT(클로바노트 등)를 써도 침묵·말떨림 같은 비언어 표현을 인식하지 못해 실무 만족도가 2.9점에 그쳤습니다.</li>
-					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → Gemini 전사 → 비언어 표기 → 보고서 생성)을 설계해 처리 시간을 <b>5분대</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>4.92점</b>, 비언어 인식은 92.3%가 "매우 만족"으로 평가했습니다.</li>
+					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 처리 시간을 <b>5분대</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>4.92점</b>, 비언어 인식은 92.3%가 "매우 만족"으로 평가했습니다.</li>
 					<li>Next.js 앱을 PWA로 만들고 Capacitor로 감싸 단일 코드베이스로 iOS·Android에 출시했습니다. 오디오 변환·청크 분할은 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용 없이 운영하며, 앱 사용자 <b>531명</b>이 상담 녹음 누적 79시간을 처리했습니다.</li>
 				</ul></li>
 			</ul>
@@ -413,7 +413,7 @@
 				</ul></li>
 			<li class="task"><b>채용 공고 처리 시간 206초 → <b>18초</b> (91% 단축)</b>
 				<ul class="how">
-					<li>크롤러 → Gemini 구조화 → 디스코드 카드에서 사람 승인 → 어드민 등록으로 묶고, 모델의 사고(thinking) 모드를 끄고 응답 스키마를 좁혀 지연을 줄였습니다.</li>
+					<li>크롤러 → LLM 구조화 → 디스코드 카드에서 사람 승인 → 어드민 등록으로 묶고, 모델의 사고(thinking) 모드를 끄고 응답 스키마를 좁혀 지연을 줄였습니다.</li>
 				</ul></li>
 						</ul>
 	</div>
@@ -511,7 +511,7 @@
 		<tr><td>프론트엔드</td><td>Next.js 15, React 19, Vue.js, Capacitor(iOS · Android)</td></tr>
 		<tr><td>데이터</td><td>PostgreSQL, MySQL, Redis, ScyllaDB, Neon, IndexedDB</td></tr>
 		<tr><td>인프라</td><td>AWS(EC2 · S3 · CloudFront · Route 53), Vercel Serverless, Cloudflare R2, Docker, GitHub Actions</td></tr>
-		<tr><td>AI · 기타</td><td>Gemini API, 오디오 처리 파이프라인, Rust → WebAssembly, WASM FFmpeg, Claude Code 에이전트 파이프라인, Playwright</td></tr>
+		<tr><td>AI · 기타</td><td>LLM API, 오디오 처리 파이프라인, Rust → WebAssembly, WASM FFmpeg, Claude Code 에이전트 파이프라인, Playwright</td></tr>
 	</tbody>
 </table>
 
