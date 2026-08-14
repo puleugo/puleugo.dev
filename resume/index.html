@@ -118,7 +118,7 @@
 	body.paged #resume::after {   /* 두 쪽 사이 접힘선 */
 		content: ""; position: absolute; top: 24px; bottom: 24px; left: 50%;
 		border-left: 1px dashed var(--line); }
-	body.paged li.case-study, body.paged table.data-table, body.paged .entry-head { break-inside: avoid; }
+	body.paged li.case-study, body.paged table.data-table tr, body.paged .entry-head { break-inside: avoid; }
 	body.paged h2 { break-after: avoid; }
 	body.paged .print-hint { display: none; }
 	@media print { body.paged { overflow: visible; background: #fff; }
@@ -189,7 +189,8 @@
 	.facts b { color: var(--ink); margin-right: 6px; }
 
 	.work { margin: 13px 0 0; }
-	li.case-study, table.data-table { break-inside: avoid; page-break-inside: avoid; }
+	li.case-study { break-inside: avoid; page-break-inside: avoid; }
+	table.data-table tr { break-inside: avoid; page-break-inside: avoid; }
 	.work > strong { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; font-size: 10pt; }
 	ul { margin: 2px 0 0; padding-left: 15px; }
 	li { margin-bottom: 3px; }
@@ -330,13 +331,13 @@
 		<li><b>MAU 5만</b><span>운영 최대 규모 (왁타버스 게임즈)</span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
 		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 (5점)</span></li>
-		<li><b><span class="from">월 155만회</span> → 20회</b><span>중복 쿼리 (DB 부하 99.99%↓)</span></li>
+		<li><b><span class="from">월 155만회</span> → 20회</b><span>중복 쿼리 99.99% 제거</span></li>
 		<li><b><span class="from">206초</span> → 18초</b><span>공고 1건 AI 처리 시간</span></li>
 		<li><b>1.3만 명</b><span>어르다 누적 사용자</span></li>
 	</ul>
 	<ul class="highlights">
 		<li><b>MAU 5만</b> 서비스의 서버 개발자로 1년간 운영·장애 대응을 맡으며, 서버 로그에서 <b>월 155만 회</b> 반복되던 비효율 쿼리를 찾아 측정하고 팀을 설득해 <b>월 20회</b>로 줄였습니다. 테스트 문화가 없던 팀에 검증 체계를 처음 들였습니다.</li>
-		<li>지금은 상담사가 되기까지 <b>비용 1천만원 · 실무 3년 · 석·박사 학위</b>가 드는 준비 과정을 옮긴 플랫폼 <b>어르다</b>를 공동창업해, AI 제품 4종을 혼자 설계·개발·운영합니다. 상담 1회당 <b>6시간</b> 걸리던 전사·비언어 기록을 자동화해 실무자·석박사 13인 베타에서 <b>2.9점 → 4.92점</b>(5점 만점)을 받았고, 모델 교체와 배치 개선의 <b>합격 판정을 계산식과 게이트로 자동화</b>했습니다.</li>
+		<li>지금은 상담사가 되기까지 <b>비용 1천만원 · 실무 3년 · 석·박사 학위</b>가 드는 준비 과정을 옮긴 플랫폼 <b>어르다</b>를 공동창업해 AI 제품 4종을 설계·개발·운영합니다. 상담 1회당 <b>6시간</b> 걸리던 전사·비언어 기록을 자동화해 13인 베타에서 <b>2.9점 → 4.92점</b>을 받았고, 모델 교체와 배치 개선의 <b>합격 판정을 계산식과 게이트로 자동화</b>했습니다.</li>
 	</ul>
 	<div class="contact">
 		<span><a href="https://ko.puleugo.dev" data-preview data-tip="티스토리 블로그 미리보기 (ko.puleugo.dev)" data-card="https://ko.puleugo.dev"><svg class="icon"><use href="#i-blog"/></svg>ko.puleugo.dev</a></span>
@@ -354,7 +355,7 @@
 		<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 재직 중</span>
 	</div>
 	<p class="facts"><b>역할</b> 도메인 설계·구현·배포·운영을 단독으로 맡고, 운영·마케팅 담당자가 쓸 도구를 만들어 제품 우선순위를 함께 정합니다.</p>
-	<p class="facts"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳(전국 17개 시·도) · 학회 자격증 15종 · 누적 사용자 1.3만 명 · 세션 1.8만 · 도메인 모듈 35개 / API 188개 · 테스트 파일 499개</p>
+	<p class="facts"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳(전국 17개 시·도) · 학회 자격증 15종 · 가계도 5,687명 · 축어록 531명 · 매칭 등 합산 누적 1.3만 명(2026.01~08) · API 188개 · 테스트 파일 499개</p>
 	<table class="data-table">
 		<thead><tr><th>제품</th><th>하는 일</th><th class="sub">내 역할과 스택</th></tr></thead>
 		<tbody>
@@ -367,21 +368,19 @@
 
 	<div class="work">
 		<strong>어르다 축어록 · 상담사 인터뷰부터 앱 출시까지 단독 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
-		<p class="system-line">상담 녹음을 올리면 <t data-x="축어록">녹취록</t>과 슈퍼비전 보고서를 만들어 주는 웹·모바일 앱입니다.</p>
 		<ul>
 			<li class="task"><b>회기당 <b>6시간</b> 걸리던 전사·비언어 기록을 기계 처리 <b>5분 이내</b>로, 만족도 2.9점 → 4.92점</b>
 				<ul class="how">
 					<li>축어록은 <b>말한 그대로의 정확도</b>가 요구되고 침묵·말떨림 같은 <b>비언어까지 표기</b>해야 해서, 50분 상담 한 회기에 평균 6시간(상담 업무의 29.3%)이 듭니다. 범용 STT(클로바노트 등)는 이 둘을 채우지 못해 실무 만족도가 2.9점에 그쳤습니다.</li>
-					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 기계 처리 시간을 <b>5분 이내</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>전사 정확도와 비언어 표기 모두 높은 평가</b>를 받아 종합 <b>4.92점</b>, 비언어 인식 향상은 92.3%가 동의했습니다.</li>
+					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 기계 처리 시간을 <b>10분 청크 기준 p95 5분 이내</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>전사 정확도와 비언어 표기 모두 높은 평가</b>를 받아 종합 <b>4.92점</b>, 비언어 인식 향상은 92.3%가 동의했습니다.</li>
 					<li>전사문·분석 결과·작성본은 서버에서 <b>AES-256-GCM</b>으로 필드 암호화해 저장하고(iv·인증태그·암호문 한 컬럼) 키는 서버만 보유합니다. 키가 없거나 길이가 틀리면 즉시 예외를 던져 <b>평문 저장 사고 자체를 막았습니다</b>.</li>
-					<li>Next.js 앱을 PWA로 만들고 Capacitor로 감싸 단일 코드베이스로 iOS·Android에 출시했습니다. 오디오 변환·청크 분할은 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용 없이 운영하며, 앱 사용자 <b>531명</b>이 상담 녹음 누적 79시간을 처리했습니다.</li>
+					<li>Next.js 앱을 PWA로 만들고 Capacitor로 감싸 단일 코드베이스로 iOS·Android에 출시했습니다. 오디오 변환·청크 분할은 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용 없이 운영합니다. 실사용자 39명이 <b>134회기 · 누적 80시간</b>을 처리했고 <b>53.8%가 2회 이상 재사용</b>했습니다(테스트 계정 제외).</li>
 				</ul></li>
 			</ul>
 	</div>
 
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
-		<p class="system-line">내담자 가족 관계를 표준 표기법대로 자동 정렬·렌더링하는 제작 도구입니다.</p>
 		<ul>
 			<li class="task"><b>무한 캔버스 도구의 배치 복잡도 증가 문제를 <b>캔버스 고정 레이아웃 + 자동 배치</b>로 해결, 사용자 5,687명 · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지)·월 좋아요 1위</b>
 				<ul class="how">
@@ -401,7 +400,7 @@
 	</div>
 
 	<div class="work">
-		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인</strong>
+		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
 		<p class="system-line"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청 웹과 이를 채우는 운영 도구·수집 파이프라인입니다.</p>
 		<ul>
 			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
@@ -432,13 +431,12 @@
 			<li class="task"><b>배치 개선안 <b>8건 중 3건 채택 · 5건 자동 거부</b>, 사람 판단 없이 표준 위반을 차단</b>
 				<ul class="how">
 					<li><b>검증자와 생성자를 분리</b>해 채점기가 배치 함수 내부를 호출하지 못하게 하고 최종 좌표만 보게 했습니다. 배치가 자기 출력을 스스로 합격 처리할 수 없습니다.</li>
-					<li>깨짐 규칙 8종(세대 단조·부부 인접·간선 충돌 등)은 하드 게이트, 밀도·종횡비·교차는 비열화만 허용했습니다. 덕분에 밀도가 올라도 <b>표준(세대=한 줄)이나 가독성을 깨는</b> 멀티로우·윤곽 패킹 등 5건이 자동으로 되돌려졌습니다.</li>
-					<li>에이전트를 오케스트레이터·구현자·검수자로 나누고, 모호한 요청은 검증 가능한 문장으로 고쳐 쓰도록 규칙에 못 박았습니다.</li>
+					<li>깨짐 규칙 8종(세대 단조·부부 인접·간선 충돌 등)은 하드 게이트, 밀도·종횡비·교차는 비열화만 허용했습니다. 덕분에 밀도가 올라도 <b>표준(세대=한 줄)이나 가독성을 깨는</b> 멀티로우·윤곽 패킹 등 5건이 자동으로 되돌려졌습니다. 에이전트는 오케스트레이터·구현자·검수자로 나누고, 모호한 요청은 검증 가능한 문장으로 고쳐 쓰도록 규칙에 못 박았습니다.</li>
 				</ul></li>
 			<li class="task"><b>모델 교체 판정을 <b>귀로 듣는 대신 계산식</b>으로: CER·IoU 기준선 상시 운용</b>
 				<ul class="how">
 					<li>가상 상담 4종(상담실·울먹임·카페 소음·큰 음성)에 정답 전사문과 비언어 구간을 직접 달아, 전사는 <b>CER=(치환+삭제+삽입)/정답 글자 수</b>, 비언어는 <b>IoU=겹친 시간/합친 시간</b>으로 채점합니다.</li>
-					<li>STT 3종·구간 탐지 3종을 같은 기준에 올려 <b>CER 3.5%</b> 모델을 채택했고, 구간 탐지는 IoU 0.24(정서적 표출 0.09)에 그쳐 LLM 표기로 방향을 바꿨습니다. 정답이 없는 항목은 만점 대신 <b>평가 불가</b>로 빼 가짜 점수를 막았습니다.</li>
+					<li>STT 3종·구간 탐지 3종을 같은 기준에 올려 <b>CER 3.5%</b> 모델을 채택했고, 구간 탐지는 IoU 0.24(정서적 표출 0.09)에 그쳐 LLM 표기로 방향을 바꿨습니다. 정답이 없는 항목은 만점 대신 <b>평가 불가</b>로 빼 가짜 점수를 막았고, <b>모델을 교체할 때 이 기준선을 먼저 통과</b>시킵니다.</li>
 				</ul></li>
 			</ul>
 	</div>
@@ -457,20 +455,17 @@
 					<dt>문제</dt><dd>서버 로그에서 같은 쿼리가 반복되는 패턴을 발견했습니다. 구글 스프레드시트의 게임 데이터 <b>전량</b>을 <b>5분 주기</b>(하루 288회 · 월 8,640회)로 DB에 다시 밀어 넣는 배치였고, 서비스에서 부하 영향이 가장 큰 로직이었습니다.</dd>
 					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 upsert하는 구조.</dd>
 					<dt>측정</dt><dd>실행당 중복 쿼리 180회 · <b>월 155만 회</b>, 실제 데이터 변경은 월평균 20회뿐.</dd>
-					<dt>해결</dt><dd>이 수치를 근거로 배치 폐기를 건의해 합의를 얻고, 사례가 없던 서버리스 환경에 AdminJS를 통합해 어드민으로 전환.</dd>
-					<dt>평가</dt><dd>월 155만 회를 <b>변경 시점 20회로 줄여 DB 부하 99.99% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
+					<dt>해결</dt><dd>이 수치로 배치 폐기를 건의해 합의를 얻고, 사례 없던 서버리스에 AdminJS를 통합해 <b>운영자 2명을 어드민으로 이관</b>. 배너 교체 때 Swagger로 올린 링크를 시트에 붙여 넣던 절차도 어드민 업로드로 합쳤습니다.</dd>
+					<dt>평가</dt><dd>월 155만 회를 <b>변경 시점 20회로 줄여 중복 쿼리 99.99% 제거</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
 		<li class="task"><b>서버리스 배포 가이드가 <b>AdminJS 공식 문서</b>로 채택</b>
 				<ul class="how">
 					<li>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 공식 가이드 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 에 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></li>
 				</ul></li>
-		<li class="task"><b><span class="tag">[긴급]</span> 배치 중복 실행으로 유실된 데이터 <b>3시간 만에 복구</b></b>
+		<li class="task"><b>사용자 문의로 접수된 이미지 로딩 지연을 Cache-Control 누락에서 찾아 <b>하루 만에</b> 해결<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」" data-card="https://ko.puleugo.dev/213">3</a></sup></b></li>
+		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b>로 덮어 테스트 250개(커버리지 19.54%)</b>
 				<ul class="how">
-					<li>인스턴스가 5분에 10번 넘게 재시작될 때마다 위 <b>5분 주기 배치</b>가 새로 떠 중복 실행됐고, 그 구조가 대규모 쿼리를 부른 원인임을 binlog로 복구하며 밝혔습니다. 사용자 메일로 접수된 이미지 로딩 지연도 Cache-Control 누락을 찾아 <b>하루 만에</b> 해결했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/213" data-preview data-tip="블로그 「[CloudFlare] 이미지 로드 속도 향상하기」" data-card="https://ko.puleugo.dev/213">3</a></sup></li>
-				</ul></li>
-		<li class="task"><b>테스트 문화가 없던 팀에 <b>E2E부터</b> 도입, 커버리지 0% → 19.54% · 테스트 250개</b>
-				<ul class="how">
-					<li>팀에 테스트는 물론 레이어별 책임과 도메인 객체 개념이 없어 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 공부했고, 커버리지를 올리는 단위 테스트보다 <b>E2E를 먼저</b> 깔아야 무중단 운영 중인 API 135개를 지킨다고 판단했습니다.</li>
+					<li>팀에 테스트는 물론 레이어별 책임과 도메인 객체 개념이 없어 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 공부했고, 커버리지 숫자를 올리는 단위 테스트보다 <b>E2E를 먼저</b> 깔아야 무중단 운영 중인 API 135개를 지킨다고 판단했습니다.</li>
 					<li>걸림돌이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 만들어 없애고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">5</a></sup> 테스트가 붙지 않던 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안해 책임 단위로 분리했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">6</a></sup></li>
 					
 				</ul></li>
@@ -492,34 +487,26 @@
 	<tbody>
 		<tr><td>대상 (경상남도지사상)</td><td>2026 초광역 글로벌 창업 노마드 기술혁신 아이디어 경진대회 · 경남·부산 11개 대학 공동주관 <a href="https://news.nate.com/view/20260715n21302" data-preview data-tip="관련 기사 미리보기 (news.nate.com)" data-card="https://news.nate.com/view/20260715n21302"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">2026.07.</td></tr>
 		<tr><td>대상 (인제대 총장상)</td><td>IU-커스텀 학점제 성과보고회 · 컴퓨터공학 × 상담심리치료학 융합 프로젝트 <a href="https://www.veritas-a.com/news/articleView.html?idxno=615826" data-preview data-tip="관련 기사 미리보기 (veritas-a.com)" data-card="https://www.veritas-a.com/news/articleView.html?idxno=615826"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">2026.06.</td></tr>
-		<tr><td>최우수상</td><td>UNI-STAR 데모데이 · 경상남도 RISE사업단 <a href="https://www.newsgn.com/news/articleView.html?idxno=520775" data-preview data-tip="관련 기사 미리보기 (newsgn.com)" data-card="https://www.newsgn.com/news/articleView.html?idxno=520775"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">2025.12.</td></tr>
-		<tr><td>최우수상</td><td>G-NEX 창업 페스티벌 · 어르다</td><td class="sub">2025.12.</td></tr>
-		<tr><td>최우수상</td><td>2025 경남 UNI-CORN 대학연합 아이디어 발굴 경진대회 · 도내 16개 대학 62개 팀</td><td class="sub">2025.11.</td></tr>
+		<tr><td>최우수상 3건</td><td>UNI-STAR 데모데이 · 경상남도 RISE사업단 <a href="https://www.newsgn.com/news/articleView.html?idxno=520775" data-preview data-tip="관련 기사 미리보기 (newsgn.com)" data-card="https://www.newsgn.com/news/articleView.html?idxno=520775"><svg class="icon"><use href="#i-doc"/></svg>기사</a> · G-NEX 창업 페스티벌 · 2025 경남 UNI-CORN 대학연합 경진대회(도내 16개 대학 62개 팀)</td><td class="sub">2025.11.–12.</td></tr>
 	</tbody>
 </table>
 
 <h2>학력 · 교육</h2>
 <div class="entry">
 	<div class="entry-head">
-		<h3>인제대학교 <span class="role">· 컴퓨터공학과</span></h3>
+		<h3>인제대학교 <span class="role">· 컴퓨터공학과 · SW마에스트로 13기 자율형 부트캠프 수료(2022.04.–12.)</span></h3>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
-	</div>
-</div>
-<div class="entry">
-	<div class="entry-head">
-		<h3>SW마에스트로 13기 <span class="role">· 자율형 부트캠프 수료</span></h3>
-		<span class="leader" aria-hidden="true"></span><span class="period">2022.04. – 2022.12.</span>
 	</div>
 </div>
 
 <h2>기술</h2>
 <table class="data-table">
 	<tbody>
-		<tr><td>백엔드</td><td>TypeScript, Nest.js, Express.js, TypeORM, Java 17, Kotlin, Spring Boot, Go, Fiber</td></tr>
-		<tr><td>프론트엔드</td><td>Next.js 15, React 19, Vue.js, Capacitor(iOS · Android)</td></tr>
-		<tr><td>데이터</td><td>PostgreSQL, MySQL, Redis, ScyllaDB, Neon, IndexedDB</td></tr>
+		<tr><td>백엔드 · 데이터</td><td>TypeScript, Nest.js, TypeORM, PostgreSQL, Redis, Neon, IndexedDB</td></tr>
+		<tr><td>프론트 · 앱</td><td>Next.js 15, React 19, Capacitor(iOS · Android), Playwright</td></tr>
 		<tr><td>인프라</td><td>AWS(EC2 · S3 · CloudFront · Route 53), Vercel Serverless, Cloudflare R2, Docker, GitHub Actions</td></tr>
-		<tr><td>AI · 기타</td><td>LLM API, 오디오 처리 파이프라인, Rust → WebAssembly, WASM FFmpeg, Claude Code 에이전트 파이프라인, Playwright</td></tr>
+		<tr><td>AI · 자동화</td><td>LLM API, 오디오 처리 파이프라인, Rust → WebAssembly, WASM FFmpeg, Claude Code 에이전트 파이프라인</td></tr>
+		<tr><td>사용 경험</td><td class="sub">Java 17, Kotlin, Spring Boot, Go, Fiber, Express.js, Vue.js, MySQL, ScyllaDB</td></tr>
 	</tbody>
 </table>
 
