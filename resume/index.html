@@ -182,7 +182,7 @@
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
 	/* 제목과 기간을 눈으로 잇는 목차식 점선 리더 */
 	.leader { flex: 1 1 auto; min-width: 0; height: 0; align-self: center; border-bottom: 1px dotted var(--line); }
-	.period { font-size: 9pt; color: var(--sub); white-space: nowrap; }
+	.period { font-size: 9pt; font-weight: 400; color: var(--sub); white-space: nowrap; }
 	.system-line { margin: 1px 0 3px; font-size: 9pt; color: var(--sub); }
 	.lead { margin: 2px 0 6px; font-size: 9.5pt; color: var(--sub); }
 	.facts { margin: 0 0 6px; font-size: 9pt; color: var(--sub); }
@@ -190,7 +190,7 @@
 
 	.work { margin: 13px 0 0; }
 	li.case-study, table.data-table { break-inside: avoid; page-break-inside: avoid; }
-	.work > strong { display: block; margin-bottom: 2px; font-size: 10pt; }
+	.work > strong { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; font-size: 10pt; }
 	ul { margin: 2px 0 0; padding-left: 15px; }
 	li { margin-bottom: 3px; }
 	li ul { margin-top: 1px; }
@@ -366,7 +366,7 @@
 	</table>
 
 	<div class="work">
-		<strong>어르다 축어록 · 상담사 인터뷰부터 앱 출시까지 단독 수행 (2026.01. – 현재)</strong>
+		<strong>어르다 축어록 · 상담사 인터뷰부터 앱 출시까지 단독 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<p class="system-line">상담 녹음을 올리면 <t data-x="축어록">녹취록</t>과 슈퍼비전 보고서를 만들어 주는 웹·모바일 앱입니다.</p>
 		<ul>
 			<li class="task"><b>회기당 <b>6시간</b> 걸리던 전사·보고를 <b>5분</b>으로 줄이고, 만족도 2.9점 → 4.92점</b>
@@ -379,7 +379,7 @@
 	</div>
 
 	<div class="work">
-		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당 (2026.01. – 현재)</strong>
+		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<p class="system-line">내담자 가족 관계를 표준 표기법대로 자동 정렬·렌더링하는 제작 도구입니다.</p>
 		<ul>
 			<li class="task"><b>무한 캔버스 도구의 배치 복잡도 증가 문제를 <b>캔버스 고정 레이아웃 + 자동 배치</b>로 해결, 사용자 5,687명 · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지)·월 좋아요 1위</b>
