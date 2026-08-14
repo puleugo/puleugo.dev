@@ -444,7 +444,7 @@
 		<h3><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span> <span class="role">· 백엔드 개발자 <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 「왁타버스 게임즈」. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a></span></h3>
 		<span class="period">2024.04. – 2025.06.</span>
 	</div>
-	<p class="facts"><b>역할</b> 백엔드 운영·유지보수·성능 개선 담당. 배치 폐기와 테스트 도입은 근거를 만들어 팀을 설득해 관철했습니다.</p>
+	<p class="facts"><b>역할</b> 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 <b>쿼리 수와 로그를 근거로 건의</b>해 관철했습니다.</p>
 	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 	<ul>
 		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환</b>
@@ -452,7 +452,7 @@
 					<dt>문제</dt><dd>구글 스프레드시트의 게임 데이터를 DB에 반영하는 배치가 <b>5분마다(하루 288회)</b> 돌며 반복 부하를 주고 있었습니다.</dd>
 					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 다시 맞추는 구조.</dd>
 					<dt>측정</dt><dd>중복 쿼리 <b>하루 51,840회</b>(실행당 180회), 실제 데이터 변경은 월평균 20회뿐.</dd>
-					<dt>해결</dt><dd>이 수치로 배치 폐기를 설득해 어드민 페이지로 전환하고, 사례가 없던 서버리스 환경에 AdminJS를 통합.</dd>
+					<dt>해결</dt><dd>이 수치를 근거로 배치 폐기를 건의해 합의를 얻고, 사례가 없던 서버리스 환경에 AdminJS를 통합해 어드민으로 전환.</dd>
 					<dt>평가</dt><dd>하루 51,840회를 <b>20회로 줄여 DB 부하 99.96% 감소</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
 		<li class="task"><b>서버리스 배포 가이드가 <b>AdminJS 공식 문서</b>로 채택</b>
@@ -467,8 +467,8 @@
 				</ul></li>
 		<li class="task"><b>테스트 커버리지 <b>0% → 19.54%</b>, 테스트 250개로 회귀 차단</b>
 				<ul class="how">
-					<li>무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
-					<li>트랜잭션 롤백으로 테스트를 격리하는 프레임워크를 만들어 팀에 도입하고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">5</a></sup> 약 600줄 절차지향 엑셀 업로더도 책임 단위 객체로 리팩터링했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">6</a></sup></li>
+					<li>회귀를 배포 전에 걸러낼 수단이 없다는 점을 근거로 건의해, 무중단 운영 중인 API 약 135개 서비스에 테스트를 처음 들여왔습니다.</li>
+					<li>걸림돌이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 만들어 없애고 오픈소스로 공개했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">4</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">5</a></sup> 테스트가 붙지 않던 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안해 책임 단위로 분리했습니다.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">6</a></sup></li>
 					
 				</ul></li>
 	</ul>
