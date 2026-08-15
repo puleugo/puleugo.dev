@@ -111,7 +111,7 @@
 		width: 1494px; height: 1190px;
 		position: absolute; top: 24px; left: 24px;
 		padding: 34px 30px; background: #fff;
-		font-size: 8.7pt; line-height: 1.28;
+		font-size: 8.6pt; line-height: 1.36; letter-spacing: .004em;
 		box-shadow: 0 14px 40px rgba(16,20,28,.16);
 		transform-origin: left top;
 	}
@@ -130,19 +130,19 @@
 
 	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
 	body.paged h1 { font-size: 18pt; }
-	body.paged h2 { margin: 9px 0 3px; }
-	body.paged .entry { margin-bottom: 5px; }
-	body.paged .work { margin-top: 4px; }
+	body.paged h2 { margin: 12px 0 5px; }
+	body.paged .entry { margin-bottom: 7px; }
+	body.paged .work { margin-top: 6px; }
 	body.paged .example { font-size: 8.4pt; }
-	body.paged li.case-study dl { gap: 1.5px 9px; }
+	body.paged li.case-study dl { gap: 2.5px 9px; }
 	body.paged .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
 	body.paged .hook-stats b { font-size: 11.5pt; }
 	body.paged .hook-stats span { font-size: 7.3pt; }
 	body.paged .references { font-size: 7.5pt; margin-top: 4px; }
 	body.paged .system-line { font-size: 8.2pt; margin: 0 0 2px; }
 	body.paged table.data-table { font-size: 8.6pt; }
-	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
-	body.paged li { margin-bottom: 0; }
+	body.paged table.data-table th, body.paged table.data-table td { padding: 2.5px 8px 2.5px 0; }
+	body.paged li { margin-bottom: 1.5px; }
 
 	/* header */
 	header { margin-bottom: 20px; }
@@ -200,7 +200,7 @@
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
 	li.case-study > b, li.task > b:first-child { display: block; }
 	ul.how { margin: 1px 0 0; padding-left: 0; list-style: none; }
-	@media print { ul.how li { line-height: 1.28; } }
+	@media print { ul.how li { line-height: 1.36; } }
 	ul.how li { margin: 0; padding-left: 10px; text-indent: -10px; color: var(--ink); }
 	ul.how li::before { content: "– "; color: var(--sub); }
 	li.case-study dl { display: grid; grid-template-columns: 40px 1fr; gap: 2px 10px; margin: 1px 0 0; }
@@ -260,25 +260,25 @@
 	.print-hint { margin-top: 20px; font-size: 9pt; color: var(--sub); }
 	@media print {
 		@page { size: A4; margin: 11mm 12mm; }
-		body { padding: 0; max-width: none; font-size: 8.7pt; line-height: 1.28; }
+		body { padding: 0; max-width: none; font-size: 8.6pt; line-height: 1.36; letter-spacing: .004em; }
 		a { color: var(--ink); border-bottom: none; }
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
 		h2 { margin: 11px 0 5px; }
-		.entry { margin-bottom: 5px; break-inside: auto; }
-		.work { margin-top: 4px; }
+		.entry { margin-bottom: 7px; break-inside: auto; }
+		.work { margin-top: 6px; }
 		.example { font-size: 8.4pt; }
-		li.case-study dl { gap: 1.5px 9px; }
+		li.case-study dl { gap: 2.5px 9px; }
 		.hook-stats { gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
 		.hook-stats b { font-size: 11.5pt; }
 		.hook-stats span { font-size: 7.3pt; }
 		.references { font-size: 7.2pt; margin-top: 2px; }
 		.system-line { font-size: 8.2pt; margin: 0 0 2px; }
 		table.data-table { font-size: 8.6pt; }
-		table.data-table th, table.data-table td { padding: 1.5px 8px 1.5px 0; }
-		h2 { margin: 9px 0 3px; }
+		table.data-table th, table.data-table td { padding: 2.5px 8px 2.5px 0; }
+		h2 { margin: 12px 0 5px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
-		li { margin-bottom: 0; }
+		li { margin-bottom: 1.5px; }
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; }
