@@ -141,7 +141,7 @@
 	body.paged .references { font-size: 7.5pt; margin-top: 4px; }
 	body.paged .system-line { font-size: 8.2pt; margin: 0 0 2px; }
 	body.paged table.data-table { font-size: 8.6pt; }
-	body.paged table.data-table th, body.paged table.data-table td { padding: 2.5px 8px 2.5px 0; }
+	body.paged table.data-table th, body.paged table.data-table td { padding: 2px 8px 2px 0; }
 	body.paged li { margin-bottom: 1.5px; }
 
 	/* header */
@@ -275,7 +275,7 @@
 		.references { font-size: 7.2pt; margin-top: 2px; }
 		.system-line { font-size: 8.2pt; margin: 0 0 2px; }
 		table.data-table { font-size: 8.6pt; }
-		table.data-table th, table.data-table td { padding: 2.5px 8px 2.5px 0; }
+		table.data-table th, table.data-table td { padding: 2px 8px 2px 0; }
 		h2 { margin: 12px 0 5px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
 		li { margin-bottom: 1.5px; }
@@ -331,12 +331,12 @@
 		<li><b>MAU 5만</b><span>운영 최대 규모 (왁타버스 게임즈)</span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
 		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 (5점)</span></li>
-		<li><b><span class="from">월 155만회</span> → 20회</b><span>중복 쿼리 99.99% 제거</span></li>
+		<li><b><span class="from">월 155만회</span> → 20회</b><span>불필요한 전량 갱신 제거</span></li>
 		<li><b><span class="from">206초</span> → 18초</b><span>공고 1건 AI 처리 시간</span></li>
 		<li><b>1.3만 명</b><span>어르다 누적 사용자</span></li>
 	</ul>
 	<ul class="highlights">
-		<li><b>MAU 5만</b> 서비스의 서버 개발자로 1년간 운영·장애 대응을 맡으며, 서버 로그에서 <b>월 155만 회</b> 반복되던 비효율 쿼리를 찾아 측정하고 팀을 설득해 <b>월 20회</b>로 줄였습니다. 테스트 문화가 없던 팀에 검증 체계를 처음 들였습니다.</li>
+		<li><b>MAU 5만</b> 서비스의 서버 개발자로 1년간 운영·장애 대응을 맡으며, 요구사항 변경을 앞두고 손대기 어려워진 핵심 로직을 <b>월 155만 회</b> 쓰기의 근거로 설득해 <b>변경이 있을 때만 20회</b> 쓰는 구조로 바꿨습니다. 테스트 문화가 없던 팀에 검증 체계를 처음 들였습니다.</li>
 		<li>지금은 상담사가 되기까지 <b>비용 1천만원 · 실무 3년 · 석·박사 학위</b>가 드는 준비 과정을 옮긴 플랫폼 <b>어르다</b>를 공동창업해 AI 제품 4종을 설계·개발·운영합니다. 상담 1회당 <b>6시간</b> 걸리던 전사·비언어 기록을 자동화해 13인 베타에서 <b>2.9점 → 4.92점</b>을 받았고, 모델 교체와 배치 개선의 <b>합격 판정을 계산식과 게이트로 자동화</b>했습니다.</li>
 	</ul>
 	<div class="contact">
@@ -369,7 +369,7 @@
 	<div class="work">
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>회기당 <b>6시간</b> 걸리던 전사·비언어 기록을 기계 처리 <b>5분 이내</b>로, 만족도 2.9점 → 4.92점</b>
+			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b>
 				<ul class="how">
 					<li>축어록은 <b>말한 그대로의 정확도</b>가 요구되고 침묵·말떨림 같은 <b>비언어까지 표기</b>해야 해서, 50분 상담 한 회기에 평균 6시간(상담 업무의 29.3%)이 듭니다. 범용 STT(클로바노트 등)는 이 둘을 채우지 못해 실무 만족도가 2.9점에 그쳤습니다.</li>
 					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 기계 처리 시간을 <b>10분 청크 기준 p95 5분 이내</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>전사 정확도와 비언어 표기 모두 높은 평가</b>를 받아 종합 <b>4.92점</b>, 비언어 인식 향상은 92.3%가 동의했습니다.</li>
@@ -382,7 +382,7 @@
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>무한 캔버스 도구의 배치 복잡도 증가 문제를 <b>캔버스 고정 레이아웃 + 자동 배치</b>로 해결, 사용자 5,687명 · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지)·월 좋아요 1위</b>
+			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지) · 월 좋아요 1위)</b>
 				<ul class="how">
 					<li>기존 도구는 제약 없는 캔버스라 3촌 이상이면 인물 위치가 밀려 배치가 무너졌습니다. 캔버스를 고정해 <b>조작을 단순화했습니다</b>(주 사용자 40·50대 상담 학도).</li>
 					<li>인물을 넣을 때마다 주변이 연쇄 재배치되던 문제를 자동 배치로 풀었고, <b>의존 노드 수로 중요도가 높은 인물은 크게 배치</b>되도록 해 가시성을 향상했습니다.</li>
@@ -451,11 +451,11 @@
 	<ul>
 		<li class="case-study"><b>구글 엑셀 동기화(Reconciliation) 배치 폐기와 어드민 전환</b>
 				<dl>
-					<dt>문제</dt><dd>서버 로그에서 같은 쿼리가 반복되는 패턴을 발견했습니다. 구글 스프레드시트의 게임 데이터 <b>전량</b>을 DB에 다시 밀어 넣는 배치가 <b>5분마다 1회</b> 돌고 있었습니다(하루 288회 · 월 8,640회 실행). 서비스에서 부하 영향이 가장 큰 로직이었습니다.</dd>
-					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 upsert하는 구조.</dd>
-					<dt>측정</dt><dd><b>월 8,640회 실행 × 실행당 중복 쿼리 180회 = 월 약 155만 회</b>. 실제 데이터 변경은 월 20회뿐.</dd>
-					<dt>평가</dt><dd>이 수치로 배치 폐기를 건의해 합의를 얻고 사례 없던 서버리스에 AdminJS를 통합, <b>운영자 2명을 어드민으로 이관</b>했습니다. 배너 교체 때 Swagger로 올린 링크를 시트에 붙여 넣던 절차도 어드민 업로드로 합쳤습니다. 월 155만 회를 <b>변경 시점 20회로 줄여 중복 쿼리 99.99% 제거</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
-					<dt>확산</dt><dd>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드로 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></dd>
+					<dt>문제</dt><dd>비개발자가 데이터를 직접 고치도록 초기에는 스프레드시트를 원본으로 두고, 시트 <b>전량</b>을 <b>5분마다 1회</b> DB에 맞췄습니다(하루 288회 · 월 8,640회 실행). 서비스가 커지며 <b>팀에서 영향 범위가 가장 큰 로직</b>이 됐고, 필드 추가 같은 요구사항 변경이 예정돼 이대로는 손대기 어려웠습니다.</dd>
+					<dt>원인</dt><dd>데이터 원본이 시트에 있어 변경 여부와 무관하게 전량 upsert가 필요했고, 필드 하나를 늘리려면 시트·배치·DB 세 곳을 함께 고쳐야 했습니다.</dd>
+					<dt>측정</dt><dd>구조를 바꿀 근거로 <b>월 8,640회 실행 × 실행당 쓰기 180회 = 월 약 155만 회</b>를 계산했습니다. 실제 변경은 월 20회뿐, 나머지는 전부 불필요한 쓰기였습니다.</dd>
+					<dt>평가</dt><dd>이 수치로 배치 폐기를 건의해 합의를 얻고, 사례 없던 서버리스에 AdminJS를 통합해 <b>데이터 원본을 DB로 옮기고 운영자 2명을 어드민으로 이관</b>했습니다. 원래 요구(비개발자가 직접 수정)는 지키면서 <b>변경 지점이 한 곳</b>이 돼, 이후 필드 추가는 어드민 수정으로 끝납니다. 배너 교체 때 Swagger로 올린 링크를 시트에 붙여 넣던 절차도 어드민 업로드로 합쳤습니다. 쓰기는 월 155만 회에서 <b>변경이 있을 때만 20회</b>로, 운영비는 약 70% 줄었습니다.</dd>
+					<dt>채택</dt><dd>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드로 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></dd>
 				</dl></li>
 		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b>로 덮어 테스트 250개(커버리지 19.54%)</b>
 				<ul class="how">
