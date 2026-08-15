@@ -389,12 +389,11 @@
 				</ul></li>
 			<li class="task"><b>AI가 가족 관계를 이해하고 <b>반복되는 패턴을 감지</b>하도록 만든 사내 도구(DSL)</b>
 				<ul class="how">
-					<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의해 그림 대신 <b>텍스트로 편집·버전 관리</b>가 가능합니다(파싱 p95 5.8ms, 예산 120ms).</li>
-					<li>그림이 아니라 문법이라 기계가 읽습니다. 축어록 기록과 이어 <b>세대에 걸쳐 되풀이되는 관계 패턴과 문제의 뿌리를 AI가 짚어내는</b> 도구로 확장하고 있습니다.</li>
+					<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의해 그림 대신 <b>텍스트로 편집·버전 관리</b>가 가능합니다(파싱 p95 5.8ms). 그림이 아니라 문법이라 기계가 읽어, 축어록 기록과 이어 <b>세대에 걸쳐 되풀이되는 관계 패턴과 문제의 뿌리를 AI가 짚어내는</b> 도구로 확장하고 있습니다.</li>
 				</ul></li>
 			<li class="task"><b>Rust/WASM 이식을 벤치로 판단해 <b>순수 수치 연산만</b> 채택</b>
 				<ul class="how">
-					<li>핫패스를 Rust로 포팅해 파리티 테스트로 TS와 결과가 같은지 강제한 뒤 벤치로 판정했습니다. FFI 직렬화 비용이 TS 직접 호출 대비 <b>19~41배</b>, 순수 수치 연산만 0.8배(약 20% 단축)라 그 경로만 채택하고 나머지는 TS를 유지했습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
+					<li>핫패스를 Rust로 포팅해 파리티 테스트로 TS와 결과가 같은지 강제한 뒤 벤치로 판정했습니다. FFI 직렬화 비용이 <b>19~41배</b>, 순수 수치 연산만 0.8배(약 20% 단축)라 그 경로만 채택했습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
 				</ul></li>
 			</ul>
 	</div>
@@ -455,13 +454,11 @@
 					<dt>문제</dt><dd>서버 로그에서 같은 쿼리가 반복되는 패턴을 발견했습니다. 구글 스프레드시트의 게임 데이터 <b>전량</b>을 DB에 다시 밀어 넣는 배치가 <b>5분마다 1회</b> 돌고 있었습니다(하루 288회 · 월 8,640회 실행). 서비스에서 부하 영향이 가장 큰 로직이었습니다.</dd>
 					<dt>원인</dt><dd>변경 여부와 무관하게 매번 전량을 upsert하는 구조.</dd>
 					<dt>측정</dt><dd><b>월 8,640회 실행 × 실행당 중복 쿼리 180회 = 월 약 155만 회</b>. 실제 데이터 변경은 월 20회뿐.</dd>
+					<dt>갈등</dt><dd>결정 권한이 없는 팀원의 제안이라 "지금 돌아가는 것을 왜 건드리냐"는 반대가 있었고, 운영자는 익숙한 스프레드시트를 놓지 않으려 했습니다.</dd>
 					<dt>해결</dt><dd>이 수치로 배치 폐기를 건의해 합의를 얻고, 사례 없던 서버리스에 AdminJS를 통합해 <b>운영자 2명을 어드민으로 이관</b>. 배너 교체 때 Swagger로 올린 링크를 시트에 붙여 넣던 절차도 어드민 업로드로 합쳤습니다.</dd>
+					<dt>확산</dt><dd>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드로 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></dd>
 					<dt>평가</dt><dd>월 155만 회를 <b>변경 시점 20회로 줄여 중복 쿼리 99.99% 제거</b>, 서버리스 전환으로 운영비 약 70% 절감.</dd>
 				</dl></li>
-		<li class="task"><b>서버리스 배포 가이드가 <b>AdminJS 공식 문서</b>로 채택</b>
-				<ul class="how">
-					<li>사례가 없던 서버리스 배포 절차를 정리해 올린 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 공식 가이드 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 에 게시 중입니다.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></li>
-				</ul></li>
 		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b>로 덮어 테스트 250개(커버리지 19.54%)</b>
 				<ul class="how">
 					<li>팀에 테스트는 물론 레이어별 책임과 도메인 객체 개념이 없어 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 공부했고, 커버리지 숫자를 올리는 단위 테스트보다 <b>E2E를 먼저</b> 깔아야 무중단 운영 중인 API 135개를 지킨다고 판단했습니다.</li>
