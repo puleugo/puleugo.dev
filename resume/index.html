@@ -134,7 +134,7 @@
 	body.paged .entry { margin-bottom: 7px; }
 	body.paged .work { margin-top: 6px; }
 	body.paged .example { font-size: 8.4pt; }
-	body.paged li.case-study dl { gap: 2.5px 9px; }
+	body.paged li dl { gap: 2px 6px; }
 	body.paged .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
 	body.paged .hook-stats b { font-size: 11.5pt; }
 	body.paged .hook-stats span { font-size: 7.3pt; }
@@ -200,12 +200,12 @@
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
 	li.case-study > b, li.task > b:first-child { display: block; }
 	ul.how { margin: 1px 0 0; padding-left: 0; list-style: none; }
-	@media print { ul.how li { line-height: 1.36; } }
+	@media print { ul.how li, li dd { line-height: 1.36; } }
 	ul.how li { margin: 0; padding-left: 10px; text-indent: -10px; color: var(--ink); }
 	ul.how li::before { content: "– "; color: var(--sub); }
-	li.case-study dl { display: grid; grid-template-columns: 40px 1fr; gap: 2px 10px; margin: 1px 0 0; }
-	li.case-study dt { font-size: 8.5pt; font-weight: 700; color: var(--sub); padding-top: .15em; letter-spacing: .02em; }
-	li.case-study dd { margin: 0; }
+	li dl { display: grid; grid-template-columns: 27px 1fr; gap: 1.5px 6px; margin: 1px 0 0; }
+	li dt { font-size: 8.2pt; font-weight: 700; color: var(--sub); padding-top: .15em; letter-spacing: .02em; }
+	li dd { margin: 0; }
 	.icon { width: .95em; height: .95em; vertical-align: -.13em; margin-right: 3px; fill: currentColor; color: var(--sub); }
 	a .icon { color: inherit; opacity: .75; }
 	sup.footnote { font-size: 7.5pt; line-height: 0; }
@@ -268,7 +268,7 @@
 		.entry { margin-bottom: 7px; break-inside: auto; }
 		.work { margin-top: 6px; }
 		.example { font-size: 8.4pt; }
-		li.case-study dl { gap: 2.5px 9px; }
+		li dl { gap: 2px 6px; }
 		.hook-stats { gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
 		.hook-stats b { font-size: 11.5pt; }
 		.hook-stats span { font-size: 7.3pt; }
@@ -370,12 +370,12 @@
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
 			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b>
-				<ul class="how">
-					<li>축어록은 <b>말한 그대로의 정확도</b>가 요구되고 침묵·말떨림 같은 <b>비언어까지 표기</b>해야 해서, 50분 상담 한 회기에 평균 6시간(상담 업무의 29.3%)이 듭니다. 범용 STT(클로바노트 등)는 이 둘을 채우지 못해 실무 만족도가 2.9점에 그쳤습니다.</li>
-					<li>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 기계 처리 시간을 <b>10분 청크 기준 p95 5분 이내</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>전사 정확도와 비언어 표기 모두 높은 평가</b>를 받아 종합 <b>4.92점</b>, 비언어 인식 향상은 92.3%가 동의했습니다.</li>
-					<li>전사문·분석 결과·작성본은 서버에서 <b>AES-256-GCM</b>으로 필드 암호화해 저장하고(iv·인증태그·암호문 한 컬럼) 키는 서버만 보유합니다. 키가 없거나 길이가 틀리면 즉시 예외를 던져 <b>평문 저장 사고 자체를 막았습니다</b>.</li>
-					<li>Next.js 앱을 PWA로 만들고 Capacitor로 감싸 단일 코드베이스로 iOS·Android에 출시했습니다. 오디오 변환·청크 분할은 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용 없이 운영합니다. 실사용자 39명이 <b>134회기 · 누적 80시간</b>을 처리했고 <b>53.8%가 2회 이상 재사용</b>했습니다(테스트 계정 제외).</li>
-				</ul></li>
+				<dl>
+					<dt>문제</dt><dd><b>말한 그대로의 정확도</b>와 침묵·말떨림 같은 <b>비언어 표기</b>가 함께 요구돼 50분 상담 한 회기에 평균 6시간(상담 업무의 29.3%)이 듭니다. 범용 STT(클로바노트 등)는 이 둘을 채우지 못해 만족도가 2.9점에 그쳤습니다.</dd>
+					<dt>해결</dt><dd>상담 도메인에 맞춘 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계해 기계 처리 시간을 <b>10분 청크 기준 p95 5분 이내</b>로 줄였고, 실무자·석박사 13인 베타에서 <b>전사 정확도와 비언어 표기 모두 높은 평가</b>를 받아 종합 <b>4.92점</b>, 비언어 인식 향상은 92.3%가 동의했습니다.</dd>
+					<dt>보안</dt><dd>전사문·분석 결과·작성본은 서버에서 <b>AES-256-GCM</b>으로 필드 암호화해 저장하고(iv·인증태그·암호문 한 컬럼) 키는 서버만 보유합니다. 키가 없거나 길이가 틀리면 즉시 예외를 던져 <b>평문 저장 사고 자체를 막았습니다</b>.</dd>
+					<dt>출시</dt><dd>Next.js PWA를 Capacitor로 감싸 단일 코드베이스로 iOS·Android에 출시했고, 오디오 변환·청크 분할은 WASM FFmpeg로 기기에서 처리해 서버 오디오 비용이 없습니다. 실사용자 39명이 <b>134회기 · 누적 80시간</b>을 처리했고 <b>53.8%가 2회 이상 재사용</b>했습니다(테스트 계정 제외).</dd>
+				</dl></li>
 			</ul>
 	</div>
 
@@ -383,24 +383,23 @@
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
 			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지) · 월 좋아요 1위)</b>
-				<ul class="how">
-					<li>기존 도구는 제약 없는 캔버스라 3촌 이상이면 인물 위치가 밀려 배치가 무너졌습니다. 캔버스를 고정해 <b>조작을 단순화했습니다</b>(주 사용자 40·50대 상담 학도).</li>
-					<li>인물을 넣을 때마다 주변이 연쇄 재배치되던 문제를 자동 배치로 풀었고, <b>의존 노드 수로 중요도가 높은 인물은 크게 배치</b>되도록 해 가시성을 향상했습니다.</li>
-				</ul></li>
+				<dl>
+					<dt>문제</dt><dd>기존 도구는 제약 없는 캔버스라 3촌 이상이면 인물 위치가 밀려 배치가 무너졌습니다. 캔버스를 고정해 <b>조작을 단순화했습니다</b>(주 사용자 40·50대).</dd>
+					<dt>해결</dt><dd>인물을 넣을 때마다 주변이 연쇄 재배치되던 문제를 자동 배치로 풀었고, <b>의존 노드 수로 중요도가 높은 인물은 크게 배치</b>되도록 해 가시성을 향상했습니다.</dd>
+				</dl></li>
 			<li class="task"><b>AI가 가족 관계를 이해하고 <b>반복되는 패턴을 감지</b>하도록 만든 사내 도구(DSL)</b>
-				<ul class="how">
-					<li>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의해 그림 대신 <b>텍스트로 편집·버전 관리</b>가 가능합니다(파싱 p95 5.8ms). 그림이 아니라 문법이라 기계가 읽어, 축어록 기록과 이어 <b>세대에 걸쳐 되풀이되는 관계 패턴과 문제의 뿌리를 AI가 짚어내는</b> 도구로 확장하고 있습니다.</li>
-				</ul></li>
+				<dl>
+					<dt>설계</dt><dd>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의해 그림 대신 <b>텍스트로 편집·버전 관리</b>가 가능합니다(파싱 p95 5.8ms). 그림이 아니라 문법이라 기계가 읽어, 축어록 기록과 이어 <b>세대에 걸쳐 되풀이되는 관계 패턴과 문제의 뿌리를 AI가 짚어내는</b> 도구로 확장하고 있습니다.</dd>
+				</dl></li>
 			<li class="task"><b>Rust/WASM 이식을 벤치로 판단해 <b>순수 수치 연산만</b> 채택</b>
-				<ul class="how">
-					<li>핫패스를 Rust로 포팅해 파리티 테스트로 TS와 결과가 같은지 강제한 뒤 벤치로 판정했습니다. FFI 직렬화 비용이 <b>19~41배</b>, 순수 수치 연산만 0.8배(약 20% 단축)라 그 경로만 채택했습니다. 임상 데이터는 로컬 AES-GCM 암호화, 발표용 이름 숨김도 넣었습니다.</li>
-				</ul></li>
+				<dl>
+					<dt>판단</dt><dd>핫패스를 Rust로 포팅해 파리티 테스트로 TS와 결과가 같은지 강제한 뒤 벤치로 판정했습니다. FFI 직렬화 비용이 <b>19~41배</b>, 순수 수치 연산만 0.8배(약 20% 단축)라 그 경로만 채택했습니다. 임상 데이터는 로컬 암호화, 발표용 이름 숨김을 넣었습니다.</dd>
+				</dl></li>
 			</ul>
 	</div>
 
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 굴리는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
-		<p class="system-line"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청 웹과 이를 채우는 운영 도구·수집 파이프라인입니다.</p>
 		<ul>
 			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
 				<dl>
