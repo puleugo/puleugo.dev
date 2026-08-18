@@ -78,3 +78,36 @@ test("페이지 보기에서 전체 내용이 한 화면에 들어간다", async
 	});
 	expect(withPanel).toEqual({ single: true, inView: true, overlap: false });
 });
+
+// 개인정보 가리기는 화면 표시가 아니라 본문 DOM 을 바꾸므로, 인쇄(PDF)에도 그대로 나가야 한다.
+test("가린 상태로 인쇄하면 이름·연락처·개인 도메인이 PDF 에 남지 않는다", async ({ page }) => {
+	await page.goto(RESUME + "?mask=1");
+	await page.emulateMedia({ media: "print" });
+	const out = path.join(os.tmpdir(), `resume-masked-${Date.now()}.pdf`);
+	await page.pdf({ path: out, ...A4 });
+	const buf = fs.readFileSync(out);
+	const pages = pdfPageCount(buf);
+	// 개인 링크는 주소까지 떼어내므로 PDF 의 링크 주석(/URI)에도 남지 않는다.
+	const uris = (buf.toString("latin1").match(/\/URI\s*\(([^)]*)\)/g) || []).join(" ");
+	const text = await page.locator("#resume").innerText();
+	fs.unlinkSync(out);
+
+	expect(text).not.toContain("임채성");
+	expect(text).not.toContain("4057-6373");
+	expect(text).not.toContain("puleugo");
+	expect(uris).not.toContain("puleugo");
+	expect(pages).toBeLessThanOrEqual(2); // 가려도 2페이지 규격은 그대로
+});
+
+// 토글을 껐다 켜면 원래 값이 손상 없이 돌아와야 한다.
+test("가리기를 해제하면 원래 연락처와 링크가 복구된다", async ({ page }) => {
+	await page.goto(RESUME);
+	const contact = page.locator(".contact");
+	const before = await contact.innerText();
+	const href = await page.locator('.contact a[href*="github"]').getAttribute("href");
+	await page.check("#mask-input");
+	expect(await contact.innerText()).not.toContain("puleugo");
+	await page.uncheck("#mask-input");
+	expect(await contact.innerText()).toBe(before);
+	expect(await page.locator(".contact a[href*='github']").getAttribute("href")).toBe(href);
+});
