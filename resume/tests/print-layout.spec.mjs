@@ -111,3 +111,21 @@ test("가리기를 해제하면 원래 연락처와 링크가 복구된다", asy
 	expect(await contact.innerText()).toBe(before);
 	expect(await page.locator(".contact a[href*='github']").getAttribute("href")).toBe(href);
 });
+
+// 수상 표의 시기 칸("2025.11.–12.")은 폭이 좁아 화면에서 두 줄로 쪼개졌다. 인쇄만 보면 놓친다.
+test("수상 표의 시기 칸은 화면·인쇄 모두 한 줄로 표기된다", async ({ page }) => {
+	await page.goto(RESUME);
+	const lines = () => page.evaluate(() =>
+		[...document.querySelectorAll("table.awards td:last-child")].map((td) => {
+			const r = document.createRange();
+			r.selectNodeContents(td);
+			return new Set([...r.getClientRects()].map((x) => Math.round(x.top))).size; // 줄 상자 개수
+		}));
+	for (const w of [1512, 1100, 768, 390]) {
+		await page.setViewportSize({ width: w, height: 900 });
+		expect(await lines(), `화면 ${w}px`).toEqual([1, 1, 1]);
+	}
+	await page.emulateMedia({ media: "print" });
+	await page.setViewportSize({ width: 794, height: 1123 });
+	expect(await lines(), "인쇄").toEqual([1, 1, 1]);
+});
