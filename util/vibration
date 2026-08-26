@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ripple Animation with Vibration API</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      background-color: #0f172a;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      user-select: none;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* 1. 버튼 파동 효과 스타일 */
+    .ripple-btn {
+      position: relative;
+      padding: 16px 36px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+      transition: transform 0.1s ease;
+    }
+
+    .ripple-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* 버튼 내부 파동 요소 */
+    .ripple-btn .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: button-ripple 600ms linear;
+      pointer-events: none;
+    }
+
+    @keyframes button-ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* 2. 전체 화면 파동 요소 */
+    .bg-ripple {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(99, 102, 241, 0.8);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      animation: screen-ripple 800ms ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes screen-ripple {
+      0% {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+      }
+      100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="ripple-btn">버튼 클릭 파동 (강한 진동)</button>
+  <p>배경 아무 곳이나 터치/클릭해도<br>파동 및 가벼운 햅틱 진동이 발생합니다.</p>
+
+  <script>
+    // 진동 트리거 헬퍼 함수
+    function triggerHaptic(pattern) {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(pattern);
+      }
+    }
+
+    // 1. 버튼 파동 + 더블 햅틱 피드백 ([진동, 대기, 진동] ms 단위)
+    const btn = document.querySelector('.ripple-btn');
+
+    btn.addEventListener('pointerdown', function (e) {
+      e.stopPropagation(); // 배경 이벤트와 중복 방지
+
+      // 버튼 클릭 시 뚜렷한 햅틱 패턴 발생 (40ms 진동, 30ms 휴식, 40ms 진동)
+      triggerHaptic([40, 30, 40]);
+
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-effect');
+
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x - size / 2}px`;
+      ripple.style.top = `${y - size / 2}px`;
+
+      this.appendChild(ripple);
+
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
+
+    // 2. 전체 화면 파동 + 가벼운 단일 햅틱 피드백
+    document.body.addEventListener('pointerdown', function (e) {
+      // 배경 터치 시 가벼운 틱 피드백 (20ms)
+      triggerHaptic(20);
+
+      const ripple = document.createElement('div');
+      ripple.classList.add('bg-ripple');
+
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+
+      this.appendChild(ripple);
+
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
+  </script>
+</body>
+</html>
