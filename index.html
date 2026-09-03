@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>푸르고 소개 페이지</title>
+  <title>임채성 (푸르고) - 프로덕트 엔지니어</title>
+  <meta name="description" content="프로덕트 엔지니어 임채성(푸르고). 어르다 공동창업자, 전 왁타버스 게임즈 백엔드 개발자.">
   <style>
       body {
           font-family: Arial, sans-serif;
@@ -24,30 +25,88 @@
           padding-bottom: 2px; /* 밑줄과 텍스트 간격 조정 */
           transition: border-color 0.3s ease; /* 마우스오버 시 부드러운 애니메이션 */
       }
-
+      .tagline {
+          color: #666;
+          margin-top: -8px;
+      }
+      .metrics {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px 32px;
+          padding: 0;
+          list-style: none;
+      }
+      .metrics strong {
+          display: block;
+          font-size: 1.25rem;
+      }
+      .metrics span {
+          color: #666;
+          font-size: 0.9rem;
+      }
+      .period {
+          color: #666;
+          font-size: 0.9rem;
+      }
   </style>
 </head>
 <body>
 <header>
-  <h1>푸르고 - 서버 개발자</h1>
+  <h1>임채성 (푸르고) - 프로덕트 엔지니어</h1>
+  <p class="tagline">비즈니스 규칙의 코드화 · 평가 기준의 자동화 · PO로서 제품 소유</p>
 </header>
 
 <main>
   <section>
     <h2>자기소개</h2>
-    <p>현재 포트폴리오를 만들고 있습니다. 조만간 자기소개 섹션이 개선될 것입니다. (2024.11.18.)</p>
-    <p>안녕하세요, 서버 개발자 푸르고입니다. 웹 애플리케이션 개발에 열정을 가지고 있으며, 특히 JavaScript 생태계와 클라우드 기술에 관심이 많습니다.</p>
-    <p>저는 지속적인 학습과 성장을 추구하며, 새로운 기술을 익히고 적용하는 것을 즐깁니다. 팀 협업을 중요하게 생각하며, 개방적인 의사소통과 지식 공유를 통해 함께 성장하는 것을 목표로 합니다.</p>
+    <p>사업 운영 규칙을 스키마·API로 이관하고, AI 에이전트의 통과 기준을 코드로 고정하여 개선이 축적되는 환경을 만듭니다.</p>
+    <p>상담사 양성 과정을 온라인으로 이관한 플랫폼 <strong>어르다</strong>를 공동창업하여 AI 제품 4종을 설계·개발·운영하고 있습니다. 그 전에는 MAU 5만 규모의 게임 배포 플랫폼 <strong>왁타버스 게임즈</strong>에서 백엔드 운영과 장애 대응을 담당했습니다.</p>
+    <ul class="metrics">
+      <li><strong>MAU 5만</strong><span>운영 최대 규모 (왁타버스 게임즈)</span></li>
+      <li><strong>2.9 → 4.92</strong><span>상담사 베타 만족도 (5점)</span></li>
+      <li><strong>월 155만 회 → 20회</strong><span>불필요한 전량 갱신 제거</span></li>
+      <li><strong>206초 → 18초</strong><span>공고 1건 AI 처리 시간</span></li>
+    </ul>
+    <p><a href="/resume/">이력서 전문 보기</a></p>
+  </section>
+
+  <section>
+    <h2>경력</h2>
+    <h3>어르다 · 공동창업자 · 개발 총괄 <span class="period">2025.09. – 재직 중</span></h3>
+    <ul>
+      <li><strong>어르다 축어록</strong> — 회기당 6시간 걸리던 상담 전사·비언어 표기를 LLM 파이프라인으로 자동화. 실무자 13인 베타 만족도 4.92점. Next.js PWA를 Capacitor로 감싸 iOS·Android 동시 출시.</li>
+      <li><strong>어르다 가계도</strong> — 표준 표기법을 따르는 가족관계도 제작 도구. 고정 레이아웃·자동 배치로 전환하고, 관계를 문법(DSL)으로 정의하여 텍스트 편집·버전 관리와 기계 판독이 가능하게 만듦.</li>
+      <li><strong>어르다 매칭</strong> — 전국 17개 시·도 교육기관 410곳 검색·멘토링 신청. 도메인 설계와 백엔드 담당.</li>
+      <li><strong>운영 도구</strong> — 디스코드 명령 한 줄로 비개발자가 콘텐츠를 수정하고 캐시 무효화까지 수행. 공고 1건 AI 처리 시간을 206초에서 18초로 단축.</li>
+      <li><strong>개발 방식</strong> — AI 에이전트가 만든 코드를 사람 리뷰 전에 기계가 채점. 배치 개선안 8건 중 5건을 표준 위반으로 자동 반려. 모델 교체는 CER·IoU 기준선으로 판정.</li>
+    </ul>
+    <h3>왁타버스 게임즈 · 백엔드 개발자 <span class="period">2024.04. – 2025.06.</span></h3>
+    <ul>
+      <li>스프레드시트 전량 동기화 배치를 폐기하고 데이터 원본을 DB로 이관. 월 155만 회 쓰기를 변경 시에만 20회로 줄이고 운영비 약 70% 절감.</li>
+      <li>서버리스 환경의 AdminJS 배포 절차를 정리한 PR이 머지되어 <a href="https://docs.adminjs.co" target="_blank" rel="noopener">docs.adminjs.co</a> 공식 가이드로 게시 중.</li>
+      <li>테스트 문화가 없던 팀에 E2E 우선 검증 체계를 도입(테스트 250개). 테스트 간 데이터 간섭을 없애는 트랜잭션 롤백 격리 도구를 만들어 오픈소스로 공개.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>수상 · 학력</h2>
+    <ul>
+      <li>대상(경상남도지사상) — 초광역 글로벌 창업 노마드 기술혁신 경진대회 <span class="period">2026.07.</span></li>
+      <li>대상(인제대 총장상) — IU-커스텀 학점제 성과보고회 <span class="period">2026.06.</span></li>
+      <li>최우수상 3건 — UNI-STAR 데모데이 · G-NEX 창업 페스티벌 · 경남 UNI-CORN 대학연합 <span class="period">2025.11.–12.</span></li>
+      <li>SW마에스트로 13기 수료 <span class="period">2022.04. – 2022.12.</span></li>
+      <li>인제대학교 컴퓨터공학과 <span class="period">2022.03. – 2026.12. (졸업 예정)</span></li>
+    </ul>
   </section>
 
   <section>
     <h2>기술 스택</h2>
     <ul>
-      <li>백엔드: Node.js, Express.js, Nest.js</li>
-      <li>프론트엔드: React.js</li>
-      <li>데이터베이스: PostgreSQL, MySQL</li>
-      <li>클라우드: AWS, Docker, Cloudflare</li>
-      <li>기타: Git, CI/CD, Testing</li>
+      <li>백엔드·데이터: TypeScript, Nest.js, TypeORM, PostgreSQL, Redis, Neon, IndexedDB</li>
+      <li>프론트·앱: Next.js 15, React 19, Capacitor(iOS·Android), Playwright</li>
+      <li>인프라: AWS(EC2·S3·CloudFront·Route 53), Vercel Serverless, Cloudflare R2, Docker, GitHub Actions</li>
+      <li>AI·자동화: LLM API, 오디오 처리 파이프라인, Rust → WebAssembly, WASM FFmpeg, Claude Code 에이전트 파이프라인</li>
+      <li>사용 경험: Java 17, Kotlin, Spring Boot, Go, Fiber, Express.js, Vue.js, MySQL, ScyllaDB</li>
     </ul>
   </section>
 
@@ -67,8 +126,10 @@
   </section>
 </main>
 
+<div id="footer-container"></div>
+
 <script>
-	fetch('footer.html')
+	fetch('/util/footer.html')
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Network Error.');
