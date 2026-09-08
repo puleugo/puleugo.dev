@@ -143,6 +143,9 @@
 	body.paged table.data-table { font-size: 8.6pt; }
 	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
 	body.paged li { margin-bottom: 1.5px; }
+	body.paged .doc-title { margin: 0 0 11px; padding: 12px 16px; }
+	body.paged .doc-title h1 { font-size: 15pt; }
+	body.paged .sec { margin-top: 9px; grid-template-columns: 96px 1fr; }
 
 	/* header */
 	header { margin-bottom: 20px; }
@@ -153,7 +156,7 @@
 	.highlights { margin: 0 0 8px; padding-left: 15px; }
 	.highlights li { margin-bottom: 2px; }
 	.hook-stats {
-		display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px 12px;
+		display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 14px;
 		margin: 0 0 9px; padding: 7px 0; list-style: none;
 		border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 	}
@@ -257,6 +260,28 @@
 	.skills div { margin-bottom: 2px; padding-left: 92px; text-indent: -92px; }
 	.skills b { display: inline-block; width: 92px; text-indent: 0; }
 
+	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
+	.doc-title {
+		margin: -38px -34px 18px; padding: 24px 34px 20px;
+		background: var(--ink); color: #fff;
+	}
+	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
+	.doc-title h1 small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: #aeb4c0; }
+	.doc-title .who { margin: 9px 0 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
+	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: #aeb4c0; }
+	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 15px; }
+	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 5px; }
+	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
+	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
+	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
+	.sec.cont { margin-top: 0; }
+	.sec.cont > .lbl, .sec.cont > .val { border-top: 0; padding-top: 0; }
+	.sec.gap { margin-top: 9px; }
+	.sec .entry { margin-bottom: 0; }
+	table.info td:first-child { width: 62px; font-weight: 500; color: var(--sub); }
+	table.info td { border-bottom: 0; padding: 1.5px 8px 1.5px 0; }
+	table.info .contact { font-size: 9.5pt; }
+
 	/* print */
 	.print-hint { margin-top: 20px; font-size: 9pt; color: var(--sub); }
 	@media print {
@@ -283,6 +308,9 @@
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; }
+		.doc-title { margin: 0 0 11px; padding: 13px 16px; }
+		.doc-title h1 { font-size: 15pt; }
+		.sec { margin-top: 9px; }
 	}
 </style>
 </head>
@@ -325,19 +353,32 @@
 </svg>
 
 <main id="resume" class="portfolio">
-<header>
-	<h1>임<m data-mask="○○">채성</m> <small>포트폴리오 · 사례 상세</small></h1>
-	<p class="headline">문제 · 원인 · 측정 · 해결 · 평가</p>
-	<p class="intro">이력서에서 한 줄로 줄인 사례의 전문. 수치는 산출식과 함께 기재함.</p>
+<div class="doc-title">
+	<h1>포트폴리오 <small>Portfolio</small></h1>
+	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 (풀스택)<span>문제 · 원인 · 측정 · 해결 · 평가 — 이력서에서 한 줄로 줄인 사례의 전문</span></p>
+</div>
+
+<section class="sec">
+	<div class="lbl"><b>기본정보</b><span>Personal Information</span></div>
+	<div class="val">
+		<table class="data-table info">
+			<tbody>
+				<tr><td>이력서</td><td><a href="./" data-private><svg class="icon"><use href="#i-doc"/></svg>puleugo.dev/resume</a> (A4 2페이지)</td></tr>
+				<tr><td>연락처</td><td>010-<m data-mask="○○○○-○○○○">4057-6373</m> &nbsp; <a href="mailto:puleugo@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><m data-mask="○○○○">puleugo</m>@gmail.com</a></td></tr>
+				<tr><td>링크</td><td>
 	<div class="contact">
-		<span><a href="./" data-private><svg class="icon"><use href="#i-doc"/></svg>이력서 (A4 2페이지)</a></span>
 		<span><a href="https://ko.puleugo.dev" data-preview data-tip="티스토리 블로그 미리보기 (ko.puleugo.dev)" data-card="https://ko.puleugo.dev"><svg class="icon"><use href="#i-blog"/></svg>ko.<m data-mask="○○○○">puleugo</m>.dev</a></span>
 		<span><a href="https://github.com/puleugo" target="_blank" rel="noopener" data-tip="깃허브 프로필. 임베드가 막혀 새 탭에서 열립니다" data-card="https://github.com/puleugo"><svg class="icon"><use href="#i-github"/></svg>github.com/<m data-mask="○○○○">puleugo</m></a></span>
-		<span><a href="mailto:puleugo@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><m data-mask="○○○○">puleugo</m>@gmail.com</a></span>
 	</div>
-</header>
+				</td></tr>
+			</tbody>
+		</table>
+	</div>
+</section>
 
-<h2>사례 상세</h2>
+<section class="sec">
+	<div class="lbl"><b>어르다</b><span>Auruda</span></div>
+	<div class="val">
 
 
 <div class="entry">
@@ -430,7 +471,12 @@
 			</ul>
 	</div>
 </div>
+	</div>
+</section>
 
+<section class="sec">
+	<div class="lbl"><b>왁타버스 게임즈</b><span>Waktaverse Games</span></div>
+	<div class="val">
 <div class="entry">
 	<div class="entry-head">
 		<h3><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span> <span class="role">· 백엔드 개발자 <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 「왁타버스 게임즈」. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a></span></h3>
@@ -455,11 +501,17 @@
 				</ul></li>
 	</ul>
 </div>
+	</div>
+</section>
 
+<section class="sec">
+	<div class="lbl"><b>참고</b><span>References</span></div>
+	<div class="val">
 	<section class="references">
-		<b>참고</b>
 		<span class="reference-list">블로그 ko.<m data-mask="○○○○">puleugo</m>.dev [1] /216 · [3] /201 · [5] /209 &nbsp; 깃허브 github.com/<m data-mask="○○○○">puleugo</m> [2] nestjs-adminjs-serverless · [4] typeorm-transaction-rollback</span>
 	</section>
+	</div>
+</section>
 </main>
 
 <p class="print-hint">이력서에서 한 줄로 줄인 사례를 <b>문제·원인·측정·해결·평가</b> 순으로 남겼습니다. 오른쪽 위 토글로 <b>쉬운 표현과 업계 용어</b>를 서로 바꾸거나 <b>개인정보를 가린 채</b> 볼 수 있습니다. A4 2페이지 이력서는 <a href="./">여기</a>에 있습니다.</p>

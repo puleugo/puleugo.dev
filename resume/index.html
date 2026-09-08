@@ -143,6 +143,9 @@
 	body.paged table.data-table { font-size: 8.6pt; }
 	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
 	body.paged li { margin-bottom: 1.5px; }
+	body.paged .doc-title { margin: 0 0 11px; padding: 12px 16px; }
+	body.paged .doc-title h1 { font-size: 15pt; }
+	body.paged .sec { margin-top: 9px; grid-template-columns: 96px 1fr; }
 
 	/* header */
 	header { margin-bottom: 20px; }
@@ -153,7 +156,7 @@
 	.highlights { margin: 0 0 8px; padding-left: 15px; }
 	.highlights li { margin-bottom: 2px; }
 	.hook-stats {
-		display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px 12px;
+		display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 14px;
 		margin: 0 0 9px; padding: 7px 0; list-style: none;
 		border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 	}
@@ -257,6 +260,28 @@
 	.skills div { margin-bottom: 2px; padding-left: 92px; text-indent: -92px; }
 	.skills b { display: inline-block; width: 92px; text-indent: 0; }
 
+	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
+	.doc-title {
+		margin: -38px -34px 18px; padding: 24px 34px 20px;
+		background: var(--ink); color: #fff;
+	}
+	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
+	.doc-title h1 small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: #aeb4c0; }
+	.doc-title .who { margin: 9px 0 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
+	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: #aeb4c0; }
+	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 15px; }
+	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 5px; }
+	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
+	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
+	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
+	.sec.cont { margin-top: 0; }
+	.sec.cont > .lbl, .sec.cont > .val { border-top: 0; padding-top: 0; }
+	.sec.gap { margin-top: 9px; }
+	.sec .entry { margin-bottom: 0; }
+	table.info td:first-child { width: 62px; font-weight: 500; color: var(--sub); }
+	table.info td { border-bottom: 0; padding: 1.5px 8px 1.5px 0; }
+	table.info .contact { font-size: 9.5pt; }
+
 	/* print */
 	.print-hint { margin-top: 20px; font-size: 9pt; color: var(--sub); }
 	@media print {
@@ -283,6 +308,9 @@
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; }
+		.doc-title { margin: 0 0 11px; padding: 13px 16px; }
+		.doc-title h1 { font-size: 15pt; }
+		.sec { margin-top: 9px; }
 	}
 </style>
 </head>
@@ -325,10 +353,35 @@
 </svg>
 
 <main id="resume">
-<header>
-	<h1>임<m data-mask="○○">채성</m> <small>프로덕트 엔지니어 (풀스택)</small></h1>
-	<p class="headline">비즈니스 규칙의 코드화 · 평가 기준의 자동화 · PO로서 제품 소유</p>
-	<p class="intro">사업 운영 규칙을 스키마·API로 이관하고, AI 에이전트 통과 기준을 코드로 고정하여 개선이 축적되는 환경을 구축함.</p>
+<div class="doc-title">
+	<h1>이력서 <small>Resume</small></h1>
+	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 (풀스택)<span>비즈니스 규칙의 코드화 · 평가 기준의 자동화 · PO로서 제품 소유</span></p>
+</div>
+
+<section class="sec">
+	<div class="lbl"><b>기본정보</b><span>Personal Information</span></div>
+	<div class="val">
+		<table class="data-table info">
+			<tbody>
+				<tr><td>이름</td><td>임<m data-mask="○○">채성</m></td></tr>
+				<tr><td>직무</td><td>프로덕트 엔지니어 (풀스택) · 서버 · 웹 · 앱 · AI 파이프라인</td></tr>
+				<tr><td>연락처</td><td>010-<m data-mask="○○○○-○○○○">4057-6373</m> &nbsp; <a href="mailto:puleugo@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><m data-mask="○○○○">puleugo</m>@gmail.com</a></td></tr>
+				<tr><td>링크</td><td>
+	<div class="contact">
+		<span><a href="https://ko.puleugo.dev" data-preview data-tip="티스토리 블로그 미리보기 (ko.puleugo.dev)" data-card="https://ko.puleugo.dev"><svg class="icon"><use href="#i-blog"/></svg>ko.<m data-mask="○○○○">puleugo</m>.dev</a></span>
+		<span><a href="https://github.com/puleugo" target="_blank" rel="noopener" data-tip="깃허브 프로필. 임베드가 막혀 새 탭에서 열립니다" data-card="https://github.com/puleugo"><svg class="icon"><use href="#i-github"/></svg>github.com/<m data-mask="○○○○">puleugo</m></a></span>
+		<span><a href="./portfolio.html" data-private><svg class="icon"><use href="#i-doc"/></svg><m data-mask="○○○○">puleugo</m>.dev/resume/portfolio</a></span>
+	</div>
+				</td></tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<section class="sec">
+	<div class="lbl"><b>핵심 성과</b><span>Highlights</span></div>
+	<div class="val">
+		<p class="intro">사업 운영 규칙을 스키마·API로 이관하고, AI 에이전트 통과 기준을 코드로 고정하여 개선이 축적되는 환경을 구축함.</p>
 	<ul class="hook-stats">
 		<li><b>MAU 5만</b><span>운영 최대 규모 (왁타버스 게임즈)</span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
@@ -337,22 +390,12 @@
 		<li><b><span class="from">206초</span> → 18초</b><span>공고 1건 AI 처리 시간</span></li>
 		<li><b>1.3만 명</b><span>어르다 누적 사용자</span></li>
 	</ul>
-	<ul class="highlights">
-		<li><b>MAU 5만</b> 서비스의 서버 개발자로 1년간 운영·장애 대응 담당. 요구사항 변경을 앞두고 수정이 곤란해진 핵심 로직을 <b>월 155만 회</b> 쓰기라는 계측치를 근거로 설득, <b>변경 시에만 20회</b> 쓰는 구조로 전환함. 테스트 문화가 부재하던 팀에 검증 체계를 최초 도입함.</li>
-		<li>현재는 상담사 양성에 <b>비용 1천만원 · 실무 3년 · 석·박사 학위</b>가 소요되던 준비 과정을 온라인으로 이관한 플랫폼 <b>어르다</b>를 공동창업, AI 제품 4종을 설계·개발·운영 중. 상담 1회당 <b>6시간</b> 소요되던 전사·비언어 기록을 자동화하여 13인 베타에서 <b>2.9점 → 4.92점</b> 획득. 모델 교체·배치 개선안은 <b>합격 여부를 계산식과 게이트로 자동 판정</b>함.</li>
-	</ul>
-	<div class="contact">
-		<span><a href="https://ko.puleugo.dev" data-preview data-tip="티스토리 블로그 미리보기 (ko.puleugo.dev)" data-card="https://ko.puleugo.dev"><svg class="icon"><use href="#i-blog"/></svg>ko.<m data-mask="○○○○">puleugo</m>.dev</a></span>
-		<span><a href="https://github.com/puleugo" target="_blank" rel="noopener" data-tip="깃허브 프로필. 임베드가 막혀 새 탭에서 열립니다" data-card="https://github.com/puleugo"><svg class="icon"><use href="#i-github"/></svg>github.com/<m data-mask="○○○○">puleugo</m></a></span>
-		<span><a href="./portfolio.html" data-private><svg class="icon"><use href="#i-doc"/></svg><m data-mask="○○○○">puleugo</m>.dev/resume/portfolio</a></span>
-		<span>010-<m data-mask="○○○○-○○○○">4057-6373</m></span>
-		<span><a href="mailto:puleugo@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><m data-mask="○○○○">puleugo</m>@gmail.com</a></span>
 	</div>
-</header>
+</section>
 
-<h2>경력</h2>
-
-<div class="entry">
+<section class="sec">
+	<div class="lbl"><b>경력사항</b><span>Experience</span></div>
+	<div class="val">
 	<div class="entry-head">
 		<h3><a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>어르다</a> <span class="role">· 공동창업자 · 개발 총괄</span></h3>
 		<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 재직 중</span>
@@ -368,7 +411,12 @@
 			<tr><td>운영 어드민 · 디스코드 봇</td><td>비개발자용 콘텐츠 운영 도구</td><td class="sub">설계·운영 · 사내 상시 사용</td></tr>
 		</tbody>
 	</table>
+	</div>
+</section>
 
+<section class="sec cont">
+	<div class="lbl"></div>
+	<div class="val">
 	<div class="work">
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
@@ -379,7 +427,12 @@
 				</ul></li>
 			</ul>
 	</div>
+	</div>
+</section>
 
+<section class="sec cont">
+	<div class="lbl"></div>
+	<div class="val">
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
@@ -397,7 +450,12 @@
 				</ul></li>
 			</ul>
 	</div>
+	</div>
+</section>
 
+<section class="sec cont">
+	<div class="lbl"></div>
+	<div class="val">
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 운영하는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
 		<ul>
@@ -415,7 +473,12 @@
 				</ul></li>
 			</ul>
 	</div>
+	</div>
+</section>
 
+<section class="sec cont">
+	<div class="lbl"></div>
+	<div class="val">
 	<div class="work">
 		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
@@ -429,15 +492,19 @@
 				</ul></li>
 			</ul>
 	</div>
-</div>
+	</div>
+</section>
 
-<div class="entry">
+<section class="sec cont gap">
+	<div class="lbl"></div>
+	<div class="val">
 	<div class="entry-head">
 		<h3><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span> <span class="role">· 백엔드 개발자 <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 「왁타버스 게임즈」. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a></span></h3>
 		<span class="leader" aria-hidden="true"></span><span class="period">2024.04. – 2025.06.</span>
 	</div>
 	<p class="facts"><b>역할</b> 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 <b>쿼리 수와 로그를 근거로 건의</b>하여 관철함.</p>
 	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
+
 	<ul>
 		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감)</b>
 				<ul class="how">
@@ -450,9 +517,12 @@
 					<li>장애 요인이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 제작하여 제거하고 오픈소스로 공개함.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안하여 책임 단위로 분리했고, 해당 과정을 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>로 공유함.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></li>
 				</ul></li>
 	</ul>
-</div>
+	</div>
+</section>
 
-<h2>수상</h2>
+<section class="sec">
+	<div class="lbl"><b>수상</b><span>Awards</span></div>
+	<div class="val">
 <table class="data-table awards">
 	<tbody>
 		<tr><td>대상 (경상남도지사상)</td><td>초광역 글로벌 창업 노마드 기술혁신 경진대회 · 경남·부산 11개 대학 공동주관 <a href="https://news.nate.com/view/20260715n21302" data-preview data-tip="관련 기사 미리보기 (news.nate.com)" data-card="https://news.nate.com/view/20260715n21302"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">2026.07.</td></tr>
@@ -460,8 +530,12 @@
 		<tr><td>최우수상 3건</td><td>UNI-STAR 데모데이(경상남도 RISE사업단) <a href="https://www.newsgn.com/news/articleView.html?idxno=520775" data-preview data-tip="관련 기사 미리보기 (newsgn.com)" data-card="https://www.newsgn.com/news/articleView.html?idxno=520775"><svg class="icon"><use href="#i-doc"/></svg>기사</a> · G-NEX 창업 페스티벌 · 경남 UNI-CORN 대학연합(16개 대학 62개 팀)</td><td class="sub">2025.11.–12.</td></tr>
 	</tbody>
 </table>
+	</div>
+</section>
 
-<h2>학력 · 교육</h2>
+<section class="sec">
+	<div class="lbl"><b>학력 · 교육</b><span>Education</span></div>
+	<div class="val">
 <div class="entry">
 	<div class="entry-head">
 		<h3>SW마에스트로 13기 <span class="role">· 과학기술정보통신부 자율형 부트캠프 수료</span></h3>
@@ -475,8 +549,12 @@
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
 	</div>
 </div>
+	</div>
+</section>
 
-<h2>기술</h2>
+<section class="sec">
+	<div class="lbl"><b>기술</b><span>Skills</span></div>
+	<div class="val">
 <table class="data-table">
 	<tbody>
 		<tr><td>백엔드 · 데이터</td><td>TypeScript, Nest.js, TypeORM, PostgreSQL, Redis, Neon, IndexedDB</td></tr>
@@ -486,11 +564,17 @@
 		<tr><td>사용 경험</td><td class="sub">Java 17, Kotlin, Spring Boot, Go, Fiber, Express.js, Vue.js, MySQL, ScyllaDB</td></tr>
 	</tbody>
 </table>
+	</div>
+</section>
 
+<section class="sec">
+	<div class="lbl"><b>참고</b><span>References</span></div>
+	<div class="val">
 	<section class="references">
-		<b>참고</b>
 		<span class="reference-list">블로그 ko.<m data-mask="○○○○">puleugo</m>.dev [1] /216 · [3] /201 · [5] /209 &nbsp; 깃허브 github.com/<m data-mask="○○○○">puleugo</m> [2] nestjs-adminjs-serverless · [4] typeorm-transaction-rollback</span>
 	</section>
+	</div>
+</section>
 </main>
 
 <p class="print-hint">⌘P(Ctrl+P)를 누르면 A4 2페이지로 인쇄됩니다. 오른쪽 위 토글로 <b>쉬운 표현과 업계 용어</b>를 서로 바꾸거나 <b>개인정보를 가린 채</b> 인쇄할 수 있습니다.</p>
