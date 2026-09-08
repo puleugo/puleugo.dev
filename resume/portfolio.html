@@ -90,9 +90,43 @@
 	@media (prefers-reduced-motion: reduce) { .preview { transition: none; } }
 
 	#resume {
+		position: relative;
 		transition: transform .2s ease-out; transform-origin: left top;
 		background: #fff; padding: 38px 34px; margin: 8px 0 24px;
 		box-shadow: 0 10px 30px rgba(16,20,28,.10); border: 1px solid #e4e7ec; border-radius: 3px;
+	}
+
+	/* ── 굴절 유리 (A안: 가장자리에서만 휘고 가운데는 맑다) ──
+	   굴절은 뒤에 색이 있어야 보인다. 화면에서만 옅은 색면을 깔고, 인쇄·페이지 보기에서는 걷는다. */
+	body::before {
+		content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+		background:
+			radial-gradient(680px 440px at 10% -8%, rgba(122,184,255,.5), transparent 70%),
+			radial-gradient(600px 460px at 94% 106%, rgba(255,206,138,.45), transparent 70%),
+			radial-gradient(520px 380px at 90% 6%, rgba(198,164,255,.36), transparent 70%);
+	}
+	body:not(.paged) #resume {
+		background: rgba(255,255,255,.66);
+		backdrop-filter: url(#lg-refract) blur(2px) saturate(125%);
+		border-color: rgba(255,255,255,.6);
+		box-shadow: 0 20px 46px rgba(16,20,28,.20), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.4);
+	}
+	body:not(.paged) #resume::before {   /* 글이 앉는 가운데는 왜곡 없는 맑은 판 */
+		content: ""; position: absolute; inset: 15px; z-index: -1; border-radius: 2px;
+		background: rgba(255,255,255,.88);
+		backdrop-filter: blur(16px) saturate(110%);
+	}
+	/* 떠 있는 토글도 같은 유리로 */
+	body:not(.paged) .page-toggle, body:not(.paged) .term-toggle {
+		background: rgba(255,255,255,.5);
+		backdrop-filter: url(#lg-refract) blur(3px) saturate(160%);
+		border-color: rgba(255,255,255,.65);
+		box-shadow: 0 8px 20px rgba(16,20,28,.14), inset 0 1px 0 rgba(255,255,255,.9);
+	}
+	@supports not (backdrop-filter: url(#lg-refract)) {
+		body:not(.paged) #resume { background: rgba(255,255,255,.94); }
+		body:not(.paged) #resume::before { display: none; }
+		body:not(.paged) .page-toggle, body:not(.paged) .term-toggle { background: rgba(255,255,255,.92); }
 	}
 	@media (prefers-reduced-motion: reduce) { #resume { transition: none; } }
 
@@ -245,6 +279,12 @@
 		backdrop-filter: url(#lg-refract) blur(2.5px) saturate(180%);
 		pointer-events: none;
 	}
+	#link-card::after {   /* 카드도 같은 규칙: 가운데는 맑게 */
+		content: ""; position: absolute; inset: 13px; z-index: 0; border-radius: 6px;
+		background: rgba(255,255,255,.6);
+		backdrop-filter: blur(14px) saturate(115%);
+		pointer-events: none;
+	}
 	/* url() 백드롭 필터를 못 쓰는 브라우저(사파리·파이어폭스)는 흐림만 */
 	@supports not (backdrop-filter: url(#lg-refract)) {
 		#link-card { background: rgba(252,253,255,.82); -webkit-backdrop-filter: blur(11px) saturate(190%); backdrop-filter: blur(11px) saturate(190%); }
@@ -327,7 +367,8 @@
 		li { margin-bottom: 1.5px; }
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
-		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; }
+		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; backdrop-filter: none; }
+		body::before, #resume::before { display: none !important; }
 		.doc-title { margin: 0 0 11px; padding: 13px 16px; }
 		.doc-title h1 { font-size: 15pt; }
 		.sec { margin-top: 9px; }
