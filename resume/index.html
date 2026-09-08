@@ -96,59 +96,22 @@
 		box-shadow: 0 10px 30px rgba(16,20,28,.10); border: 1px solid #e4e7ec; border-radius: 3px;
 	}
 
-	/* ── 굴절 유리 (B안: 유체 물결) ──────────────────────────────
-	   글이 앉는 자리는 불투명하게 남기고, 라벨 레일·지표 띠·상단 밴드·토글·카드에만 유리를 얹는다.
-	   굴절은 뒤에 무늬가 있어야 보인다. 화면에서만 색면과 사선을 깔고, 인쇄·페이지 보기에서는 걷는다.
-	   흐림을 왜곡보다 먼저 걸면 뒤 결이 사라져 굴절이 남지 않는다 — backdrop-filter 는 왼쪽부터 적용된다. */
+	/* ── 굴절 유리 ────────────────────────────────────────────────
+	   유리는 뒤에 무늬가 있어야 굴절이 보인다. 배경(#eceef1)과 종이(#fff)는 원래대로 두고,
+	   뒤에 본문이 깔리는 곳 — 떠 있는 토글과 호버 카드 — 에만 남긴다. */
 	@media screen {
-	body::before {
-		content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
-		background:
-			radial-gradient(680px 440px at 10% -8%, rgba(122,184,255,.5), transparent 70%),
-			radial-gradient(600px 460px at 94% 106%, rgba(255,206,138,.45), transparent 70%),
-			radial-gradient(520px 380px at 90% 6%, rgba(198,164,255,.36), transparent 70%),
-			repeating-linear-gradient(132deg, rgba(20,24,40,.05) 0 9px, rgba(255,255,255,0) 9px 19px);
+		.page-toggle, .term-toggle {
+			background: rgba(255,255,255,.62);
+			backdrop-filter: url(#lg-liquid) blur(3px) saturate(150%);
+			-webkit-backdrop-filter: blur(10px) saturate(150%);
+			border-color: rgba(255,255,255,.7);
+			box-shadow: 0 8px 20px rgba(16,20,28,.12), inset 0 1px 0 rgba(255,255,255,.9);
+		}
+		@supports not (backdrop-filter: url(#lg-liquid)) {
+			.page-toggle, .term-toggle { background: rgba(255,255,255,.92); }
+		}
 	}
-	body:not(.paged) #resume {
-		background: rgba(255,255,255,.8);
-		border-color: rgba(255,255,255,.6);
-		box-shadow: 0 20px 46px rgba(16,20,28,.18), inset 0 1px 0 rgba(255,255,255,.9);
-	}
-	body:not(.paged) .doc-title {
-		background: rgba(22,24,29,.82);
-		backdrop-filter: url(#lg-liquid) blur(3.5px) saturate(150%);
-		-webkit-backdrop-filter: blur(10px) saturate(150%);
-		box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
-	}
-	body:not(.paged) .sec > .lbl { position: relative; }
-	body:not(.paged) .sec > .lbl::before {   /* 라벨 레일: 흐르는 유리 띠 */
-		content: ""; position: absolute; inset: -5px -10px -7px -12px; z-index: -1; border-radius: 10px;
-		background: rgba(255,255,255,.42);
-		backdrop-filter: url(#lg-liquid) blur(2px) saturate(165%);
-		-webkit-backdrop-filter: blur(8px) saturate(160%);
-		box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 4px 14px rgba(16,20,28,.07);
-	}
-	body:not(.paged) .sec.cont > .lbl::before { display: none; }
-	body:not(.paged) .hook-stats {   /* 지표 띠 */
-		border: 0; border-radius: 12px; margin: 2px -12px 9px; padding: 9px 12px;
-		background: rgba(255,255,255,.38);
-		backdrop-filter: url(#lg-liquid) blur(2px) saturate(175%);
-		-webkit-backdrop-filter: blur(9px) saturate(170%);
-		box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 6px 18px rgba(16,20,28,.09);
-	}
-	/* 떠 있는 토글도 같은 유리로 */
-	body:not(.paged) .page-toggle, body:not(.paged) .term-toggle {
-		background: rgba(255,255,255,.5);
-		backdrop-filter: url(#lg-liquid) blur(3px) saturate(160%);
-		border-color: rgba(255,255,255,.65);
-		box-shadow: 0 8px 20px rgba(16,20,28,.14), inset 0 1px 0 rgba(255,255,255,.9);
-	}
-	@supports not (backdrop-filter: url(#lg-liquid)) {
-		body:not(.paged) #resume { background: rgba(255,255,255,.94); }
-		body:not(.paged) .sec > .lbl::before, body:not(.paged) .hook-stats { background: rgba(255,255,255,.62); }
-		body:not(.paged) .page-toggle, body:not(.paged) .term-toggle { background: rgba(255,255,255,.92); }
-	}
-	}
+
 	@media (prefers-reduced-motion: reduce) { #resume { transition: none; } }
 
 
@@ -382,9 +345,7 @@
 		li { margin-bottom: 1.5px; }
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
-		body::before { display: none !important; }
 		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; backdrop-filter: none; }
-		body::before, #resume::before { display: none !important; }
 		.doc-title { margin: 0 0 11px; padding: 13px 16px; }
 		.doc-title h1 { font-size: 15pt; }
 		.sec { margin-top: 9px; }
