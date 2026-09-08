@@ -131,6 +131,9 @@
 	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
 	body.paged h1 { font-size: 18pt; }
 	body.paged h2 { margin: 12px 0 5px; }
+	body.paged .entry-head h3 { font-size: 11pt; }
+	body.paged .entry-head h3 .role { font-size: 8.8pt; }
+	body.paged .work > strong { font-size: 9.8pt; }
 	body.paged .entry { margin-bottom: 7px; }
 	body.paged .work { margin-top: 6px; }
 	body.paged .example { font-size: 8.4pt; }
@@ -179,7 +182,7 @@
 	}
 	.entry { margin-bottom: 16px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-	.entry-head h3 { margin: 0; font-size: 11pt; }
+	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
 	.entry-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
@@ -194,7 +197,7 @@
 	.work { margin: 13px 0 0; }
 	li.case-study { break-inside: avoid; page-break-inside: avoid; }
 	table.data-table tr { break-inside: avoid; page-break-inside: avoid; }
-	.work > strong { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; font-size: 10pt; }
+	.work > strong { display: flex; align-items: baseline; gap: 10px; margin: 0 0 3px; font-size: 11.5pt; letter-spacing: -.01em; }
 	ul { margin: 2px 0 0; padding-left: 15px; }
 	li { margin-bottom: 3px; }
 	li ul { margin-top: 1px; }
@@ -291,6 +294,9 @@
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
 		h2 { margin: 11px 0 5px; }
+		.entry-head h3 { font-size: 11pt; }
+		.entry-head h3 .role { font-size: 8.8pt; }
+		.work > strong { font-size: 9.8pt; }
 		.entry { margin-bottom: 7px; break-inside: auto; }
 		.work { margin-top: 6px; }
 		.example { font-size: 8.4pt; }
