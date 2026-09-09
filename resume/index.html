@@ -150,6 +150,7 @@
 	body.paged h1 { font-size: 18pt; }
 	body.paged .entry-head h3 { font-size: 11pt; }
 	body.paged .entry.brief .entry-head h3 { font-size: 9.6pt; }
+	body.paged .sec.cont > .lbl h4 { font-size: 9.2pt; }
 	body.paged .entry-head h3 .role { font-size: 8.8pt; }
 	body.paged .facts { font-size: 8.2pt; }
 	body.paged .period { font-size: 8.2pt; }
@@ -295,8 +296,12 @@
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
-	.sec.cont { display: block; margin-top: 0; padding-left: 134px; }
-	.sec.cont > .lbl { display: none; }
+	.sec.cont { display: block; margin-top: 7px; padding-left: 134px; }
+	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
+	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
+	.sec.cont > .lbl:empty { border-top: 0; }
+	.sec.cont > .lbl h4 { margin: 0; font-size: 10.5pt; letter-spacing: -.01em; }
+	.sec.cont > .lbl .period { display: block; margin-top: 1px; font-size: 7.6pt; letter-spacing: .02em; }
 	.sec.cont > .val { border-top: 0; padding-top: 0; }
 	.sec.gap { margin-top: 9px; }
 	.sec .entry { margin-bottom: 0; }
@@ -314,6 +319,7 @@
 		h1 { font-size: 18pt; }
 		.entry-head h3 { font-size: 11pt; }
 		.entry.brief .entry-head h3 { font-size: 9.6pt; }
+		.sec.cont > .lbl h4 { font-size: 9.2pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
 		.facts { font-size: 8.2pt; }
 		.period { font-size: 8.2pt; }
@@ -444,10 +450,10 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"></div>
+	<div class="lbl"><h4>어르다 축어록</h4><span class="period">2026.01. – 현재</span></div>
 	<div class="val">
 	<div class="work">
-		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
+		<p class="facts">PO로서 상담사 인터뷰부터 앱 출시까지 수행</p>
 		<ul>
 			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</span></li>
 			</ul>
@@ -456,10 +462,10 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"></div>
+	<div class="lbl"><h4>어르다 가계도</h4><span class="period">2026.01. – 현재</span></div>
 	<div class="val">
 	<div class="work">
-		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
+		<p class="facts">렌더링 엔진과 표기 언어(DSL) 담당</p>
 		<ul>
 			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지))</span></li>
 			<li class="task"><span class="duty">관계 문법(DSL) 설계로 그림 대신 텍스트 편집·버전 관리 (파싱 p95 5.8ms)</span></li>
@@ -470,10 +476,10 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"></div>
+	<div class="lbl"><h4>플랫폼 운영</h4><span class="period">2025.09. – 현재</span></div>
 	<div class="val">
 	<div class="work">
-		<strong>플랫폼 운영 · 비개발자가 직접 운영하는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
+		<p class="facts">비개발자가 직접 운영하는 콘텐츠 파이프라인</p>
 		<ul>
 			<li class="case-study"><span class="duty">[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</span></li>
 			<li class="task"><span class="duty"><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</span></li>
@@ -484,10 +490,10 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"></div>
+	<div class="lbl"><h4>개발 방식</h4></div>
 	<div class="val">
 	<div class="work">
-		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
+		<p class="facts">AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</p>
 		<ul>
 			<li class="task"><span class="duty">AI 에이전트 생성 코드의 회귀·임상 표기 위반을 사람 리뷰 전 자동 반려 (배치 개선안 8건 중 5건 자동 거부)</span></li>
 			<li class="task"><span class="duty">모델 교체 판정을 청취 대신 계산식으로 수행: CER·IoU 기준선 상시 운용</span></li>

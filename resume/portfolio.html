@@ -150,6 +150,7 @@
 	body.paged h1 { font-size: 18pt; }
 	body.paged .entry-head h3 { font-size: 11pt; }
 	body.paged .entry.brief .entry-head h3 { font-size: 9.6pt; }
+	body.paged .sec.cont > .lbl h4 { font-size: 9.2pt; }
 	body.paged .entry-head h3 .role { font-size: 8.8pt; }
 	body.paged .facts { font-size: 8.2pt; }
 	body.paged .period { font-size: 8.2pt; }
@@ -295,8 +296,12 @@
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
-	.sec.cont { display: block; margin-top: 0; padding-left: 134px; }
-	.sec.cont > .lbl { display: none; }
+	.sec.cont { display: block; margin-top: 7px; padding-left: 134px; }
+	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
+	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
+	.sec.cont > .lbl:empty { border-top: 0; }
+	.sec.cont > .lbl h4 { margin: 0; font-size: 10.5pt; letter-spacing: -.01em; }
+	.sec.cont > .lbl .period { display: block; margin-top: 1px; font-size: 7.6pt; letter-spacing: .02em; }
 	.sec.cont > .val { border-top: 0; padding-top: 0; }
 	.sec.gap { margin-top: 9px; }
 	.sec .entry { margin-bottom: 0; }
@@ -314,6 +319,7 @@
 		h1 { font-size: 18pt; }
 		.entry-head h3 { font-size: 11pt; }
 		.entry.brief .entry-head h3 { font-size: 9.6pt; }
+		.sec.cont > .lbl h4 { font-size: 9.2pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
 		.facts { font-size: 8.2pt; }
 		.period { font-size: 8.2pt; }
