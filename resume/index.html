@@ -27,6 +27,10 @@
 		--accent: #1a4fd6;
 	}
 	* { box-sizing: border-box; }
+	/* 본문 괄호는 마크업(.pn)이고 글자는 여기서 정한다. 두 변수만 바꾸면 이력서 전체의 괄호가 바뀐다 */
+	:root { --paren-open: "("; --paren-close: ")"; }
+	.pn::before { content: var(--paren-open); }
+	.pn::after { content: var(--paren-close); }
 	html { -webkit-text-size-adjust: 100%; }
 	body {
 		margin: 0 auto;
@@ -402,7 +406,7 @@
 <main id="resume">
 <div class="doc-title">
 	<h1>이력서</h1>
-	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 (풀스택)</p>
+	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 <span class="pn">풀스택</span></p>
 </div>
 
 <section class="sec">
@@ -411,7 +415,7 @@
 		<table class="data-table info">
 			<tbody>
 				<tr><td>이름</td><td>임<m data-mask="○○">채성</m></td></tr>
-				<tr><td>직무</td><td>프로덕트 엔지니어 (풀스택) · 서버 · 웹 · 앱 · AI 파이프라인</td></tr>
+				<tr><td>직무</td><td>프로덕트 엔지니어 <span class="pn">풀스택</span> · 서버 · 웹 · 앱 · AI 파이프라인</td></tr>
 				<tr><td>연락처</td><td>010-<m data-mask="○○○○-○○○○">4057-6373</m> &nbsp; <a href="mailto:puleugo@gmail.com"><svg class="icon"><use href="#i-mail"/></svg><m data-mask="○○○○">puleugo</m>@gmail.com</a></td></tr>
 				<tr><td>링크</td><td>
 	<div class="contact">
@@ -429,9 +433,9 @@
 	<div class="lbl"><h2>핵심 성과</h2></div>
 	<div class="val">
 	<ul class="hook-stats">
-		<li><b>MAU 5만</b><span>운영 최대 규모 (왁타버스 게임즈)</span></li>
+		<li><b>MAU 5만</b><span>운영 최대 규모 <span class="pn">왁타버스 게임즈</span></span></li>
 		<li><b>410곳</b><span>보유 <t data-x="수련기관">교육기관</t> 데이터</span></li>
-		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 (5점)</span></li>
+		<li><b><span class="from">2.9</span> → 4.92</b><span>상담사 베타 만족도 <span class="pn">5점</span></span></li>
 		<li><b><span class="from">월 155만 회</span> → 20회</b><span>불필요한 전량 갱신 제거</span></li>
 		<li><b><span class="from">206초</span> → 18초</b><span>공고 1건 AI 처리 시간</span></li>
 		<li><b>1.3만 명</b><span>어르다 누적 사용자</span></li>
@@ -446,12 +450,12 @@
 
 <section class="sec cont">
 	<div class="lbl"><h4>어르다 매칭</h4><span class="period">2025.09. – 재직 중</span></div>
-		<p class="facts"><b>어르다 개발 총괄</b> <a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>auruda-j.com</a> · PO로서 문제 정의부터 도메인 설계·구현·배포·운영까지 전담. 운영·마케팅 담당자용 도구를 제작하여 제품 우선순위를 공동 결정함. 매칭(<t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청)은 도메인 설계·백엔드를 직접 담당 · Next.js · NestJS · PostgreSQL.</p>
-		<p class="facts"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳(전국 17개 시·도) · 학회 자격증 15종 · 가계도 5,687명 · 축어록 531명 · 매칭 등 합산 누적 1.3만 명(2026.01~08) · API 188개 · 테스트 파일 499개</p>
+		<p class="facts"><b>어르다 개발 총괄</b> <a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>auruda-j.com</a> · PO로서 문제 정의부터 도메인 설계·구현·배포·운영까지 전담. 운영·마케팅 담당자용 도구를 제작하여 제품 우선순위를 공동 결정함. 매칭<span class="pn"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청</span>은 도메인 설계·백엔드를 직접 담당 · Next.js · NestJS · PostgreSQL.</p>
+		<p class="facts"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳<span class="pn">전국 17개 시·도</span> · 학회 자격증 15종 · 가계도 5,687명 · 축어록 531명 · 매칭 등 합산 누적 1.3만 명<span class="pn">2026.01~08</span> · API 188개 · 테스트 파일 499개</p>
 		<ul>
 			<li class="case-study"><span class="duty">[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</span></li>
-			<li class="task"><span class="duty"><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정(비개발자용 콘텐츠 파이프라인)</span></li>
-			<li class="task"><span class="duty">공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</span></li>
+			<li class="task"><span class="duty"><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정<span class="pn">비개발자용 콘텐츠 파이프라인</span></span></li>
+			<li class="task"><span class="duty">공고 1건 AI 처리 시간 206초 → <b>18초</b> <span class="pn">91% 단축</span></span></li>
 		</ul>
 </section>
 
@@ -459,7 +463,7 @@
 	<div class="lbl"><h4>어르다 축어록</h4><span class="period">2026.01. – 현재</span></div>
 		<p class="facts"><a href="https://verbatim.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)" data-card="https://verbatim.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>상담 <t data-x="축어록">녹취록</t>·보고서 생성 AI 도구</a> · PO · 풀스택 · LLM · WASM FFmpeg · iOS/Android 출시</p>
 		<ul>
-			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</span></li>
+			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 <span class="pn">회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b></span></span></li>
 			<li class="task"><span class="duty">모델 교체 판정을 청취 대신 계산식으로 수행: CER·IoU 기준선 상시 운용</span></li>
 		</ul>
 </section>
@@ -468,20 +472,20 @@
 	<div class="lbl"><h4>어르다 가계도</h4><span class="period">2026.01. – 현재</span></div>
 		<p class="facts"><a href="https://genogram.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)" data-card="https://genogram.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>표준 표기법 준수 <t data-x="가계도">가족관계도</t> 제작 도구</a> · 렌더링 엔진·DSL · Rust/WASM · Capacitor</p>
 		<ul>
-			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a> · 2주 유지)</span></li>
-			<li class="task"><span class="duty">관계 문법(DSL) 설계로 그림 대신 텍스트 편집·버전 관리 (파싱 p95 5.8ms)</span></li>
+			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 <span class="pn">사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a> · 2주 유지</span></span></li>
+			<li class="task"><span class="duty">관계 문법<span class="pn">DSL</span> 설계로 그림 대신 텍스트 편집·버전 관리 <span class="pn">파싱 p95 5.8ms</span></span></li>
 			<li class="task"><span class="duty">Rust/WASM 이식 여부를 벤치마크로 판단, 순수 수치 연산만 채택</span></li>
-			<li class="task"><span class="duty">AI 에이전트 생성 코드의 회귀·임상 표기 위반을 사람 리뷰 전 자동 반려 (배치 개선안 8건 중 5건 자동 거부)</span></li>
+			<li class="task"><span class="duty">AI 에이전트 생성 코드의 회귀·임상 표기 위반을 사람 리뷰 전 자동 반려 <span class="pn">배치 개선안 8건 중 5건 자동 거부</span></span></li>
 		</ul>
 </section>
 
 <section class="sec cont">
 	<div class="lbl"><h4><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span></h4><span class="period">2024.04. – 2025.06.</span></div>
-		<p class="facts"><b>백엔드 개발자</b> <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 「왁타버스 게임즈」. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a> · 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 쿼리 수와 로그를 근거로 건의하여 관철함.</p>
-		<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
+		<p class="facts"><b>백엔드 개발자</b> <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 왁타버스 게임즈. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a> · 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 쿼리 수와 로그를 근거로 건의하여 관철함.</p>
+		<p class="facts"><b>규모</b> 트위치 구독자 국내 1위<span class="pn">103만 명</span> 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 		<ul>
-			<li class="case-study"><span class="duty">구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감) · 서버리스 배포 절차 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드 게시</span></li>
-			<li class="task"><span class="duty">핵심 도메인·B2B 도메인 등 실패 비용이 큰 경로부터 E2E 적용, 테스트 250개(커버리지 19.54%) · 트랜잭션 롤백 격리 프레임워크 오픈소스 공개 · 컨퍼런스 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>발표</a></span></li>
+			<li class="case-study"><span class="duty">구글 엑셀 동기화 배치 폐기와 어드민 전환 <span class="pn">쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감</span> · 서버리스 배포 절차 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드 게시</span></li>
+			<li class="task"><span class="duty">핵심 도메인·B2B 도메인 등 실패 비용이 큰 경로부터 E2E 적용, 테스트 250개<span class="pn">커버리지 19.54%</span> · 트랜잭션 롤백 격리 프레임워크 오픈소스 공개 · 컨퍼런스 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 [메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>발표</a></span></li>
 		</ul>
 </section>
 
@@ -491,11 +495,11 @@
 <table class="data-table awards">
 	<thead><tr><th>수상</th><th>대회</th><th class="sub">규모 · 주관</th><th class="sub">시기</th></tr></thead>
 	<tbody>
-		<tr><td>경상남도지사상·대상</td><td>「초광역 글로벌 창업 노마드 기술혁신 경진대회」 <a href="https://news.nate.com/view/20260715n21302" data-preview data-tip="관련 기사 미리보기 (news.nate.com)" data-card="https://news.nate.com/view/20260715n21302"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">경남·부산 11개 대학 공동주관</td><td class="sub when">2026.07.</td></tr>
-		<tr><td>인제대 총장상·대상</td><td>「IU-커스텀 학점제 성과보고회」 · 컴퓨터공학 × 상담심리치료학 융합 프로젝트 <a href="https://www.veritas-a.com/news/articleView.html?idxno=615826" data-preview data-tip="관련 기사 미리보기 (veritas-a.com)" data-card="https://www.veritas-a.com/news/articleView.html?idxno=615826"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">인제대학교</td><td class="sub when">2026.06.</td></tr>
-		<tr><td rowspan="3">최우수상</td><td>「UNI-STAR 데모데이」 <a href="https://www.newsgn.com/news/articleView.html?idxno=520775" data-preview data-tip="관련 기사 미리보기 (newsgn.com)" data-card="https://www.newsgn.com/news/articleView.html?idxno=520775"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">경상남도 RISE사업단</td><td class="sub when" rowspan="3">2025.11.–12.</td></tr>
-		<tr class="cont"><td>「G-NEX 창업 페스티벌」</td><td class="sub">경상남도 · 최대 규모 창업 페스티벌</td></tr>
-		<tr class="cont"><td>「경남 UNI-CORN 대학연합」</td><td class="sub">16개 대학 62개 팀</td></tr>
+		<tr><td>경상남도지사상·대상</td><td>초광역 글로벌 창업 노마드 기술혁신 경진대회 <a href="https://news.nate.com/view/20260715n21302" data-preview data-tip="관련 기사 미리보기 (news.nate.com)" data-card="https://news.nate.com/view/20260715n21302"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">경남·부산 11개 대학 공동주관</td><td class="sub when">2026.07.</td></tr>
+		<tr><td>인제대 총장상·대상</td><td>IU-커스텀 학점제 성과보고회 · 컴퓨터공학 × 상담심리치료학 융합 프로젝트 <a href="https://www.veritas-a.com/news/articleView.html?idxno=615826" data-preview data-tip="관련 기사 미리보기 (veritas-a.com)" data-card="https://www.veritas-a.com/news/articleView.html?idxno=615826"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">인제대학교</td><td class="sub when">2026.06.</td></tr>
+		<tr><td rowspan="3">최우수상</td><td>UNI-STAR 데모데이 <a href="https://www.newsgn.com/news/articleView.html?idxno=520775" data-preview data-tip="관련 기사 미리보기 (newsgn.com)" data-card="https://www.newsgn.com/news/articleView.html?idxno=520775"><svg class="icon"><use href="#i-doc"/></svg>기사</a></td><td class="sub">경상남도 RISE사업단</td><td class="sub when" rowspan="3">2025.11.–12.</td></tr>
+		<tr class="cont"><td>G-NEX 창업 페스티벌</td><td class="sub">경상남도 · 최대 규모 창업 페스티벌</td></tr>
+		<tr class="cont"><td>경남 UNI-CORN 대학연합</td><td class="sub">16개 대학 62개 팀</td></tr>
 	</tbody>
 </table>
 	</div>
@@ -514,7 +518,7 @@
 <div class="entry">
 	<div class="entry-head">
 		<span>인제대학교 <span class="role">· 컴퓨터공학과</span></span>
-		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
+		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. <span class="pn">졸업 예정</span></span>
 	</div>
 </div>
 	</div>
@@ -526,8 +530,8 @@
 <table class="data-table">
 	<tbody>
 		<tr><td>백엔드 · 데이터</td><td>TypeScript · Nest.js · TypeORM · PostgreSQL · Redis · Neon · IndexedDB</td></tr>
-		<tr><td>프론트 · 앱</td><td>Next.js 15 · React 19 · Capacitor(iOS · Android) · Playwright</td></tr>
-		<tr><td>인프라</td><td>AWS(EC2 · S3 · CloudFront · Route 53) · Vercel Serverless · Cloudflare R2 · Docker · GitHub Actions</td></tr>
+		<tr><td>프론트 · 앱</td><td>Next.js 15 · React 19 · Capacitor<span class="pn">iOS · Android</span> · Playwright</td></tr>
+		<tr><td>인프라</td><td>AWS<span class="pn">EC2 · S3 · CloudFront · Route 53</span> · Vercel Serverless · Cloudflare R2 · Docker · GitHub Actions</td></tr>
 		<tr><td>AI · 자동화</td><td>LLM API · 오디오 처리 파이프라인 · Rust → WebAssembly · WASM FFmpeg · Claude Code 에이전트 파이프라인</td></tr>
 		<tr><td>사용 경험</td><td class="sub">Java 17 · Kotlin · Spring Boot · Go · Fiber · Express.js · Vue.js · MySQL · ScyllaDB</td></tr>
 	</tbody>

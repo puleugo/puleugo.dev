@@ -27,6 +27,10 @@
 		--accent: #1a4fd6;
 	}
 	* { box-sizing: border-box; }
+	/* 본문 괄호는 마크업(.pn)이고 글자는 여기서 정한다. 두 변수만 바꾸면 이력서 전체의 괄호가 바뀐다 */
+	:root { --paren-open: "("; --paren-close: ")"; }
+	.pn::before { content: var(--paren-open); }
+	.pn::after { content: var(--paren-close); }
 	html { -webkit-text-size-adjust: 100%; }
 	body {
 		margin: 0 auto;
