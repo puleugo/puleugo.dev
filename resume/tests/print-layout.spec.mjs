@@ -56,7 +56,7 @@ test("페이지 보기에서 전체 내용이 한 화면에 들어간다", async
 	await page.check("#paged-input");
 	const box = () => page.evaluate(() => {
 		const d = document.getElementById("resume").getBoundingClientRect();
-		const last = document.querySelector(".references").getBoundingClientRect();
+		const last = document.querySelector("#resume .sec:last-of-type").getBoundingClientRect();
 		return { inView: d.right <= innerWidth + 1 && d.bottom <= innerHeight + 1,
 			tailInside: last.right <= d.right + 1 && last.bottom <= d.bottom + 1,
 			scroll: document.documentElement.scrollHeight > innerHeight + 1 };

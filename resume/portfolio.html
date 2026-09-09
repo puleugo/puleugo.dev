@@ -92,7 +92,7 @@
 	#resume {
 		position: relative;
 		transition: transform .2s ease-out; transform-origin: left top;
-		background: #fff; padding: 38px 34px; margin: 8px 0 24px;
+		background: #fff; padding: 30px 30px; margin: 8px 0 24px;
 		box-shadow: 0 10px 30px rgba(16,20,28,.10); border: 1px solid #e4e7ec; border-radius: 3px;
 	}
 
@@ -155,10 +155,10 @@
 	body.paged .facts { font-size: 8.2pt; }
 	body.paged .period { font-size: 8.2pt; }
 	body.paged .work > strong { font-size: 9.8pt; }
-	body.paged .entry { margin-bottom: 7px; }
+	body.paged .entry { margin-bottom: 4px; }
 	body.paged .work { margin-top: 6px; }
 	body.paged li dl { gap: 2px 6px; }
-	body.paged .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
+	body.paged .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 10px; padding: 3px 0; margin-bottom: 5px; }
 	body.paged .hook-stats b { font-size: 11.5pt; }
 	body.paged .hook-stats span { font-size: 7.3pt; }
 	body.paged .references { font-size: 7.5pt; margin-top: 4px; }
@@ -167,17 +167,17 @@
 	body.paged li { margin-bottom: 1.5px; }
 	body.paged .doc-title { margin: 0 0 10px; padding: 9px 16px 8px; }
 	body.paged .doc-title h1 { font-size: 15pt; }
-	body.paged .sec { margin-top: 9px; grid-template-columns: 96px 1fr; }
+	body.paged .sec { margin-top: 7px; grid-template-columns: 96px 1fr; }
 	body.paged .sec.cont { padding-left: 114px; }
 
 	/* header */
 	header { margin-bottom: 20px; }
 	h1 { margin: 0 0 2px; font-size: 20pt; letter-spacing: -.02em; }
 	h1 small { font-size: 11pt; font-weight: 600; color: var(--sub); margin-left: 8px; letter-spacing: 0; }
-	.intro { margin: 0 0 8px; font-size: 10pt; color: var(--sub); }
+	.intro { margin: 0 0 5px; font-size: 10pt; color: var(--sub); }
 	.hook-stats {
 		display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 14px;
-		margin: 0 0 9px; padding: 7px 0; list-style: none;
+		margin: 0 0 6px; padding: 5px 0; list-style: none;
 		border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 	}
 	@media (max-width: 860px) { .hook-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -190,7 +190,7 @@
 	.contact span:last-child::after { content: ""; }
 
 	/* sections */
-	.entry { margin-bottom: 16px; }
+	.entry { margin-bottom: 9px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
 	.entry.brief .entry-head h3 { font-size: 11.5pt; letter-spacing: -.01em; }
@@ -200,7 +200,7 @@
 	/* 제목과 기간을 눈으로 잇는 목차식 점선 리더 */
 	.leader { flex: 1 1 auto; min-width: 0; height: 0; align-self: center; border-bottom: 1px dotted var(--line); }
 	.period { font-size: 9pt; font-weight: 400; color: var(--sub); white-space: nowrap; }
-	.facts { margin: 0 0 6px; font-size: 9pt; color: var(--sub); }
+	.facts { margin: 0 0 3px; font-size: 9pt; color: var(--sub); }
 	.facts b { color: var(--ink); margin-right: 6px; }
 
 	.work { margin: 13px 0 0; }
@@ -208,7 +208,7 @@
 	table.data-table tr { break-inside: avoid; page-break-inside: avoid; }
 	.work > strong { display: flex; align-items: baseline; gap: 10px; margin: 0 0 3px; font-size: 11.5pt; letter-spacing: -.01em; }
 	ul { margin: 2px 0 0; padding-left: 15px; }
-	li { margin-bottom: 3px; }
+	li { margin-bottom: 2px; }
 	li ul { margin-top: 1px; }
 	.nowrap { white-space: nowrap; }
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
@@ -272,8 +272,8 @@
 	.references li { margin-bottom: 1px; }
 	.references li::before { counter-increment: ref; content: "[" counter(ref) "] "; font-weight: 600; color: var(--ink); }
 
-	table.data-table { width: 100%; border-collapse: collapse; margin: 5px 0 0; font-size: 9.5pt; }
-	table.data-table th, table.data-table td { padding: 3px 8px 3px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+	table.data-table { width: 100%; border-collapse: collapse; margin: 3px 0 0; font-size: 9.5pt; }
+	table.data-table th, table.data-table td { padding: 2px 8px 2px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
 	table.data-table thead th { font-size: 8.5pt; font-weight: 600; color: var(--sub); border-bottom: 1px solid var(--ink); white-space: nowrap; }
 	table.data-table tbody tr:last-child td { border-bottom: 0; }
 	table.data-table td:first-child { font-weight: 600; white-space: nowrap; }
@@ -284,7 +284,7 @@
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
 	.doc-title {   /* 제목과 이름을 한 줄에 붙여 띠를 얇게 */
 		display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 18px;
-		margin: -38px -34px 16px; padding: 14px 34px 13px;
+		margin: -30px -30px 14px; padding: 13px 30px 12px;
 		background: var(--ink); color: #fff;
 	}
 	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
@@ -292,20 +292,20 @@
 	.doc-title .who { margin: 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
 	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: #aeb4c0; }
 	.doc-title .who span:first-child { flex-basis: 100%; }
-	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 15px; }
-	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 5px; }
+	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 11px; }
+	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 4px; }
 	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
-	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
+	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 4px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
-	.sec.cont { display: block; margin-top: 7px; padding-left: 134px; }
+	.sec.cont { display: block; margin-top: 5px; padding-left: 134px; }
 	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
 	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
 	.sec.cont > .lbl:empty { border-top: 0; }
 	.sec.cont > .lbl h4 { margin: 0; font-size: 10.5pt; letter-spacing: -.01em; }
 	.sec.cont > .lbl .period { display: block; margin-top: 1px; font-size: 7.6pt; letter-spacing: .02em; }
 	.sec.cont > .val { border-top: 0; padding-top: 0; }
-	.sec.gap { margin-top: 9px; }
+	.sec.gap { margin-top: 7px; }
 	.sec .entry { margin-bottom: 0; }
 	table.info td:first-child { width: 62px; font-weight: 500; color: var(--sub); }
 	table.info td { border-bottom: 0; padding: 1.5px 8px 1.5px 0; }
@@ -323,26 +323,27 @@
 		.entry.brief .entry-head h3 { font-size: 9.6pt; }
 		.sec.cont > .lbl h4 { font-size: 9.2pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
-		.facts { font-size: 8.2pt; }
+		.facts { font-size: 8.2pt; margin-bottom: 1px; }
 		.period { font-size: 8.2pt; }
 		.work > strong { font-size: 9.8pt; }
-		.entry { margin-bottom: 7px; break-inside: auto; }
+		.entry { margin-bottom: 3px; break-inside: auto; }
 		.work { margin-top: 6px; }
 		li dl { gap: 2px 6px; }
-		.hook-stats { gap: 2px 10px; padding: 4px 0; margin-bottom: 7px; }
+		.hook-stats { gap: 2px 9px; padding: 2px 0; margin-bottom: 3px; }
 		.hook-stats b { font-size: 11.5pt; }
 		.hook-stats span { font-size: 7.3pt; }
 		.references { font-size: 7.2pt; margin-top: 2px; }
-		table.data-table { font-size: 8.6pt; }
-		table.data-table th, table.data-table td { padding: 1.5px 8px 1.5px 0; }
+		table.data-table { font-size: 8.6pt; margin-top: 2px; }
+		table.data-table th, table.data-table td { padding: 1px 8px 1px 0; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
-		li { margin-bottom: 1.5px; }
+		li { margin-bottom: 1px; }
 		li.task > b { break-after: avoid; }
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; padding: 0; margin: 0; box-shadow: none; border: 0; backdrop-filter: none; }
-		.doc-title { margin: 0 0 10px; padding: 9px 16px 8px; }
+		.doc-title { margin: 0 0 7px; padding: 6px 14px 5px; }
 		.doc-title h1 { font-size: 15pt; }
-		.sec { margin-top: 9px; }
+		.sec { margin-top: 3px; }
+		.sec.cont { margin-top: 3px; }
 	}
 </style>
 </head>
