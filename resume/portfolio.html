@@ -175,7 +175,7 @@
 	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
 	body.paged li { margin-bottom: 1.5px; }
 	body.paged .doc-title { margin: 0 0 8px; padding: 0 0 6px; }
-	body.paged .doc-title h1 { font-size: 15pt; }
+	body.paged h1.doc-title { font-size: 15pt; }
 	body.paged .sec { margin-top: 7px; grid-template-columns: 96px 1fr; }
 	body.paged .sec.gap { margin-top: 12px; }
 	body.paged .sec.cont { padding-left: 114px; }
@@ -296,22 +296,22 @@
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
 	/* 문서 머리. 색 띠가 아니라 밑줄 하나로 — 배경 인쇄 설정에 좌우되지 않는다 */
 	.doc-title {
-		display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 18px;
+		display: flex; align-items: baseline; flex-wrap: nowrap; white-space: nowrap; gap: 4px 18px;
 		margin: 0 0 14px; padding: 0 0 9px;
 		border-bottom: 2px solid var(--ink);
 	}
-	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
-	.doc-title h1 small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: var(--sub); }
+	h1.doc-title { font-size: 19pt; letter-spacing: .2em; }
+	.doc-title small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: var(--sub); }
 	.doc-title .who { margin: 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
-	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: var(--sub); }
-	.doc-title .who span:first-child { flex-basis: 100%; }
+	.doc-title .who .pn { letter-spacing: 0; }
 	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 11px; }
 	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 4px; }
 	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
 	.sec > .lbl > span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 4px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
-	.sec.cont { display: block; margin-top: 5px; padding-left: 134px; }
+	.sec.cont { display: flow-root; margin-top: 5px; padding-left: 134px; }
+	.sec.cont > .lbl > .role { margin-top: 3px; color: var(--ink); font-weight: 600; }
 	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
 	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
 	.sec.cont > .lbl:empty { border-top: 0; }
@@ -353,7 +353,7 @@
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; width: auto; min-height: 0; padding: 0; margin: 0; box-shadow: none; border: 0; backdrop-filter: none; }
 		.doc-title { margin: 0 0 8px; padding: 0 0 6px; }
-		.doc-title h1 { font-size: 15pt; }
+		h1.doc-title { font-size: 15pt; }
 		.sec { margin-top: 3px; }
 		.sec.cont { margin-top: 3px; }
 		.sec.gap { margin-top: 8px; }
@@ -404,10 +404,7 @@
 </svg>
 
 <main id="resume" class="portfolio">
-<div class="doc-title">
-	<h1>포트폴리오 <small>Portfolio</small></h1>
-	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 (풀스택)<span>문제 · 원인 · 측정 · 해결 · 평가 — 이력서에서 한 줄로 줄인 사례의 전문</span></p>
-</div>
+<h1 class="doc-title">포트폴리오 <small>Portfolio</small> <span class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어<span class="pn">풀스택</span></span></h1>
 
 <section class="sec">
 	<div class="lbl"><h2>기본정보</h2><span>Personal Information</span></div>

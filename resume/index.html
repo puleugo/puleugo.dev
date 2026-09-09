@@ -175,7 +175,7 @@
 	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
 	body.paged li { margin-bottom: 1.5px; }
 	body.paged .doc-title { margin: 0 0 8px; padding: 0 0 6px; }
-	body.paged .doc-title h1 { font-size: 15pt; }
+	body.paged h1.doc-title { font-size: 15pt; }
 	body.paged .sec { margin-top: 7px; grid-template-columns: 96px 1fr; }
 	body.paged .sec.gap { margin-top: 12px; }
 	body.paged .sec.cont { padding-left: 114px; }
@@ -296,22 +296,22 @@
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
 	/* 문서 머리. 색 띠가 아니라 밑줄 하나로 — 배경 인쇄 설정에 좌우되지 않는다 */
 	.doc-title {
-		display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 18px;
+		display: flex; align-items: baseline; flex-wrap: nowrap; white-space: nowrap; gap: 4px 18px;
 		margin: 0 0 14px; padding: 0 0 9px;
 		border-bottom: 2px solid var(--ink);
 	}
-	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
-	.doc-title h1 small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: var(--sub); }
+	h1.doc-title { font-size: 19pt; letter-spacing: .2em; }
+	.doc-title small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: var(--sub); }
 	.doc-title .who { margin: 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
-	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: var(--sub); }
-	.doc-title .who span:first-child { flex-basis: 100%; }
+	.doc-title .who .pn { letter-spacing: 0; }
 	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 11px; }
 	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 4px; }
 	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
 	.sec > .lbl > span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 4px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
-	.sec.cont { display: block; margin-top: 5px; padding-left: 134px; }
+	.sec.cont { display: flow-root; margin-top: 5px; padding-left: 134px; }
+	.sec.cont > .lbl > .role { margin-top: 3px; color: var(--ink); font-weight: 600; }
 	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
 	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
 	.sec.cont > .lbl:empty { border-top: 0; }
@@ -353,7 +353,7 @@
 		.controls, .term-toggle, .print-hint, .preview { display: none !important; }
 		#resume { transform: none !important; background: #fff; width: auto; min-height: 0; padding: 0; margin: 0; box-shadow: none; border: 0; backdrop-filter: none; }
 		.doc-title { margin: 0 0 8px; padding: 0 0 6px; }
-		.doc-title h1 { font-size: 15pt; }
+		h1.doc-title { font-size: 15pt; }
 		.sec { margin-top: 3px; }
 		.sec.cont { margin-top: 3px; }
 		.sec.gap { margin-top: 8px; }
@@ -404,10 +404,7 @@
 </svg>
 
 <main id="resume">
-<div class="doc-title">
-	<h1>이력서</h1>
-	<p class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어 <span class="pn">풀스택</span></p>
-</div>
+<h1 class="doc-title">이력서 <span class="who">임<m data-mask="○○">채성</m> · 프로덕트 엔지니어<span class="pn">풀스택</span></span></h1>
 
 <section class="sec">
 	<div class="lbl"><h2>기본정보</h2></div>
@@ -449,8 +446,8 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"><h4>어르다 매칭</h4><span class="period">2025.09. – 재직 중</span></div>
-		<p class="facts"><b>어르다 개발 총괄</b> <a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>auruda-j.com</a> · PO로서 문제 정의부터 도메인 설계·구현·배포·운영까지 전담. 운영·마케팅 담당자용 도구를 제작하여 제품 우선순위를 공동 결정함. 매칭<span class="pn"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청</span>은 도메인 설계·백엔드를 직접 담당 · Next.js · NestJS · PostgreSQL.</p>
+	<div class="lbl"><h4>어르다 매칭</h4><span class="period">2025.09. – 재직 중</span><span class="role">개발 총괄 · PO · 백엔드</span><span class="skills">Next.js · NestJS · PostgreSQL · Redis</span></div>
+		<p class="facts"><b>어르다 개발 총괄</b> <a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>auruda-j.com</a> · PO로서 문제 정의부터 도메인 설계·구현·배포·운영까지 전담. 운영·마케팅 담당자용 도구를 제작하여 제품 우선순위를 공동 결정함. 매칭<span class="pn"><t data-x="수련기관">교육기관</t> 검색·<t data-x="슈퍼비전">멘토링</t> 신청</span>은 도메인 설계·백엔드를 직접 담당.</p>
 		<p class="facts"><b>규모</b> <t data-x="수련기관">교육기관</t> 410곳<span class="pn">전국 17개 시·도</span> · 학회 자격증 15종 · 가계도 5,687명 · 축어록 531명 · 매칭 등 합산 누적 1.3만 명<span class="pn">2026.01~08</span> · API 188개 · 테스트 파일 499개</p>
 		<ul>
 			<li class="case-study"><span class="duty">[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</span></li>
@@ -460,8 +457,8 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"><h4>어르다 축어록</h4><span class="period">2026.01. – 현재</span></div>
-		<p class="facts"><a href="https://verbatim.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)" data-card="https://verbatim.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>상담 <t data-x="축어록">녹취록</t>·보고서 생성 AI 도구</a> · PO · 풀스택 · LLM · WASM FFmpeg · iOS/Android 출시</p>
+	<div class="lbl"><h4>어르다 축어록</h4><span class="period">2026.01. – 현재</span><span class="role">PO · 풀스택</span><span class="skills">LLM · WASM FFmpeg · Capacitor</span></div>
+		<p class="facts"><a href="https://verbatim.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 축어록 (verbatim.auruda-j.com)" data-card="https://verbatim.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>상담 <t data-x="축어록">녹취록</t>·보고서 생성 AI 도구</a> · iOS/Android 출시</p>
 		<ul>
 			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 <span class="pn">회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b></span></span></li>
 			<li class="task"><span class="duty">모델 교체 판정을 청취 대신 계산식으로 수행: CER·IoU 기준선 상시 운용</span></li>
@@ -469,8 +466,8 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"><h4>어르다 가계도</h4><span class="period">2026.01. – 현재</span></div>
-		<p class="facts"><a href="https://genogram.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)" data-card="https://genogram.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>표준 표기법 준수 <t data-x="가계도">가족관계도</t> 제작 도구</a> · 렌더링 엔진·DSL · Rust/WASM · Capacitor</p>
+	<div class="lbl"><h4>어르다 가계도</h4><span class="period">2026.01. – 현재</span><span class="role">렌더링 엔진 · DSL</span><span class="skills">TypeScript · Rust/WASM · Capacitor</span></div>
+		<p class="facts"><a href="https://genogram.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 가계도 (genogram.auruda-j.com)" data-card="https://genogram.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>표준 표기법 준수 <t data-x="가계도">가족관계도</t> 제작 도구</a></p>
 		<ul>
 			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 <span class="pn">사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a> · 2주 유지</span></span></li>
 			<li class="task"><span class="duty">관계 문법<span class="pn">DSL</span> 설계로 그림 대신 텍스트 편집·버전 관리 <span class="pn">파싱 p95 5.8ms</span></span></li>
@@ -480,7 +477,7 @@
 </section>
 
 <section class="sec cont">
-	<div class="lbl"><h4><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span></h4><span class="period">2024.04. – 2025.06.</span></div>
+	<div class="lbl"><h4><span class="closed" data-tip="서비스 종료로 인한 링크 미제공">왁타버스 게임즈</span></h4><span class="period">2024.04. – 2025.06.</span><span class="role">백엔드 개발자</span><span class="skills">NestJS · TypeORM · AdminJS · 서버리스</span></div>
 		<p class="facts"><b>백엔드 개발자</b> <a class="wiki-link" href="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88" target="_blank" rel="noopener" data-tip="나무위키 왁타버스 게임즈. 임베드가 막혀 새 탭에서 열립니다" data-card="https://namu.wiki/w/%EC%99%81%ED%83%80%EB%B2%84%EC%8A%A4%20%EA%B2%8C%EC%9E%84%EC%A6%88"><svg class="icon"><use href="#i-namu-b"/></svg>나무위키</a> · 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 쿼리 수와 로그를 근거로 건의하여 관철함.</p>
 		<p class="facts"><b>규모</b> 트위치 구독자 국내 1위<span class="pn">103만 명</span> 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 		<ul>
