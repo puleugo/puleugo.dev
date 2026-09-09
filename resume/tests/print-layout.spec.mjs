@@ -116,7 +116,7 @@ test("가리기를 해제하면 원래 연락처와 링크가 복구된다", asy
 test("수상 표의 시기 칸은 화면·인쇄 모두 한 줄로 표기된다", async ({ page }) => {
 	await page.goto(RESUME);
 	const lines = () => page.evaluate(() =>
-		[...document.querySelectorAll("table.awards td:last-child")].map((td) => {
+		[...document.querySelectorAll("table.awards td.when")].map((td) => {
 			const r = document.createRange();
 			r.selectNodeContents(td);
 			return new Set([...r.getClientRects()].map((x) => Math.round(x.top))).size; // 줄 상자 개수

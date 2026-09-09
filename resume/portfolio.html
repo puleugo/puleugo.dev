@@ -283,7 +283,10 @@
 	table.data-table tbody tr:last-child td { border-bottom: 0; }
 	table.data-table td:first-child { font-weight: 600; white-space: nowrap; }
 	table.data-table td.sub, table.data-table th.sub { color: var(--sub); }
-	table.awards td:last-child { white-space: nowrap; }   /* 수상 시기가 "2025.11.–12." 처럼 두 줄로 쪼개지지 않게 */
+	table.awards td.when { white-space: nowrap; }   /* 수상 시기가 "2025.11.–12." 처럼 두 줄로 쪼개지지 않게 */
+	table.awards td[rowspan] { vertical-align: top; }
+	table.awards tr.cont > td:first-child { font-weight: 400; white-space: normal; }   /* 이어지는 행의 첫 칸은 대회명 */
+	table.awards th:nth-child(3) { width: 27%; }
 
 
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
