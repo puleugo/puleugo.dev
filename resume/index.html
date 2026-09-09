@@ -149,7 +149,6 @@
 	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
 	body.paged h1 { font-size: 18pt; }
 	body.paged .entry-head h3 { font-size: 11pt; }
-	body.paged .entry.brief .entry-head h3 { font-size: 9.6pt; }
 	body.paged .sec.cont > .lbl h4 { font-size: 9.2pt; }
 	body.paged .entry-head h3 .role { font-size: 8.8pt; }
 	body.paged .facts { font-size: 8.2pt; }
@@ -193,7 +192,6 @@
 	.entry { margin-bottom: 9px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
-	.entry.brief .entry-head h3 { font-size: 11.5pt; letter-spacing: -.01em; }
 	.entry-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
@@ -320,7 +318,6 @@
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
 		.entry-head h3 { font-size: 11pt; }
-		.entry.brief .entry-head h3 { font-size: 9.6pt; }
 		.sec.cont > .lbl h4 { font-size: 9.2pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
 		.facts { font-size: 8.2pt; margin-bottom: 1px; }
@@ -499,16 +496,16 @@
 <section class="sec">
 	<div class="lbl"><h2>학력 · 교육</h2></div>
 	<div class="val">
-<div class="entry brief">
+<div class="entry">
 	<div class="entry-head">
-		<h3>SW마에스트로 13기 <span class="role">· 과학기술정보통신부 자율형 부트캠프 수료</span></h3>
+		<span>SW마에스트로 13기 <span class="role">· 과학기술정보통신부 자율형 부트캠프 수료</span></span>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.04. – 2022.12.</span>
 	</div>
 </div>
 
-<div class="entry brief">
+<div class="entry">
 	<div class="entry-head">
-		<h3>인제대학교 <span class="role">· 컴퓨터공학과</span></h3>
+		<span>인제대학교 <span class="role">· 컴퓨터공학과</span></span>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
 	</div>
 </div>
