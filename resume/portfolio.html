@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>임채성 포트폴리오 · 사례 상세</title>
 <meta name="description" content="이력서에 한 줄로 줄인 사례의 전문. 문제·원인·측정·해결·평가와 산출식을 그대로 남긴 기록.">
 <link rel="canonical" href="https://puleugo.dev/resume/portfolio.html">
@@ -18,6 +19,8 @@
 <meta name="twitter:image" content="https://puleugo.dev/resume/og.png">
 <style>
 	:root {
+		color-scheme: light;   /* 다크모드에서도 한 벌만: 브라우저 자동 반전을 끈다 */
+		forced-color-adjust: none;
 		--ink: #16181d;
 		--sub: #52565f;
 		--line: #d8dbe0;
@@ -103,7 +106,6 @@
 		body:not(.paged) #resume {   /* 화면도 인쇄와 같은 A4 지면 */
 			width: 210mm; min-height: 297mm; padding: 11mm 12mm; margin: 8px auto 24px;
 		}
-		body:not(.paged) .doc-title { margin: -11mm -12mm 14px; padding: 13px 12mm 12px; }
 		.page-toggle, .term-toggle {
 			background: rgba(255,255,255,.62);
 			backdrop-filter: url(#lg-liquid) blur(3px) saturate(150%);
@@ -168,7 +170,7 @@
 	body.paged table.data-table { font-size: 8.6pt; }
 	body.paged table.data-table th, body.paged table.data-table td { padding: 1.5px 8px 1.5px 0; }
 	body.paged li { margin-bottom: 1.5px; }
-	body.paged .doc-title { margin: 0 0 10px; padding: 9px 16px 8px; }
+	body.paged .doc-title { margin: 0 0 8px; padding: 7px 14px 6px; }
 	body.paged .doc-title h1 { font-size: 15pt; }
 	body.paged .sec { margin-top: 7px; grid-template-columns: 96px 1fr; }
 	body.paged .sec.gap { margin-top: 12px; }
@@ -287,8 +289,9 @@
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
 	.doc-title {   /* 제목과 이름을 한 줄에 붙여 띠를 얇게 */
 		display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 18px;
-		margin: -30px -30px 14px; padding: 13px 30px 12px;
+		margin: 0 0 12px; padding: 10px 14px 9px;
 		background: var(--ink); color: #fff;
+		print-color-adjust: exact; -webkit-print-color-adjust: exact;   /* 배경 그래픽 꺼도 띠를 인쇄한다 */
 	}
 	.doc-title h1 { margin: 0; font-size: 19pt; letter-spacing: .2em; }
 	.doc-title h1 small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: #aeb4c0; }
