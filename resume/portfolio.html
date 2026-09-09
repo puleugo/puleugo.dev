@@ -137,7 +137,7 @@
 		content: ""; position: absolute; top: 24px; bottom: 24px; left: 50%;
 		border-left: 1px dashed var(--line); }
 	body.paged li.case-study, body.paged table.data-table tr, body.paged .entry-head { break-inside: avoid; }
-	body.paged h2 { break-after: avoid; }
+	body.paged .sec > .lbl h2 { break-after: avoid; }
 	body.paged .print-hint { display: none; }
 	@media print { body.paged { overflow: visible; background: #fff; }
 		body.paged #resume { column-count: 1; width: auto; height: auto; position: static;
@@ -148,8 +148,8 @@
 
 	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
 	body.paged h1 { font-size: 18pt; }
-	body.paged h2 { margin: 12px 0 5px; }
 	body.paged .entry-head h3 { font-size: 11pt; }
+	body.paged .entry.brief .entry-head h3 { font-size: 9.6pt; }
 	body.paged .entry-head h3 .role { font-size: 8.8pt; }
 	body.paged .facts { font-size: 8.2pt; }
 	body.paged .period { font-size: 8.2pt; }
@@ -189,16 +189,10 @@
 	.contact span:last-child::after { content: ""; }
 
 	/* sections */
-	h2 {
-		margin: 22px 0 9px;
-		padding-bottom: 3px;
-		font-size: 11pt;
-		letter-spacing: .04em;
-		border-bottom: 1.5px solid var(--ink);
-	}
 	.entry { margin-bottom: 16px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
+	.entry.brief .entry-head h3 { font-size: 11.5pt; letter-spacing: -.01em; }
 	.entry-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
@@ -217,7 +211,7 @@
 	li ul { margin-top: 1px; }
 	.nowrap { white-space: nowrap; }
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
-	li.case-study > b, li.task > b:first-child { display: block; font-weight: 500; }
+	.duty { display: block; font-weight: 400; }   /* 줄 전체가 아니라 안쪽 수치만 굵게 */
 	ul.how { margin: 1px 0 0; padding-left: 0; list-style: none; }
 	@media print { ul.how li, li dd { line-height: 1.36; } }
 	ul.how li { margin: 0; padding-left: 10px; text-indent: -10px; color: var(--ink); }
@@ -297,7 +291,7 @@
 	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: #aeb4c0; }
 	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 15px; }
 	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 5px; }
-	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
+	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
@@ -318,8 +312,8 @@
 		a { color: var(--ink); border-bottom: none; }
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
-		h2 { margin: 11px 0 5px; }
 		.entry-head h3 { font-size: 11pt; }
+		.entry.brief .entry-head h3 { font-size: 9.6pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
 		.facts { font-size: 8.2pt; }
 		.period { font-size: 8.2pt; }
@@ -333,7 +327,6 @@
 		.references { font-size: 7.2pt; margin-top: 2px; }
 		table.data-table { font-size: 8.6pt; }
 		table.data-table th, table.data-table td { padding: 1.5px 8px 1.5px 0; }
-		h2 { margin: 12px 0 5px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
 		li { margin-bottom: 1.5px; }
 		li.task > b { break-after: avoid; }
@@ -395,7 +388,7 @@
 </div>
 
 <section class="sec">
-	<div class="lbl"><b>기본정보</b><span>Personal Information</span></div>
+	<div class="lbl"><h2>기본정보</h2><span>Personal Information</span></div>
 	<div class="val">
 		<table class="data-table info">
 			<tbody>
@@ -413,7 +406,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>어르다</b><span>Auruda</span></div>
+	<div class="lbl"><h2>어르다</h2><span>Auruda</span></div>
 	<div class="val">
 
 
@@ -437,7 +430,7 @@
 	<div class="work">
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b>
+			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</span>
 				<dl>
 					<dt>문제</dt><dd><b>말한 그대로의 정확도</b>와 침묵·말떨림 같은 <b>비언어 표기</b>가 동시에 요구되어, 50분 상담 1회기당 평균 6시간(상담 업무의 29.3%) 소요. 범용 STT(클로바노트 등)는 두 요건 미충족으로 만족도 2.9점에 그침.</dd>
 					<dt>해결</dt><dd>상담 도메인 특화 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)을 설계, 기계 처리 시간을 <b>10분 청크 기준 p95 5분 이내</b>로 단축함. 실무자·석·박사 13인 베타에서 <b>전사 정확도·비언어 표기 모두 고평가</b>, 종합 <b>4.92점</b> 획득. 비언어 인식 향상에는 92.3% 동의.</dd>
@@ -450,16 +443,16 @@
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지) · 월 좋아요 1위)</b>
+			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지) · 월 좋아요 1위)</span>
 				<dl>
 					<dt>문제</dt><dd>기존 도구는 무제약 캔버스로 3촌 이상 시 인물 위치가 밀려 배치가 붕괴함. 캔버스 고정으로 <b>조작을 단순화함</b>(주 사용자 40·50대).</dd>
 					<dt>해결</dt><dd>인물 추가 시마다 주변이 연쇄 재배치되던 문제를 자동 배치로 해결함. <b>의존 노드 수를 중요도 지표로 삼아 중요 인물일수록 크게 배치</b>하여 가시성을 제고함.</dd>
 				</dl></li>
-			<li class="task"><b>AI가 가족 관계를 이해하고 <b>반복되는 패턴을 감지</b>하도록 만든 사내 도구(DSL)</b>
+			<li class="task"><span class="duty">AI가 가족 관계를 이해하고 <b>반복되는 패턴을 감지</b>하도록 만든 사내 도구(DSL)</span>
 				<dl>
 					<dt>설계</dt><dd>심리적 관계 16종, 법적 관계 8종, 결혼·이혼·별거 연도를 문법으로 정의하여 그림 대신 <b>텍스트 편집·버전 관리</b>가 가능함(파싱 p95 5.8ms). 그림이 아닌 문법이므로 기계 판독이 가능, 축어록 기록과 연계하여 <b>세대에 걸쳐 반복되는 관계 패턴과 문제의 근본 원인을 AI가 식별하는</b> 도구로 확장 중.</dd>
 				</dl></li>
-			<li class="task"><b>Rust/WASM 이식 여부를 벤치마크로 판단, <b>순수 수치 연산만</b> 채택</b>
+			<li class="task"><span class="duty">Rust/WASM 이식 여부를 벤치마크로 판단, <b>순수 수치 연산만</b> 채택</span>
 				<dl>
 					<dt>판단</dt><dd>핫패스를 Rust로 포팅, 파리티 테스트로 TS와 동일 결과를 강제한 뒤 벤치마크로 판정함. FFI 직렬화 비용 <b>19~41배</b>, 순수 수치 연산만 0.8배(약 20% 단축)로 확인되어 해당 경로만 채택함. 임상 데이터는 기기에서 암호화, 발표 시 이름 비공개 처리함.</dd>
 				</dl></li>
@@ -469,18 +462,18 @@
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 운영하는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
 		<ul>
-			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
+			<li class="case-study"><span class="duty">[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</span>
 				<dl>
 					<dt>문제</dt><dd>DB 장애 복구 후에도 목록이 계속 비어 있었으나, <b>알림이 전무하여</b> 개발자가 화면을 직접 열람한 시점에야 이상을 인지함.</dd>
 					<dt>원인</dt><dd>페처가 5xx를 삼켜 생성한 빈 응답이 <b>24시간 캐시</b>에 저장됨. 예외 은닉으로 인해 장애 발생 원인과 미탐지 원인이 동일함.</dd>
 					<dt>해결</dt><dd>태그 무효화로 화면을 즉시 복구한 뒤, 5xx는 throw 처리하고 <b>폴백을 캐시 외부로</b> 이동하여 예외가 관측 경로에 노출되도록 조치함.</dd>
 					<dt>평가</dt><dd>동일 유형 장애는 재발하지 않았으며, 사고 직후 <b>에러 모니터링(Sentry)</b>을 도입하여 예외를 이슈로 수집·대응·기록 중.</dd>
 				</dl></li>
-			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</b>
+			<li class="task"><span class="duty"><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</span>
 				<ul class="how">
 					<li>디스코드 명령 한 줄로 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보 수정 시 캐시 무효화까지 자동 수행됨. 사용 의견을 반영하여 <b>명령 15개를 8개로</b> 통합함.</li>
 				</ul></li>
-			<li class="task"><b>공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</b>
+			<li class="task"><span class="duty">공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</span>
 				<ul class="how">
 					<li>크롤러 → LLM 구조화 → 디스코드 카드 승인 → 어드민 등록 순으로 연결하고, 모델의 사고(thinking) 모드 해제·응답 스키마 축소로 지연을 단축함.</li>
 				</ul></li>
@@ -490,16 +483,16 @@
 	<div class="work">
 		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
-			<li class="task"><b>AI 에이전트 생성 코드의 회귀·임상 표기 위반을 <b>사람 리뷰 전 자동 반려</b></b>
+			<li class="task"><span class="duty">AI 에이전트 생성 코드의 회귀·임상 표기 위반을 <b>사람 리뷰 전 자동 반려</b></span>
 				<ul class="how">
 					<li>배치 품질 점수·테스트 중요도 분류·화면 구동 검증을 단일 명령으로 통합함. 가계도 230·축어록 141·백엔드 128개 테스트가 후단에서 실행됨.</li>
 				</ul></li>
-			<li class="task"><b>배치 개선안 <b>8건 중 3건 채택 · 5건 자동 거부</b>, 사람 판단 없이 표준 위반을 차단</b>
+			<li class="task"><span class="duty">배치 개선안 <b>8건 중 3건 채택 · 5건 자동 거부</b>, 사람 판단 없이 표준 위반을 차단</span>
 				<ul class="how">
 					<li><b>검증자와 생성자를 분리</b>하여 채점기의 배치 함수 내부 호출을 차단하고 최종 좌표만 참조하도록 함. 배치 로직은 자체 출력을 스스로 합격 처리할 수 없음.</li>
 					<li>깨짐 규칙 8종(세대 단조·부부 인접·간선 충돌 등)은 하드 게이트로 적용, 밀도·종횡비·교차는 비열화만 허용함. 이에 따라 밀도가 상승하더라도 <b>표준(세대=한 줄)이나 가독성을 훼손하는</b> 멀티로우·윤곽 패킹 등 5건이 자동 반려됨. 에이전트는 오케스트레이터·구현자·검수자로 분리하고, 모호한 요청은 검증 가능한 문장으로 재작성하도록 규칙에 명시함.</li>
 				</ul></li>
-			<li class="task"><b>모델 교체 판정을 <b>청취 대신 계산식</b>으로 수행: CER·IoU 기준선 상시 운용</b>
+			<li class="task"><span class="duty">모델 교체 판정을 <b>청취 대신 계산식</b>으로 수행: CER·IoU 기준선 상시 운용</span>
 				<ul class="how">
 					<li>가상 상담 4종(상담실·울먹임·카페 소음·큰 음성)에 정답 전사문과 비언어 구간을 직접 부착, 전사는 <b>CER=(치환+삭제+삽입)/정답 글자 수</b>, 비언어는 <b>IoU=겹친 시간/합친 시간</b>으로 채점함.</li>
 					<li>STT 3종·구간 탐지 3종을 동일 기준으로 평가하여 <b>CER 3.5%</b> 모델을 채택함. 구간 탐지는 IoU 0.24(정서적 표출 0.09)에 그쳐 LLM 표기로 전환함. 정답 부재 항목은 만점 대신 <b>평가 불가</b>로 제외하여 허위 점수를 방지했으며, <b>모델 교체 시 본 기준선을 우선 통과</b>시킴.</li>
@@ -511,7 +504,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>왁타버스 게임즈</b><span>Waktaverse Games</span></div>
+	<div class="lbl"><h2>왁타버스 게임즈</h2><span>Waktaverse Games</span></div>
 	<div class="val">
 <div class="entry">
 	<div class="entry-head">
@@ -521,7 +514,7 @@
 	<p class="facts"><b>역할</b> 팀의 백엔드 운영·유지보수 담당. 팀원 입장에서 배치 폐기·리팩터링·테스트 도입을 <b>쿼리 수와 로그를 근거로 건의</b>하여 관철함.</p>
 	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 	<ul>
-		<li class="case-study"><b>구글 엑셀 동기화(Reconciliation) 배치 폐기와 어드민 전환</b>
+		<li class="case-study"><span class="duty">구글 엑셀 동기화(Reconciliation) 배치 폐기와 어드민 전환</span>
 				<dl>
 					<dt>문제</dt><dd>비개발자의 직접 수정을 위해 초기에는 스프레드시트를 원본으로 두고, 시트 <b>전량</b>을 <b>5분마다 1회</b> DB에 동기화함(하루 288회 · 월 8,640회). 서비스 성장에 따라 <b>팀 내 영향 범위 최대 로직</b>이 되었고, 필드 추가 등 요구사항 변경이 예정되어 현 구조로는 수정이 곤란했음.</dd>
 					<dt>원인</dt><dd>데이터 원본이 시트에 있어 변경 여부와 무관하게 전량 upsert가 필요했고, 필드 1개 추가 시 시트·배치·DB 3개소를 동시 수정해야 했음.</dd>
@@ -529,7 +522,7 @@
 					<dt>평가</dt><dd>본 수치로 배치 폐기를 건의하여 합의를 확보, 서버리스 환경에 AdminJS를 통합하여 <b>데이터 원본을 DB로 이관하고 운영자 2명의 작업 환경을 어드민으로 전환</b>함. 기존 요구(비개발자의 직접 수정)는 유지하면서 <b>변경 지점이 1개소</b>로 축소되어, 이후 필드 추가는 어드민 수정으로 완결됨. 배너 교체 시 Swagger로 업로드한 링크를 시트에 붙여 넣던 절차도 어드민 업로드로 통합함. 쓰기는 월 155만 회에서 <b>변경 시에만 20회</b>로 감소, 운영비는 약 70% 절감됨.</dd>
 					<dt>채택</dt><dd>선례가 없던 서버리스 배포 절차를 정리하여 제출한 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>가 2025.06. 머지되어 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드로 게시 중임.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></dd>
 				</dl></li>
-		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b> 적용, 테스트 250개(커버리지 19.54%)</b>
+		<li class="task"><span class="duty">핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b> 적용, 테스트 250개(커버리지 19.54%)</span>
 				<ul class="how">
 					<li>팀에 테스트는 물론 레이어별 책임·도메인 객체 개념이 부재하여 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 학습함. 커버리지 수치 위주의 단위 테스트보다 <b>E2E 우선</b> 구축이 무중단 운영 중인 API 135개 보호에 효과적이라고 판단함.</li>
 					<li>장애 요인이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 제작하여 제거하고 오픈소스로 공개함.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> 테스트 작성이 불가하던 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안하여 책임 단위로 분리했고, 해당 과정을 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>로 공유함.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></li>
@@ -541,7 +534,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>참고</b><span>References</span></div>
+	<div class="lbl"><h2>참고</h2><span>References</span></div>
 	<div class="val">
 	<section class="references">
 		<span class="reference-list">블로그 ko.<m data-mask="○○○○">puleugo</m>.dev [1] /216 · [3] /201 · [5] /209 &nbsp; 깃허브 github.com/<m data-mask="○○○○">puleugo</m> [2] nestjs-adminjs-serverless · [4] typeorm-transaction-rollback</span>

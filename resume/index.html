@@ -137,7 +137,7 @@
 		content: ""; position: absolute; top: 24px; bottom: 24px; left: 50%;
 		border-left: 1px dashed var(--line); }
 	body.paged li.case-study, body.paged table.data-table tr, body.paged .entry-head { break-inside: avoid; }
-	body.paged h2 { break-after: avoid; }
+	body.paged .sec > .lbl h2 { break-after: avoid; }
 	body.paged .print-hint { display: none; }
 	@media print { body.paged { overflow: visible; background: #fff; }
 		body.paged #resume { column-count: 1; width: auto; height: auto; position: static;
@@ -148,8 +148,8 @@
 
 	/* 페이지 보기는 인쇄와 같은 조판을 쓴다 (아래 규칙은 @media print 와 짝) */
 	body.paged h1 { font-size: 18pt; }
-	body.paged h2 { margin: 12px 0 5px; }
 	body.paged .entry-head h3 { font-size: 11pt; }
+	body.paged .entry.brief .entry-head h3 { font-size: 9.6pt; }
 	body.paged .entry-head h3 .role { font-size: 8.8pt; }
 	body.paged .facts { font-size: 8.2pt; }
 	body.paged .period { font-size: 8.2pt; }
@@ -189,16 +189,10 @@
 	.contact span:last-child::after { content: ""; }
 
 	/* sections */
-	h2 {
-		margin: 22px 0 9px;
-		padding-bottom: 3px;
-		font-size: 11pt;
-		letter-spacing: .04em;
-		border-bottom: 1.5px solid var(--ink);
-	}
 	.entry { margin-bottom: 16px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
+	.entry.brief .entry-head h3 { font-size: 11.5pt; letter-spacing: -.01em; }
 	.entry-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
 	.entry-head h3 .wiki-link { font-weight: 400; font-size: 8.5pt; color: var(--sub); border-bottom-color: var(--line); }
@@ -217,7 +211,7 @@
 	li ul { margin-top: 1px; }
 	.nowrap { white-space: nowrap; }
 	/* 대표 사례: 제목 한 줄 + 단계 라벨 그리드 (본문 항목과 구분되는 구조) */
-	li.case-study > b, li.task > b:first-child { display: block; font-weight: 500; }
+	.duty { display: block; font-weight: 400; }   /* 줄 전체가 아니라 안쪽 수치만 굵게 */
 	ul.how { margin: 1px 0 0; padding-left: 0; list-style: none; }
 	@media print { ul.how li, li dd { line-height: 1.36; } }
 	ul.how li { margin: 0; padding-left: 10px; text-indent: -10px; color: var(--ink); }
@@ -297,7 +291,7 @@
 	.doc-title .who span { display: block; margin-top: 2px; font-size: 8.4pt; font-weight: 500; color: #aeb4c0; }
 	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 15px; }
 	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 5px; }
-	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
+	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
@@ -318,8 +312,8 @@
 		a { color: var(--ink); border-bottom: none; }
 		t { border-bottom: none; }
 		h1 { font-size: 18pt; }
-		h2 { margin: 11px 0 5px; }
 		.entry-head h3 { font-size: 11pt; }
+		.entry.brief .entry-head h3 { font-size: 9.6pt; }
 		.entry-head h3 .role { font-size: 8.8pt; }
 		.facts { font-size: 8.2pt; }
 		.period { font-size: 8.2pt; }
@@ -333,7 +327,6 @@
 		.references { font-size: 7.2pt; margin-top: 2px; }
 		table.data-table { font-size: 8.6pt; }
 		table.data-table th, table.data-table td { padding: 1.5px 8px 1.5px 0; }
-		h2 { margin: 12px 0 5px; }
 		[data-tip]:hover::after, #link-card { display: none !important; }
 		li { margin-bottom: 1.5px; }
 		li.task > b { break-after: avoid; }
@@ -395,7 +388,7 @@
 </div>
 
 <section class="sec">
-	<div class="lbl"><b>기본정보</b></div>
+	<div class="lbl"><h2>기본정보</h2></div>
 	<div class="val">
 		<table class="data-table info">
 			<tbody>
@@ -415,7 +408,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>핵심 성과</b></div>
+	<div class="lbl"><h2>핵심 성과</h2></div>
 	<div class="val">
 		<p class="intro">사업 운영 규칙을 스키마·API로 이관하고, AI 에이전트 통과 기준을 코드로 고정하여 개선이 축적되는 환경을 구축함.</p>
 	<ul class="hook-stats">
@@ -430,7 +423,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>경력사항</b></div>
+	<div class="lbl"><h2>경력사항</h2></div>
 	<div class="val">
 	<div class="entry-head">
 		<h3><a href="https://www.auruda-j.com" data-preview data-tip="사이트 미리보기 · 어르다 (www.auruda-j.com)" data-card="https://www.auruda-j.com"><svg class="icon"><use href="#i-site-b"/></svg>어르다</a> <span class="role">· 공동창업자 · 개발 총괄</span></h3>
@@ -456,7 +449,7 @@
 	<div class="work">
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b></li>
+			<li class="task"><span class="duty">수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</span></li>
 			</ul>
 	</div>
 	</div>
@@ -468,9 +461,9 @@
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지))</b></li>
-			<li class="task"><b>관계 문법(DSL) 설계로 그림 대신 텍스트 편집·버전 관리 (파싱 p95 5.8ms)</b></li>
-			<li class="task"><b>Rust/WASM 이식 여부를 벤치마크로 판단, 순수 수치 연산만 채택</b></li>
+			<li class="task"><span class="duty">무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지))</span></li>
+			<li class="task"><span class="duty">관계 문법(DSL) 설계로 그림 대신 텍스트 편집·버전 관리 (파싱 p95 5.8ms)</span></li>
+			<li class="task"><span class="duty">Rust/WASM 이식 여부를 벤치마크로 판단, 순수 수치 연산만 채택</span></li>
 			</ul>
 	</div>
 	</div>
@@ -482,9 +475,9 @@
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 운영하는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
 		<ul>
-			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b></li>
-			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</b></li>
-			<li class="task"><b>공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</b></li>
+			<li class="case-study"><span class="duty">[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</span></li>
+			<li class="task"><span class="duty"><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</span></li>
+			<li class="task"><span class="duty">공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</span></li>
 			</ul>
 	</div>
 	</div>
@@ -496,8 +489,8 @@
 	<div class="work">
 		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
-			<li class="task"><b>AI 에이전트 생성 코드의 회귀·임상 표기 위반을 사람 리뷰 전 자동 반려 (배치 개선안 8건 중 5건 자동 거부)</b></li>
-			<li class="task"><b>모델 교체 판정을 청취 대신 계산식으로 수행: CER·IoU 기준선 상시 운용</b></li>
+			<li class="task"><span class="duty">AI 에이전트 생성 코드의 회귀·임상 표기 위반을 사람 리뷰 전 자동 반려 (배치 개선안 8건 중 5건 자동 거부)</span></li>
+			<li class="task"><span class="duty">모델 교체 판정을 청취 대신 계산식으로 수행: CER·IoU 기준선 상시 운용</span></li>
 			</ul>
 	</div>
 	</div>
@@ -514,14 +507,14 @@
 	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 
 	<ul>
-		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감) · 서버리스 배포 절차 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드 게시<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></b></li>
-		<li class="task"><b>핵심 도메인·B2B 도메인 등 실패 비용이 큰 경로부터 E2E 적용, 테스트 250개(커버리지 19.54%) · 트랜잭션 롤백 격리 프레임워크 오픈소스 공개<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> · 컨퍼런스 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>발표</a><sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></b></li>
+		<li class="case-study"><span class="duty">구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감) · 서버리스 배포 절차 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드 게시<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></span></li>
+		<li class="task"><span class="duty">핵심 도메인·B2B 도메인 등 실패 비용이 큰 경로부터 E2E 적용, 테스트 250개(커버리지 19.54%) · 트랜잭션 롤백 격리 프레임워크 오픈소스 공개<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> · 컨퍼런스 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>발표</a><sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></span></li>
 	</ul>
 	</div>
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>수상</b></div>
+	<div class="lbl"><h2>수상</h2></div>
 	<div class="val">
 <table class="data-table awards">
 	<tbody>
@@ -534,16 +527,16 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>학력 · 교육</b></div>
+	<div class="lbl"><h2>학력 · 교육</h2></div>
 	<div class="val">
-<div class="entry">
+<div class="entry brief">
 	<div class="entry-head">
 		<h3>SW마에스트로 13기 <span class="role">· 과학기술정보통신부 자율형 부트캠프 수료</span></h3>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.04. – 2022.12.</span>
 	</div>
 </div>
 
-<div class="entry">
+<div class="entry brief">
 	<div class="entry-head">
 		<h3>인제대학교 <span class="role">· 컴퓨터공학과</span></h3>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
@@ -553,7 +546,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>기술</b></div>
+	<div class="lbl"><h2>기술</h2></div>
 	<div class="val">
 <table class="data-table">
 	<tbody>
@@ -568,7 +561,7 @@
 </section>
 
 <section class="sec">
-	<div class="lbl"><b>참고</b></div>
+	<div class="lbl"><h2>참고</h2></div>
 	<div class="val">
 	<section class="references">
 		<span class="reference-list">블로그 ko.<m data-mask="○○○○">puleugo</m>.dev [1] /216 · [3] /201 · [5] /209 &nbsp; 깃허브 github.com/<m data-mask="○○○○">puleugo</m> [2] nestjs-adminjs-serverless · [4] typeorm-transaction-rollback</span>
