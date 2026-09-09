@@ -37,7 +37,6 @@ npm run check        # 검수 + OG 재생성
 | `.task` | 제목이 붙은 작업 항목 |
 | `.case-study` | 문제·원인·측정·해결·평가 사례 |
 | `.data-table` | 제품·수상·기술 표 |
-| `.tag` | [긴급] 같은 라벨 |
 | `.footnote` / `.references` | 본문 위첨자와 하단 참고 목록 |
 | `#preview` | 좌측 링크 미리보기 패널 (`.device-btn` PC/모바일 전환) |
 | `#link-card` | 블로그·영상 호버 카드 |
