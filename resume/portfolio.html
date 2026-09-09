@@ -165,6 +165,7 @@
 	body.paged .doc-title { margin: 0 0 11px; padding: 12px 16px; }
 	body.paged .doc-title h1 { font-size: 15pt; }
 	body.paged .sec { margin-top: 9px; grid-template-columns: 96px 1fr; }
+	body.paged .sec.cont { padding-left: 114px; }
 
 	/* header */
 	header { margin-bottom: 20px; }
@@ -297,8 +298,10 @@
 	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
-	.sec.cont { margin-top: 0; }
-	.sec.cont > .lbl, .sec.cont > .val { border-top: 0; padding-top: 0; }
+	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
+	.sec.cont { display: block; margin-top: 0; padding-left: 134px; }
+	.sec.cont > .lbl { display: none; }
+	.sec.cont > .val { border-top: 0; padding-top: 0; }
 	.sec.gap { margin-top: 9px; }
 	.sec .entry { margin-bottom: 0; }
 	table.info td:first-child { width: 62px; font-weight: 500; color: var(--sub); }

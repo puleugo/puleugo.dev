@@ -165,6 +165,7 @@
 	body.paged .doc-title { margin: 0 0 11px; padding: 12px 16px; }
 	body.paged .doc-title h1 { font-size: 15pt; }
 	body.paged .sec { margin-top: 9px; grid-template-columns: 96px 1fr; }
+	body.paged .sec.cont { padding-left: 114px; }
 
 	/* header */
 	header { margin-bottom: 20px; }
@@ -297,8 +298,10 @@
 	.sec > .lbl b { display: block; font-size: 11pt; letter-spacing: .01em; }
 	.sec > .lbl span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 5px; }
-	.sec.cont { margin-top: 0; }
-	.sec.cont > .lbl, .sec.cont > .val { border-top: 0; padding-top: 0; }
+	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
+	.sec.cont { display: block; margin-top: 0; padding-left: 134px; }
+	.sec.cont > .lbl { display: none; }
+	.sec.cont > .val { border-top: 0; padding-top: 0; }
 	.sec.gap { margin-top: 9px; }
 	.sec .entry { margin-bottom: 0; }
 	table.info td:first-child { width: 62px; font-weight: 500; color: var(--sub); }
@@ -449,11 +452,7 @@
 	<div class="work">
 		<strong>어르다 축어록 · PO로서 상담사 인터뷰부터 앱 출시까지 수행<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b>
-				<ul class="how">
-					<li>정확도와 비언어 표기를 동시에 요구하여 범용 STT로는 만족도 2.9점에 그치던 작업을, 상담 도메인 특화 LLM 파이프라인(청크 분할 → 전사 → 비언어 표기 → 보고서 생성)으로 대체함. 실무자·석·박사 13인 베타 <b>4.92점</b>, 실사용자 39명이 <b>134회기 · 누적 80시간</b> 처리, <b>53.8%가 2회 이상 재사용</b>함.</li>
-					<li>전사문·분석 결과는 서버에서 <b>AES-256-GCM</b> 필드 암호화 후 저장하고, 키 부재·길이 불일치 시 즉시 예외를 발생시켜 <b>평문 저장 사고 자체를 차단함</b>. Next.js PWA를 Capacitor로 래핑하여 iOS·Android 단일 코드베이스로 출시, 오디오 변환은 WASM FFmpeg 기기 처리로 서버 오디오 비용 없음.</li>
-				</ul></li>
+			<li class="task"><b>수기 전사·비언어 표기의 자동화 (회기당 <b>6시간 → 기계 처리 5분 이내</b> · 만족도 <b>2.9 → 4.92점</b>)</b></li>
 			</ul>
 	</div>
 	</div>
@@ -465,18 +464,9 @@
 	<div class="work">
 		<strong>어르다 가계도 · 렌더링 엔진과 표기 언어(DSL) 담당<span class="leader" aria-hidden="true"></span><span class="period">2026.01. – 현재</span></strong>
 		<ul>
-			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지))</b>
-				<ul class="how">
-					<li>3촌 이상에서 배치가 붕괴하던 무제약 캔버스를 고정 캔버스로 전환하여 조작을 단순화하고(주 사용자 40·50대), <b>의존 노드 수를 중요도 지표로 삼는</b> 자동 배치로 연쇄 재배치를 제거함.</li>
-				</ul></li>
-			<li class="task"><b>관계 문법(DSL) 설계로 그림 대신 <b>텍스트 편집·버전 관리</b> (파싱 p95 5.8ms)</b>
-				<ul class="how">
-					<li>심리적 관계 16종·법적 관계 8종과 결혼·이혼·별거 연도를 문법으로 정의함. 기계 판독이 가능하여 축어록 기록과 연계, <b>세대에 걸쳐 반복되는 관계 패턴을 AI가 식별하는</b> 도구로 확장 중.</li>
-				</ul></li>
-			<li class="task"><b>Rust/WASM 이식 여부를 벤치마크로 판단, <b>순수 수치 연산만</b> 채택</b>
-				<ul class="how">
-					<li>파리티 테스트로 TS와 동일 결과를 강제한 뒤 측정함. FFI 직렬화 비용 <b>19~41배</b>, 순수 수치 연산만 0.8배로 확인되어 해당 경로만 채택함.</li>
-				</ul></li>
+			<li class="task"><b>무한 캔버스 폐기와 고정 레이아웃·자동 배치 전환 (사용자 <b>5,687명</b> · <a href="https://cafe.naver.com/icpg2013/99144" target="_blank" rel="noopener" data-tip="네이버 카페 인기글 게시물. 임베드가 막혀 새 탭에서 열립니다" data-card="https://cafe.naver.com/icpg2013/99144"><svg class="icon"><use href="#i-doc-b"/></svg>카페 주간 인기글 1위</a>(2주 유지))</b></li>
+			<li class="task"><b>관계 문법(DSL) 설계로 그림 대신 <b>텍스트 편집·버전 관리</b> (파싱 p95 5.8ms)</b></li>
+			<li class="task"><b>Rust/WASM 이식 여부를 벤치마크로 판단, <b>순수 수치 연산만</b> 채택</b></li>
 			</ul>
 	</div>
 	</div>
@@ -488,18 +478,9 @@
 	<div class="work">
 		<strong>플랫폼 운영 · 비개발자가 직접 운영하는 콘텐츠 파이프라인<span class="leader" aria-hidden="true"></span><span class="period">2025.09. – 현재</span></strong>
 		<ul>
-			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b>
-				<ul class="how">
-					<li>페처가 5xx를 삼켜 생성한 빈 응답이 <b>24시간 캐시</b>에 저장됨. 알림이 전무하여 개발자가 화면을 직접 열람한 시점에야 인지함. 태그 무효화로 즉시 복구한 뒤 5xx는 throw 처리하고 <b>폴백을 캐시 외부로</b> 이동하여 예외가 관측 경로에 노출되도록 조치함. 사고 직후 <b>Sentry</b>를 도입, 동일 유형 장애는 재발하지 않음.</li>
-				</ul></li>
-			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</b>
-				<ul class="how">
-					<li>디스코드 명령 한 줄로 소개글·배너·<t data-x="슈퍼바이저">멘토</t> 정보 수정 시 캐시 무효화까지 자동 수행됨. 사용 의견을 반영하여 <b>명령 15개를 8개로</b> 통합함.</li>
-				</ul></li>
-			<li class="task"><b>공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</b>
-				<ul class="how">
-					<li>크롤러 → LLM 구조화 → 디스코드 카드 승인 → 어드민 등록 순으로 연결하고, 모델의 사고(thinking) 모드 해제·응답 스키마 축소로 지연을 단축함.</li>
-				</ul></li>
+			<li class="case-study"><b>[장애 대응] DB 복구 뒤에도 <t data-x="수련기관">교육기관</t> 목록이 비어 보이던 사고</b></li>
+			<li class="task"><b><t data-x="수련기관">교육기관</t> <b>410곳</b>을 개발자 배포 없이 운영팀이 직접 수정</b></li>
+			<li class="task"><b>공고 1건 AI 처리 시간 206초 → <b>18초</b> (91% 단축)</b></li>
 			</ul>
 	</div>
 	</div>
@@ -511,14 +492,8 @@
 	<div class="work">
 		<strong>개발 방식 · AI 산출물을 기계가 채점하는 게이트 (테스트 파일 499개)</strong>
 		<ul>
-			<li class="task"><b>AI 에이전트 생성 코드의 회귀·임상 표기 위반을 <b>사람 리뷰 전 자동 반려</b> (배치 개선안 8건 중 5건 자동 거부)</b>
-				<ul class="how">
-					<li>배치 품질 점수·테스트 중요도 분류·화면 구동 검증을 단일 명령으로 통합하고, 가계도 230·축어록 141·백엔드 128개 테스트를 후단에서 실행함. <b>검증자와 생성자를 분리</b>하여 배치 로직은 자체 출력을 스스로 합격 처리할 수 없음.</li>
-				</ul></li>
-			<li class="task"><b>모델 교체 판정을 <b>청취 대신 계산식</b>으로 수행: CER·IoU 기준선 상시 운용</b>
-				<ul class="how">
-					<li>가상 상담 4종에 정답 전사문과 비언어 구간을 직접 부착, STT 3종·구간 탐지 3종을 동일 기준으로 평가하여 <b>CER 3.5%</b> 모델을 채택함. 구간 탐지는 IoU 0.24에 그쳐 LLM 표기로 전환함.</li>
-				</ul></li>
+			<li class="task"><b>AI 에이전트 생성 코드의 회귀·임상 표기 위반을 <b>사람 리뷰 전 자동 반려</b> (배치 개선안 8건 중 5건 자동 거부)</b></li>
+			<li class="task"><b>모델 교체 판정을 <b>청취 대신 계산식</b>으로 수행: CER·IoU 기준선 상시 운용</b></li>
 			</ul>
 	</div>
 	</div>
@@ -535,16 +510,8 @@
 	<p class="facts"><b>규모</b> 트위치 구독자 국내 1위(103만 명) 스트리머 팬덤의 게임 배포 플랫폼 · <b>MAU 5만 명 규모</b> · API 약 135개 <span class="nowrap">· 2023.09.–2025 운영</span></p>
 
 	<ul>
-		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감)</b>
-				<ul class="how">
-					<li>비개발자의 직접 수정을 위해 시트를 원본으로 두고 <b>전량</b>을 <b>5분마다</b> DB에 동기화하던 구조가, 서비스 성장에 따라 <b>팀 내 영향 범위 최대 로직</b>이 되었고 필드 1개 추가 시 시트·배치·DB 3개소를 동시 수정해야 했음. 구조 변경 근거로 <b>월 8,640회 실행 × 실행당 쓰기 180회 = 월 약 155만 회</b>(실제 변경은 월 20회)를 산출하여 폐기를 건의, 합의를 확보함.</li>
-					<li>서버리스 환경에 AdminJS를 통합하여 원본을 DB로 이관하고 운영자 2명의 작업 환경을 전환함. 기존 요구는 유지하면서 <b>변경 지점이 1개소</b>로 축소됨. 선례가 없던 서버리스 배포 절차를 정리하여 제출한 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a>는 <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드로 게시 중임.<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></li>
-				</ul></li>
-		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b> 적용, 테스트 250개(커버리지 19.54%)</b>
-				<ul class="how">
-					<li>팀에 테스트는 물론 레이어별 책임·도메인 객체 개념이 부재하여 마틴 파울러 등 <b>영문 자료 5종을 직접 번역</b>하며 학습함. 무중단 운영 중인 API 135개 보호에는 커버리지 수치 위주의 단위 테스트보다 <b>E2E 우선</b> 구축이 효과적이라고 판단함.</li>
-					<li>장애 요인이던 테스트 간 데이터 간섭은 트랜잭션 롤백 격리 프레임워크를 제작하여 제거하고 오픈소스로 공개함.<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> 약 600줄 절차지향 엑셀 업로더는 리팩터링을 제안하여 책임 단위로 분리했고, 해당 과정을 컨퍼런스에서 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>「괴물 메서드 리팩터링과 성능 개선하기」 발표</a>로 공유함.<sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></li>
-				</ul></li>
+		<li class="case-study"><b>구글 엑셀 동기화 배치 폐기와 어드민 전환 (쓰기 <b>월 155만 회 → 변경 시에만 20회</b> · 운영비 약 70% 절감) · 서버리스 배포 절차 PR <a href="https://github.com/SoftwareBrothers/adminjs-docs/pull/15" target="_blank" rel="noopener" data-card="https://github.com/SoftwareBrothers/adminjs-docs/pull/15"><svg class="icon"><use href="#i-github"/></svg>adminjs-docs#15</a> 머지, <a href="https://docs.adminjs.co/deployment/serverless" data-preview data-tip="AdminJS 공식 문서 미리보기 (Deployment / Serverless)" data-card="https://docs.adminjs.co/deployment/serverless"><svg class="icon"><use href="#i-doc-b"/></svg>docs.adminjs.co</a> 공식 가이드 게시<sup class="footnote"><a href="https://ko.puleugo.dev/216" data-preview data-tip="블로그 「[NestJS] AdminJS 프로덕션 배포하기」" data-card="https://ko.puleugo.dev/216">1</a></sup><sup class="footnote"><a href="https://github.com/puleugo/nestjs-adminjs-serverless" target="_blank" rel="noopener" data-tip="예제 코드 nestjs-adminjs-serverless. 새 탭에서 열립니다" data-card="https://github.com/puleugo/nestjs-adminjs-serverless">2</a></sup></b></li>
+		<li class="task"><b>핵심 도메인·B2B 도메인 등 <b>실패 비용이 큰 경로부터 E2E</b> 적용, 테스트 250개(커버리지 19.54%) · 트랜잭션 롤백 격리 프레임워크 오픈소스 공개<sup class="footnote"><a href="https://ko.puleugo.dev/201" data-preview data-tip="블로그 「[Node.js] 트랜잭션을 활용한 테스트 격리 환경 구현하기」" data-card="https://ko.puleugo.dev/201">3</a></sup><sup class="footnote"><a href="https://github.com/puleugo/typeorm-transaction-rollback" target="_blank" rel="noopener" data-tip="오픈소스 typeorm-transaction-rollback. 새 탭에서 열립니다" data-card="https://github.com/puleugo/typeorm-transaction-rollback">4</a></sup> · 컨퍼런스 <a href="https://www.youtube.com/watch?v=C2ns5fGUxz8" data-preview="https://www.youtube.com/embed/C2ns5fGUxz8" data-tip="유튜브 영상 「[메가콘 2024] 괴물 메서드 리팩터링과 성능개선하기」" data-card="https://www.youtube.com/watch?v=C2ns5fGUxz8"><svg class="icon"><use href="#i-youtube"/></svg>발표</a><sup class="footnote"><a href="https://ko.puleugo.dev/209" data-preview data-tip="블로그 「괴물 메서드 리팩터링과 성능개선하기」" data-card="https://ko.puleugo.dev/209">5</a></sup></b></li>
 	</ul>
 	</div>
 </section>
