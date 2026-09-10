@@ -110,16 +110,6 @@
 		body:not(.paged) #resume {   /* 화면도 인쇄와 같은 A4 지면 */
 			width: 210mm; min-height: 297mm; padding: 11mm 12mm; margin: 8px auto 24px;
 		}
-		.page-toggle, .term-toggle {
-			background: rgba(255,255,255,.62);
-			backdrop-filter: url(#lg-liquid) blur(3px) saturate(150%);
-			-webkit-backdrop-filter: blur(10px) saturate(150%);
-			border-color: rgba(255,255,255,.7);
-			box-shadow: 0 8px 20px rgba(16,20,28,.12), inset 0 1px 0 rgba(255,255,255,.9);
-		}
-		@supports not (backdrop-filter: url(#lg-liquid)) {
-			.page-toggle, .term-toggle { background: rgba(255,255,255,.92); }
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) { #resume { transition: none; } }
@@ -132,8 +122,20 @@
 		border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92);
 		backdrop-filter: blur(6px); font-size: 9pt; color: var(--sub); cursor: pointer; user-select: none; }
 	.page-toggle input { accent-color: var(--accent); margin: 0; cursor: pointer; }
-	.print-btn { font: inherit; font-size: 9pt; color: var(--ink); }
-	.print-btn:hover { border-color: var(--ink); }
+	.print-btn { appearance: none; -webkit-appearance: none; font: inherit; font-size: 9pt; }
+	/* 우상단 조작부 전부 같은 굴절 유리 — 기본 규칙 뒤에 두어야 이긴다 */
+	@media screen {
+		.page-toggle, .term-toggle, .print-btn {
+			background: rgba(255,255,255,.62);
+			backdrop-filter: url(#lg-liquid) blur(3px) saturate(150%);
+			-webkit-backdrop-filter: blur(10px) saturate(150%);
+			border-color: rgba(255,255,255,.7);
+			box-shadow: 0 8px 20px rgba(16,20,28,.12), inset 0 1px 0 rgba(255,255,255,.9);
+		}
+		@supports not (backdrop-filter: url(#lg-liquid)) {
+			.page-toggle, .term-toggle, .print-btn { background: rgba(255,255,255,.92); }
+		}
+	}
 	/* 우상단 조작부의 툴팁은 위가 아니라 아래·오른쪽 정렬로(화면 밖으로 나가지 않게) */
 	.controls [data-tip]:hover::after { top: 130%; bottom: auto; left: auto; right: 0; }
 
@@ -650,6 +652,8 @@
 	};
 	maskSw.addEventListener("change", () => applyMask(maskSw.checked));
 	document.getElementById("print-btn")?.addEventListener("click", () => window.print());
+	// 단축키 표기는 OS 에 맞게
+	{ const b = document.getElementById("print-btn"); if (b) b.dataset.tip = "단축키 " + (/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? "⌘P" : "Ctrl+P"); }
 	if (new URLSearchParams(location.search).has("mask")) { maskSw.checked = true; applyMask(true); }
 
 	// 사이트 링크는 좌측 팝업 패널 iframe 으로 (본문 레이아웃은 그대로, 임베드 차단 사이트는 새 탭)
