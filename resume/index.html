@@ -309,6 +309,9 @@
 	.sec > .lbl > span { display: block; font-size: 7.6pt; color: var(--sub); letter-spacing: .03em; }
 	.sec > .val { min-width: 0; border-top: 1px solid var(--ink); padding-top: 4px; }
 	/* 이어짐 행: 그리드는 한 행을 쪽으로 쪼개지 못해 인쇄에서 빈 지면이 생긴다. 블록 + 왼쪽 여백으로 흘린다 */
+	/* 머리 밑줄 바로 아래 첫 섹션은 자기 위 선을 그리지 않는다(선이 두 겹으로 겹침) */
+	.doc-title + .sec { margin-top: 0; }
+	.doc-title + .sec > .lbl, .doc-title + .sec > .val { border-top: 0; padding-top: 0; }
 	.sec.cont { display: flow-root; margin-top: 5px; padding-left: 134px; }
 	.sec.cont > .lbl > .role { margin-top: 3px; color: var(--ink); }
 	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
