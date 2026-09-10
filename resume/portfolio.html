@@ -27,10 +27,6 @@
 		--accent: #1a4fd6;
 	}
 	* { box-sizing: border-box; }
-	/* 본문 괄호는 마크업(.pn)이고 글자는 여기서 정한다. 두 변수만 바꾸면 이력서 전체의 괄호가 바뀐다 */
-	:root { --paren-open: "「"; --paren-close: "」"; }
-	.pn::before { content: var(--paren-open); }
-	.pn::after { content: var(--paren-close); }
 	html { -webkit-text-size-adjust: 100%; }
 	body {
 		margin: 0 auto;
@@ -308,7 +304,6 @@
 	h1.doc-title { font-size: 19pt; letter-spacing: .2em; }
 	.doc-title small { margin-left: 10px; font-size: 10pt; font-weight: 500; letter-spacing: .06em; color: var(--sub); }
 	.doc-title .who { margin: 0; font-size: 11pt; font-weight: 700; letter-spacing: -.01em; }
-	.doc-title .who .pn { letter-spacing: 0; }
 	.sec { display: grid; grid-template-columns: 116px 1fr; gap: 0 18px; margin-top: 11px; }
 	.sec > .lbl { border-top: 2px solid var(--ink); padding-top: 4px; }
 	.sec > .lbl h2 { margin: 0; font-size: 11pt; letter-spacing: .01em; border: 0; padding: 0; }
