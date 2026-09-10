@@ -132,6 +132,10 @@
 		border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92);
 		backdrop-filter: blur(6px); font-size: 9pt; color: var(--sub); cursor: pointer; user-select: none; }
 	.page-toggle input { accent-color: var(--accent); margin: 0; cursor: pointer; }
+	.print-btn { font: inherit; font-size: 9pt; color: var(--ink); }
+	.print-btn:hover { border-color: var(--ink); }
+	/* 우상단 조작부의 툴팁은 위가 아니라 아래·오른쪽 정렬로(화면 밖으로 나가지 않게) */
+	.controls [data-tip]:hover::after { top: 130%; bottom: auto; left: auto; right: 0; }
 
 	body.paged { padding: 0; max-width: none; overflow: hidden; background: #eceef1; }
 	body.paged #resume {
@@ -289,7 +293,7 @@
 	table.awards td.when { white-space: nowrap; }   /* 수상 시기가 "2025.11.–12." 처럼 두 줄로 쪼개지지 않게 */
 	table.awards td[rowspan] { vertical-align: top; border-bottom: 0; }
 	table.awards tr.cont > td:first-child { font-weight: 400; white-space: normal; }   /* 이어지는 행의 첫 칸은 대회명 */
-	table.awards th:nth-child(3) { width: 27%; }
+	table.awards th:nth-child(3) { width: 24%; }
 
 
 	/* 표지 밴드 + 좌측 라벨 열 (이력서 골격) */
@@ -313,12 +317,13 @@
 	.doc-title + .sec { margin-top: 0; }
 	.doc-title + .sec > .lbl, .doc-title + .sec > .val { border-top: 0; padding-top: 0; }
 	.sec.cont { display: flow-root; margin-top: 5px; padding-left: 134px; }
-	.sec.cont > .lbl > .role { margin-top: 3px; color: var(--ink); }
+	.sec.cont > .lbl > .role { color: var(--ink); }
 	/* 세부 경력 라벨: 섹션 라벨(2px 먹선)보다 한 급 아래로 */
 	.sec.cont > .lbl { float: left; width: 116px; margin-left: -134px; border-top: 1px solid var(--line); padding-top: 4px; }
 	.sec.cont > .lbl:empty { border-top: 0; }
 	.sec.cont > .lbl h4 { margin: 0; font-size: 10.5pt; letter-spacing: -.01em; }
 	.sec.cont > .lbl .period { display: block; margin-top: 1px; font-size: 7.6pt; letter-spacing: .02em; }
+	.sec.cont > .lbl > .role { margin-top: 2px; }
 	.sec.cont > .val { border-top: 0; padding-top: 0; }
 	.sec.gap { margin-top: 18px; }
 	.sec .entry { margin-bottom: 0; }
@@ -357,7 +362,8 @@
 		.doc-title { margin: 0 0 8px; padding: 0 0 6px; }
 		h1.doc-title { font-size: 15pt; }
 		.sec { margin-top: 3px; }
-		.sec.cont { margin-top: 3px; }
+		.sec.cont { margin-top: 8px; }
+		.sec.cont > .lbl > span { line-height: 1.25; }
 		.sec.gap { margin-top: 8px; }
 	}
 </style>
@@ -368,6 +374,7 @@
 	<label class="page-toggle"><input type="checkbox" id="paged-input"> 페이지 보기</label>
 	<label class="term-toggle"><input type="checkbox" id="term-toggle-input"> 도메인 용어로 보기</label>
 	<label class="page-toggle"><input type="checkbox" id="mask-input"> 개인정보 가리기</label>
+	<button type="button" class="page-toggle print-btn" id="print-btn" data-tip="단축키 ⌘P · Windows Ctrl+P">출력하기</button>
 </div>
 
 <aside class="preview" id="preview">
@@ -642,6 +649,7 @@
 		document.title = titleNow();
 	};
 	maskSw.addEventListener("change", () => applyMask(maskSw.checked));
+	document.getElementById("print-btn")?.addEventListener("click", () => window.print());
 	if (new URLSearchParams(location.search).has("mask")) { maskSw.checked = true; applyMask(true); }
 
 	// 사이트 링크는 좌측 팝업 패널 iframe 으로 (본문 레이아웃은 그대로, 임베드 차단 사이트는 새 탭)
