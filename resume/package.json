@@ -4,8 +4,9 @@
 	"scripts": {
 		"test": "playwright test",
 		"og": "node scripts/build-og.mjs",
-		"check": "playwright test && node scripts/build-og.mjs",
-		"cards": "node scripts/build-cards.mjs"
+		"check": "node scripts/build-projects.mjs && playwright test && node scripts/build-og.mjs",
+		"cards": "node scripts/build-cards.mjs",
+		"content": "node scripts/build-projects.mjs"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.49.0"
