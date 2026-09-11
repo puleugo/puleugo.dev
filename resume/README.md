@@ -13,12 +13,16 @@
 ```bash
 npm install          # 최초 1회 (@playwright/test)
 npm run content      # content/projects.md → index.html 의 프로젝트 섹션 다시 만들기
+npm run editor       # 편집기 열기 — 왼쪽 마크다운, 오른쪽 실시간 미리보기
 npm test             # 인쇄 2페이지·가로 넘침·각주 호버·OG 규격 검수
 npm run og           # 이력서 2페이지를 축소해 og.png(1200×630) 재생성
 npm run check        # 검수 + OG 재생성
 ```
 
 - `npm test` 는 **A4 2페이지를 넘으면 실패**합니다. 지금은 1페이지에 들어가 있어 여유가 한 장 있습니다.
+- `npm run editor` 는 마크다운을 고치는 즉시 오른쪽 이력서가 바뀝니다. **저장 · 검사** 를 누르면
+  파일에 쓰고 실제로 인쇄해 A4 분량을 재서 알려 줍니다. **수정 프롬프트 복사** 는 지금 내용을 Claude Code 에
+  그대로 붙여 넣을 수 있는 지시문으로 만들어 줍니다.
 - **프로젝트 섹션은 `content/projects.md` 가 원본입니다.** 거기서 고치고 `npm run content` 를 돌리세요.
   index.html 의 `<!-- projects:start -->` ~ `<!-- projects:end -->` 사이는 손으로 고쳐도 다음 실행 때 덮어써집니다.
 - 내용을 고친 뒤에는 `npm run og` 로 링크 미리보기 이미지를 다시 만들어 함께 커밋하세요.

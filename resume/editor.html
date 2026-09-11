@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이력서 프로젝트 편집기</title>
+<style>
+	:root { color-scheme: light; --ink:#16181d; --sub:#52565f; --line:#d8dbe0; --accent:#1a4fd6; }
+	* { box-sizing: border-box; }
+	body { margin:0; height:100vh; display:grid; grid-template-columns: minmax(380px, 40%) 1fr; font:14px/1.5 "Pretendard",-apple-system,"Apple SD Gothic Neo","Segoe UI",sans-serif; color:var(--ink); }
+	.pane { display:flex; flex-direction:column; min-width:0; border-right:1px solid var(--line); }
+	header { display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid var(--line); background:#fafbfc; }
+	header b { font-size:13px; }
+	header .sp { flex:1; }
+	button { appearance:none; font:inherit; font-size:12px; padding:6px 11px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink); cursor:pointer; }
+	button:hover { border-color:var(--ink); }
+	button.primary { background:var(--ink); border-color:var(--ink); color:#fff; }
+	#md { flex:1; border:0; padding:14px 16px; resize:none; font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; tab-size:2; outline:none; }
+	#status { padding:8px 12px; border-top:1px solid var(--line); font-size:12px; color:var(--sub); background:#fafbfc; white-space:pre-wrap; }
+	#status.ok { color:#12693a; } #status.bad { color:#a51c30; }
+	iframe { flex:1; width:100%; border:0; background:#eceef1; }
+	.help { padding:10px 12px; border-top:1px solid var(--line); font-size:11.5px; color:var(--sub); background:#fafbfc; }
+	.help code { background:#eef0f3; padding:1px 4px; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="pane">
+	<header>
+		<b>content/projects.md</b>
+		<span class="sp"></span>
+		<button id="copy-md">마크다운 복사</button>
+		<button id="copy-prompt">수정 프롬프트 복사</button>
+		<button id="save" class="primary">저장 · 검사</button>
+	</header>
+	<textarea id="md" spellcheck="false"></textarea>
+	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, <b>저장</b>을 눌러야 파일에 씁니다.</div>
+	<div id="status">불러오는 중…</div>
+</div>
+<div class="pane" style="border:0">
+	<header><b>미리보기</b><span class="sp"></span><span id="hint" style="font-size:12px;color:var(--sub)">저장하면 A4 분량을 실제로 재서 알려줍니다</span></header>
+	<iframe id="preview" src="index.html"></iframe>
+</div>
+
+<script type="module">
+import { render } from "./scripts/projects-md.mjs";
+
+const $ = (id) => document.getElementById(id);
+const md = $("md"), frame = $("preview"), status = $("status");
+const say = (text, cls = "") => { status.textContent = text; status.className = cls; };
+
+md.value = await (await fetch("/api/md")).text();
+say("불러왔습니다. 고치면 오른쪽에 바로 반영됩니다.");
+
+// 미리보기: 같은 출처라 iframe 안의 표시 구간만 갈아 끼운다(새로고침 없이).
+function paint() {
+	const doc = frame.contentDocument;
+	if (!doc) return;
+	const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_COMMENT);
+	let start, end, n;
+	while ((n = walker.nextNode())) {
+		if (n.nodeValue.includes("projects:start")) start = n;
+		else if (n.nodeValue.includes("projects:end")) end = n;
+	}
+	if (!start || !end) return;
+	while (start.nextSibling && start.nextSibling !== end) start.nextSibling.remove();
+	const tpl = doc.createElement("template");
+	tpl.innerHTML = "\n" + render(md.value) + "\n";
+	end.parentNode.insertBefore(tpl.content, end);
+	doc.dispatchEvent(new Event("resume:repaint"));   // 용어·마스킹 토글 재적용용
+}
+let timer;
+md.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(paint, 150); });
+frame.addEventListener("load", paint);
+
+$("save").addEventListener("click", async () => {
+	say("저장하고 A4 분량을 재는 중…");
+	const r = await fetch("/api/md", { method: "POST", headers: { "content-type": "text/plain" }, body: md.value });
+	const d = await r.json();
+	if (!d.ok) return say("실패: " + d.error, "bad");
+	const fits = d.pages === 1;
+	say(`저장됨 · A4 ${d.pages}쪽 · 본문 ${d.height}px / 한 장 1039px${fits ? "" : " — 한 장을 넘겼습니다. 줄을 줄이세요."}`, fits ? "ok" : "bad");
+	frame.contentWindow.location.reload();
+});
+
+$("copy-md").addEventListener("click", () => navigator.clipboard.writeText(md.value).then(() => say("마크다운을 복사했습니다.")));
+$("copy-prompt").addEventListener("click", () => {
+	const prompt = `resume/content/projects.md 를 아래 내용으로 바꾸고 \`npm run content\` 를 돌린 뒤, A4 한 장(1039px)을 넘지 않는지 확인해 줘.\n\n\`\`\`md\n${md.value.trim()}\n\`\`\``;
+	navigator.clipboard.writeText(prompt).then(() => say("수정 프롬프트를 복사했습니다. Claude Code 에 그대로 붙여 넣으세요."));
+});
+</script>
+</body>
+</html>

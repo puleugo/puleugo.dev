@@ -6,7 +6,8 @@
 		"og": "node scripts/build-og.mjs",
 		"check": "node scripts/build-projects.mjs && playwright test && node scripts/build-og.mjs",
 		"cards": "node scripts/build-cards.mjs",
-		"content": "node scripts/build-projects.mjs"
+		"content": "node scripts/build-projects.mjs",
+		"editor": "node scripts/editor.mjs"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.49.0"
