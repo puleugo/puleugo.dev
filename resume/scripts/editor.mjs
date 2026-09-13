@@ -27,12 +27,23 @@ async function measure() {
 
 const server = http.createServer(async (req, res) => {
 	try {
-		if (req.url === "/api/md" && req.method === "GET") return res.writeHead(200, { "content-type": "text/plain; charset=utf-8" }).end(await fs.readFile(MD));
-		if (req.url === "/api/md" && req.method === "POST") {
+		if (req.url.startsWith("/api/md") && req.method === "GET") {
+			const [md, st] = [await fs.readFile(MD, "utf-8"), await fs.stat(MD)];
+			return res.writeHead(200, { "content-type": "application/json; charset=utf-8" }).end(JSON.stringify({ md, mtime: st.mtimeMs }));
+		}
+		if (req.url.startsWith("/api/md") && req.method === "POST") {
 			const chunks = []; for await (const c of req) chunks.push(c);
-			await fs.writeFile(MD, Buffer.concat(chunks).toString());
+			const { md, base, measure: wantMeasure } = JSON.parse(Buffer.concat(chunks).toString());
+			// 편집기 밖에서 파일이 바뀌었으면 덮어쓰지 않는다(자동저장이 남의 수정을 먹는 사고 방지)
+			const before = await fs.stat(MD);
+			if (base && Math.abs(before.mtimeMs - base) > 1) {
+				return res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ ok: false, conflict: true, md: await fs.readFile(MD, "utf-8"), mtime: before.mtimeMs }));
+			}
+			await fs.writeFile(MD, md);
 			await promisify(execFile)(process.execPath, [path.join(dir, "scripts/build-projects.mjs")]);
-			return res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ ok: true, ...(await measure()) }));
+			const after = await fs.stat(MD);
+			// 분량 측정은 크로미움을 띄운다. 자동저장 때마다 돌리면 메모리를 크게 쓰므로 요청할 때만.
+			return res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ ok: true, mtime: after.mtimeMs, ...(wantMeasure ? await measure() : {}) }));
 		}
 		const rel = decodeURIComponent(new URL(req.url, "http://x").pathname).replace(/^\//, "") || "editor.html";
 		const file = path.join(dir, rel);

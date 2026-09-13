@@ -15,6 +15,8 @@
 	button { appearance:none; font:inherit; font-size:12px; padding:6px 11px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink); cursor:pointer; }
 	button:hover { border-color:var(--ink); }
 	button.primary { background:var(--ink); border-color:var(--ink); color:#fff; }
+	.auto { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--sub); user-select:none; cursor:pointer; }
+	.auto input { accent-color:var(--accent); margin:0; cursor:pointer; }
 	#md { flex:1; border:0; padding:14px 16px; resize:none; font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; tab-size:2; outline:none; }
 	#status { padding:8px 12px; border-top:1px solid var(--line); font-size:12px; color:var(--sub); background:#fafbfc; white-space:pre-wrap; }
 	#status.ok { color:#12693a; } #status.bad { color:#a51c30; }
@@ -28,12 +30,13 @@
 	<header>
 		<b>content/projects.md</b>
 		<span class="sp"></span>
+		<label class="auto"><input type="checkbox" id="auto" checked> 자동 저장</label>
 		<button id="copy-md">마크다운 복사</button>
 		<button id="copy-prompt">수정 프롬프트 복사</button>
-		<button id="save" class="primary">저장 · 검사</button>
+		<button id="save" class="primary">저장 · 분량 검사</button>
 	</header>
 	<textarea id="md" spellcheck="false"></textarea>
-	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, <b>저장</b>을 눌러야 파일에 씁니다.</div>
+	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, 입력을 멈추면 <b>자동 저장</b>되고, <b>저장 · 분량 검사</b>(⌘S)를 누르면 실제로 인쇄해 A4 분량까지 잽니다.</div>
 	<div id="status">불러오는 중…</div>
 </div>
 <div class="pane" style="border:0">
@@ -48,8 +51,13 @@ const $ = (id) => document.getElementById(id);
 const md = $("md"), frame = $("preview"), status = $("status");
 const say = (text, cls = "") => { status.textContent = text; status.className = cls; };
 
-md.value = await (await fetch("/api/md")).text();
-say("불러왔습니다. 고치면 오른쪽에 바로 반영됩니다.");
+let base = null;                       // 마지막으로 읽거나 쓴 파일 시각. 밖에서 바뀌면 덮어쓰지 않는다
+let stopped = false;                   // 충돌 뒤에는 새로고침할 때까지 자동저장을 멈춘다
+{
+	const d = await (await fetch("/api/md")).json();
+	md.value = d.md; base = d.mtime;
+}
+say("불러왔습니다. 고치면 오른쪽에 바로 반영되고, 잠시 멈추면 저장됩니다.");
 
 // 미리보기: 같은 출처라 iframe 안의 표시 구간만 갈아 끼운다(새로고침 없이).
 function paint() {
@@ -72,15 +80,36 @@ let timer;
 md.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(paint, 150); });
 frame.addEventListener("load", paint);
 
-$("save").addEventListener("click", async () => {
-	say("저장하고 A4 분량을 재는 중…");
-	const r = await fetch("/api/md", { method: "POST", headers: { "content-type": "text/plain" }, body: md.value });
+const clock = () => new Date().toLocaleTimeString("ko-KR", { hour12: false });
+
+async function save({ measure = false } = {}) {
+	if (stopped) return;
+	say(measure ? "저장하고 A4 분량을 재는 중…" : "저장 중…");
+	const r = await fetch("/api/md", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ md: md.value, base, measure }) });
 	const d = await r.json();
+	if (d.conflict) {
+		stopped = true;
+		return say("편집기 밖에서 content/projects.md 가 바뀌었습니다. 덮어쓰지 않았습니다 — 새로고침해서 다시 여세요.", "bad");
+	}
 	if (!d.ok) return say("실패: " + d.error, "bad");
+	base = d.mtime;
+	if (!measure) return say(`자동 저장됨 · ${clock()}`, "ok");
 	const fits = d.pages === 1;
 	say(`저장됨 · A4 ${d.pages}쪽 · 본문 ${d.height}px / 한 장 1039px${fits ? "" : " — 한 장을 넘겼습니다. 줄을 줄이세요."}`, fits ? "ok" : "bad");
 	frame.contentWindow.location.reload();
+}
+
+let saveTimer;
+md.addEventListener("input", () => {
+	if (!$("auto").checked || stopped) return;
+	clearTimeout(saveTimer);
+	say("입력 중…");
+	saveTimer = setTimeout(() => save(), 800);   // 타이핑이 멎고 0.8초 뒤에 파일에 쓴다
 });
+$("auto").addEventListener("change", (e) => say(e.target.checked ? "자동 저장 켜짐" : "자동 저장 꺼짐 — 저장하려면 버튼을 누르세요"));
+$("save").addEventListener("click", () => { clearTimeout(saveTimer); save({ measure: true }); });
+addEventListener("keydown", (e) => { if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); clearTimeout(saveTimer); save({ measure: true }); } });
+addEventListener("beforeunload", () => { if (saveTimer) navigator.sendBeacon("/api/md", new Blob([JSON.stringify({ md: md.value, base })], { type: "application/json" })); });
 
 $("copy-md").addEventListener("click", () => navigator.clipboard.writeText(md.value).then(() => say("마크다운을 복사했습니다.")));
 $("copy-prompt").addEventListener("click", () => {
