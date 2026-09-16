@@ -24,9 +24,12 @@ export function inline(s) {
 		.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
 }
 
+// <!-- … --> 는 줄 안이든 여러 줄이든 통째로 빠진다. 편집기의 ⌘/ 가 이 표기로 주석을 단다.
+export const stripComments = (md) => md.replace(/<!--[\s\S]*?-->/g, "");
+
 export function parse(md) {
 	const projects = [];
-	for (const line of md.split("\n")) {
+	for (const line of stripComments(md).split("\n")) {
 		if (line.startsWith("## ")) projects.push({ name: line.slice(3).trim(), fields: {}, duties: [] });
 		else if (line.startsWith("- ") && projects.length) {
 			const body = line.slice(2);

@@ -23,6 +23,8 @@
 	iframe { flex:1; width:100%; border:0; background:#eceef1; }
 	.help { padding:10px 12px; border-top:1px solid var(--line); font-size:11.5px; color:var(--sub); background:#fafbfc; }
 	.help code { background:#eef0f3; padding:1px 4px; border-radius:4px; }
+	.keys { border-top:0; padding-bottom:0; }
+	kbd { display:inline-block; min-width:1.6em; padding:0 4px; margin:0 1px; border:1px solid var(--line); border-bottom-width:2px; border-radius:4px; background:#fff; font:11px/1.5 ui-monospace,Menlo,monospace; text-align:center; color:var(--ink); }
 </style>
 </head>
 <body>
@@ -36,7 +38,8 @@
 		<button id="save" class="primary">저장 · 분량 검사</button>
 	</header>
 	<textarea id="md" spellcheck="false"></textarea>
-	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, 입력을 멈추면 <b>자동 저장</b>되고, <b>저장 · 분량 검사</b>(⌘S)를 누르면 실제로 인쇄해 A4 분량까지 잽니다.</div>
+	<div class="help keys"><kbd>⌘/</kbd> 주석 켜기·끄기 · <kbd>⌘B</kbd> 굵게 · <kbd>⌘K</kbd> 링크 · <kbd>⌘E</kbd> 용어 토글 · <kbd>⌥↑</kbd><kbd>⌥↓</kbd> 줄 이동 · <kbd>⇧⌥↓</kbd> 줄 복제 · <kbd>⌘S</kbd> 저장·분량 검사 · <kbd>⌘Z</kbd> 되돌리기</div>
+	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · <code>&lt;!-- 주석 --&gt;</code> 은 이력서에서 빠짐 · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, 입력을 멈추면 <b>자동 저장</b>되고, <b>저장 · 분량 검사</b>(⌘S)를 누르면 실제로 인쇄해 A4 분량까지 잽니다.</div>
 	<div id="status">불러오는 중…</div>
 </div>
 <div class="pane" style="border:0">
@@ -108,6 +111,88 @@ md.addEventListener("input", () => {
 });
 $("auto").addEventListener("change", (e) => say(e.target.checked ? "자동 저장 켜짐" : "자동 저장 꺼짐 — 저장하려면 버튼을 누르세요"));
 $("save").addEventListener("click", () => { clearTimeout(saveTimer); save({ measure: true }); });
+// ── 편집 단축키 ─────────────────────────────────────────────
+// 바꿀 때는 execCommand("insertText") 를 써서 ⌘Z 되돌리기 기록을 살린다(input 이벤트도 그대로 나간다).
+function lineBounds() {
+	const v = md.value;
+	let a = md.selectionStart, b = md.selectionEnd;
+	if (b > a && v[b - 1] === "\n") b--;          // 줄 끝까지 긁은 선택은 다음 줄을 끌고 오지 않게
+	const s = v.lastIndexOf("\n", a - 1) + 1;
+	let e = v.indexOf("\n", b); if (e < 0) e = v.length;
+	return [s, e];
+}
+function replace(s, e, text, selS = s, selE = s + text.length) {
+	md.focus();
+	md.setSelectionRange(s, e);
+	document.execCommand("insertText", false, text);
+	md.setSelectionRange(selS, selE);
+}
+const COMMENTED = /^(\s*)<!--\s?(.*?)\s?-->\s*$/;
+function toggleComment() {
+	const [s, e] = lineBounds();
+	const lines = md.value.slice(s, e).split("\n");
+	const filled = lines.filter((l) => l.trim());
+	const off = filled.length > 0 && filled.every((l) => COMMENTED.test(l));
+	const out = lines.map((l) => (!l.trim() ? l : off ? l.replace(COMMENTED, "$1$2") : l.replace(/^(\s*)(.*)$/, "$1<!-- $2 -->"))).join("\n");
+	replace(s, e, out, s, s + out.length);
+}
+function wrap(before, after, placeholder = "") {
+	const a = md.selectionStart, b = md.selectionEnd;
+	const sel = md.value.slice(a, b) || placeholder;
+	// 이미 감싸져 있으면 벗긴다
+	if (md.value.slice(a - before.length, a) === before && md.value.slice(b, b + after.length) === after) {
+		return replace(a - before.length, b + after.length, sel, a - before.length, a - before.length + sel.length);
+	}
+	replace(a, b, before + sel + after, a + before.length, a + before.length + sel.length);
+}
+function link() {
+	const a = md.selectionStart, b = md.selectionEnd;
+	const text = md.value.slice(a, b) || "보이는 글";
+	const out = `[${text}](https://)`;
+	replace(a, b, out, a + text.length + 3, a + out.length - 1);   // 주소 자리를 선택해 둔다
+}
+function term() {
+	const a = md.selectionStart, b = md.selectionEnd;
+	const easy = md.value.slice(a, b) || "쉬운 말";
+	const out = `{${easy}|업계 용어}`;
+	replace(a, b, out, a + easy.length + 2, a + out.length - 1);
+}
+function moveLine(dir) {
+	const [s, e] = lineBounds();
+	const v = md.value, block = v.slice(s, e);
+	const offA = md.selectionStart - s, offB = md.selectionEnd - s;
+	if (dir < 0) {
+		if (s === 0) return;
+		const ps = v.lastIndexOf("\n", s - 2) + 1, prev = v.slice(ps, s - 1);
+		replace(ps, e, block + "\n" + prev, ps + offA, ps + offB);
+	} else {
+		if (e >= v.length) return;
+		let ne = v.indexOf("\n", e + 1); if (ne < 0) ne = v.length;
+		const next = v.slice(e + 1, ne), ns = s + next.length + 1;
+		replace(s, ne, next + "\n" + block, ns + offA, ns + offB);
+	}
+}
+function duplicateLine() {
+	const [s, e] = lineBounds();
+	const block = md.value.slice(s, e);
+	replace(e, e, "\n" + block, e + 1, e + 1 + block.length);
+}
+md.addEventListener("keydown", (e) => {
+	const mod = e.metaKey || e.ctrlKey, k = e.key.toLowerCase();
+	const act =
+		mod && (k === "/" || e.code === "Slash") ? toggleComment :
+		mod && k === "b" ? () => wrap("**", "**", "굵게") :
+		mod && k === "k" ? link :
+		mod && k === "e" ? term :
+		e.altKey && e.shiftKey && e.key === "ArrowDown" ? duplicateLine :
+		e.altKey && !e.shiftKey && e.key === "ArrowUp" ? () => moveLine(-1) :
+		e.altKey && !e.shiftKey && e.key === "ArrowDown" ? () => moveLine(1) :
+		null;
+	if (!act) return;
+	e.preventDefault();
+	act();
+});
+
 addEventListener("keydown", (e) => { if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); clearTimeout(saveTimer); save({ measure: true }); } });
 addEventListener("beforeunload", () => { if (saveTimer) navigator.sendBeacon("/api/md", new Blob([JSON.stringify({ md: md.value, base })], { type: "application/json" })); });
 

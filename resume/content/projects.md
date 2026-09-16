@@ -1,6 +1,6 @@
 <!--
 이력서 "프로젝트" 섹션의 원본. 이 파일만 고치고 `npm run content` 를 돌리면
-index.html 의 <!-- projects:start --> ~ <!-- projects:end --> 사이가 다시 만들어진다.
+index.html 의 projects:start ~ projects:end 표시 사이가 다시 만들어진다.
 
 쓸 수 있는 표기
   **굵게**                      → 수치·고유명사에만
@@ -8,6 +8,7 @@ index.html 의 <!-- projects:start --> ~ <!-- projects:end --> 사이가 다시 
   {쉬운 말|업계 용어}            → 용어 토글 대상
   「 」                          → 괄호(문서 전체 규칙)
   - 사례: …                      → 업무 줄을 사례(case-study)로 표시
+  주석 표시(주석 기호로 감싼 줄)   → 이력서에서 빠진다. 편집기에서 ⌘/ 로 켜고 끈다
 -->
 
 ## 어르다 축어록
