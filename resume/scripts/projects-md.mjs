@@ -30,17 +30,28 @@ export const stripComments = (md) => md.replace(/<!--[\s\S]*?-->/g, "");
 export function parse(md) {
 	const projects = [];
 	for (const line of stripComments(md).split("\n")) {
-		if (line.startsWith("## ")) projects.push({ name: line.slice(3).trim(), fields: {}, duties: [] });
-		else if (line.startsWith("- ") && projects.length) {
-			const body = line.slice(2);
-			const m = body.match(/^(기간|기여율|역할|소개|규모|링크없음):\s*(.*)$/);
-			const p = projects.at(-1);
-			if (m) p.fields[m[1]] = m[2];
-			else p.duties.push(body.startsWith("사례:") ? { kind: "case-study", text: body.slice(3).trim() } : { kind: "task", text: body });
-		}
+		if (line.startsWith("## ")) { projects.push({ name: line.slice(3).trim(), fields: {}, duties: [], _stack: null }); continue; }
+		const m = line.match(/^([ \t]*)- (.*)$/);
+		if (!m || !projects.length) continue;
+		const p = projects.at(-1);
+		const depth = indentDepth(m[1]);
+		const body = m[2].trimEnd();
+		const field = depth === 0 && body.match(/^(기간|기여율|역할|소개|규모|링크없음):\s*(.*)$/);
+		if (field) { p.fields[field[1]] = field[2]; continue; }
+		if (!body.trim()) continue;
+		const node = depth === 0 && body.startsWith("사례:") ? { kind: "case-study", text: body.slice(3).trim(), depth, children: [] } : { kind: "task", text: body, depth, children: [] };
+		// 들여쓰기 깊이로 부모를 찾는다. 두 칸(또는 탭 하나)이 한 단계.
+		const stack = (p._stack ??= [{ depth: -1, children: p.duties }]);
+		while (stack.at(-1).depth >= depth) stack.pop();
+		stack.at(-1).children.push(node);
+		stack.push(node);
 	}
+	for (const p of projects) delete p._stack;
 	return projects;
 }
+
+// 탭은 한 단계, 공백은 두 칸이 한 단계.
+export const indentDepth = (ws) => [...ws].reduce((n, c) => n + (c === "\t" ? 2 : 1), 0) >> 1;
 
 export function render(md) {
 	return parse(md).map((p) => {
@@ -48,7 +59,8 @@ export function render(md) {
 		const title = f.링크없음 ? `<span class="closed" data-tip="${f.링크없음}">${p.name}</span>` : p.name;
 		const lbl = [`<h4>${title}</h4>`, f.기간 && `<span class="period">${f.기간}</span>`, f.기여율 && `<span class="rate">${inline(f.기여율)}</span>`, f.역할 && `<span class="role">${inline(f.역할)}</span>`].filter(Boolean).join("");
 		const facts = [f.소개 && `\t\t<p class="facts">${inline(f.소개)}</p>`, f.규모 && `\t\t<p class="facts"><b>규모</b> ${inline(f.규모)}</p>`].filter(Boolean).join("\n");
-		const duties = p.duties.map((d) => `\t\t\t<li class="${d.kind}"><span class="duty">${inline(d.text)}</span></li>`).join("\n");
+		const sub = (kids) => (kids.length ? `<ul class="how">${kids.map((k) => `<li>${inline(k.text)}${sub(k.children)}</li>`).join("")}</ul>` : "");
+		const duties = p.duties.map((d) => `\t\t\t<li class="${d.kind}"><span class="duty">${inline(d.text)}</span>${sub(d.children)}</li>`).join("\n");
 		return `<section class="sec cont">\n\t<div class="lbl">${lbl}</div>\n${facts}\n\t\t<ul>\n${duties}\n\t\t</ul>\n</section>`;
 	}).join("\n\n");
 }

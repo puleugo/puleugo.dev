@@ -18,3 +18,15 @@ test("마크다운 표기가 이력서 마크업으로 바뀐다", () => {
 	expect(html).toContain('<t data-x="업계 용어">쉬운 말</t>');
 	expect(html).toContain('href="https://github.com/x/y" target="_blank" rel="noopener"');
 });
+
+// 들여쓰기로 하위 항목을 만든다. 두 칸(또는 탭)이 한 단계.
+test("들여쓴 목록은 하위 목록으로 그려진다", () => {
+	const md = ["## 시험", "- 상위", "  - 하위 1", "    - 하위의 하위", "  - 하위 2", "\t- 탭 하위", "- 다음 상위"].join("\n");
+	const [p] = parse(md);
+	expect(p.duties.map((d) => d.text)).toEqual(["상위", "다음 상위"]);
+	expect(p.duties[0].children.map((d) => d.text)).toEqual(["하위 1", "하위 2", "탭 하위"]);
+	expect(p.duties[0].children[0].children.map((d) => d.text)).toEqual(["하위의 하위"]);
+	const html = render(md);
+	expect(html).toContain('<span class="duty">상위</span><ul class="how"><li>하위 1<ul class="how"><li>하위의 하위</li></ul></li><li>하위 2</li><li>탭 하위</li></ul></li>');
+	expect(html).toContain('<li class="task"><span class="duty">다음 상위</span></li>');
+});

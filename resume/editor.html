@@ -17,7 +17,26 @@
 	button.primary { background:var(--ink); border-color:var(--ink); color:#fff; }
 	.auto { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--sub); user-select:none; cursor:pointer; }
 	.auto input { accent-color:var(--accent); margin:0; cursor:pointer; }
-	#md { flex:1; border:0; padding:14px 16px; resize:none; font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; tab-size:2; outline:none; }
+	/* 색칠: 같은 글꼴·여백·줄바꿈의 pre 를 textarea 뒤에 깔고, textarea 글자만 투명하게 한다.
+	   글자 폭이 달라지면 커서가 어긋나므로 굵기·기울임은 쓰지 않고 색과 배경만 쓴다. */
+	.edit { position:relative; flex:1; min-height:0; }
+	#md, #hl { position:absolute; inset:0; margin:0; border:0; padding:14px 16px; font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; tab-size:2; white-space:pre-wrap; overflow-wrap:anywhere; word-break:normal; overflow-y:auto; scrollbar-gutter:stable; letter-spacing:0; }
+	#md { resize:none; outline:none; background:transparent; color:transparent; caret-color:var(--ink); z-index:1; }
+	#md::selection { background:rgba(26,79,214,.22); color:transparent; }
+	#hl { color:var(--ink); pointer-events:none; overflow:hidden; background:#fff; }
+	.h-head { color:#1a4fd6; background:rgba(26,79,214,.07); }
+	.h-key { color:#7a3fd1; }
+	.h-case { color:#c2410c; }
+	.h-b0 { color:#16181d; } .h-b1 { color:#0f766e; } .h-b2 { color:#b45309; } .h-b3 { color:#be185d; }
+	.h-d1 { color:#1f4f4a; } .h-d2 { color:#5b3a14; } .h-d3 { color:#6b1f45; }
+	.h-mark { color:#a3aab5; }
+	.h-bold { background:rgba(255,200,0,.28); border-radius:2px; }
+	.h-link { color:#1a4fd6; }
+	.h-url { color:#8b95a5; }
+	.h-term { color:#0f7a4a; background:rgba(15,122,74,.07); }
+	.h-br { color:#a16207; }
+	.h-arrow { color:#c2410c; }
+	.h-com, .h-com * { color:#9aa1ab !important; background:transparent !important; }
 	#status { padding:8px 12px; border-top:1px solid var(--line); font-size:12px; color:var(--sub); background:#fafbfc; white-space:pre-wrap; }
 	#status.ok { color:#12693a; } #status.bad { color:#a51c30; }
 	iframe { flex:1; width:100%; border:0; background:#eceef1; }
@@ -37,9 +56,12 @@
 		<button id="copy-prompt">수정 프롬프트 복사</button>
 		<button id="save" class="primary">저장 · 분량 검사</button>
 	</header>
-	<textarea id="md" spellcheck="false"></textarea>
-	<div class="help keys"><kbd>⌘/</kbd> 주석 켜기·끄기 · <kbd>⌘B</kbd> 굵게 · <kbd>⌘K</kbd> 링크 · <kbd>⌘E</kbd> 용어 토글 · <kbd>⌥↑</kbd><kbd>⌥↓</kbd> 줄 이동 · <kbd>⇧⌥↓</kbd> 줄 복제 · <kbd>⌘S</kbd> 저장·분량 검사 · <kbd>⌘Z</kbd> 되돌리기</div>
-	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · <code>&lt;!-- 주석 --&gt;</code> 은 이력서에서 빠짐 · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, 입력을 멈추면 <b>자동 저장</b>되고, <b>저장 · 분량 검사</b>(⌘S)를 누르면 실제로 인쇄해 A4 분량까지 잽니다.</div>
+	<div class="edit">
+		<pre id="hl" aria-hidden="true"></pre>
+		<textarea id="md" spellcheck="false"></textarea>
+	</div>
+	<div class="help keys"><kbd>⌘/</kbd> 주석 켜기·끄기 · <kbd>⌘B</kbd> 굵게 · <kbd>⌘K</kbd> 링크 · <kbd>⌘E</kbd> 용어 토글 · <kbd>Tab</kbd><kbd>⇧Tab</kbd> 하위 목록 · <kbd>⌥↑</kbd><kbd>⌥↓</kbd> 줄 이동 · <kbd>⇧⌥↓</kbd> 줄 복제 · <kbd>⌘S</kbd> 저장·분량 검사 · <kbd>⌘Z</kbd> 되돌리기</div>
+	<div class="help"><code>**굵게**</code> · <code>[글](주소 "말풍선")</code> · <code>{쉬운 말|업계 용어}</code> · <code>「 」</code> · 두 칸 들여쓴 <code>- </code> 는 하위 목록 · <code>&lt;!-- 주석 --&gt;</code> 은 이력서에서 빠짐 · 업무 줄 앞에 <code>사례:</code> 를 붙이면 장애 사례로 표시됩니다. 타이핑하면 오른쪽이 바로 바뀌고, 입력을 멈추면 <b>자동 저장</b>되고, <b>저장 · 분량 검사</b>(⌘S)를 누르면 실제로 인쇄해 A4 분량까지 잽니다.</div>
 	<div id="status">불러오는 중…</div>
 </div>
 <div class="pane" style="border:0">
@@ -51,6 +73,53 @@
 import { render } from "./scripts/projects-md.mjs";
 
 const $ = (id) => document.getElementById(id);
+
+// ── 색칠 ────────────────────────────────────────────────────
+const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const FIELD = /^(기간|기여율|역할|소개|규모|링크없음)(:)/;
+function paintInline(t) {
+	return esc(t)
+		.replace(/\[([^\]]*)\]\(([^)]*)\)/g, '<span class="h-mark">[</span><span class="h-link">$1</span><span class="h-mark">](</span><span class="h-url">$2</span><span class="h-mark">)</span>')
+		.replace(/\{([^|{}]*)\|([^|{}]*)\}/g, '<span class="h-mark">{</span><span class="h-term">$1</span><span class="h-mark">|</span><span class="h-term">$2</span><span class="h-mark">}</span>')
+		.replace(/\*\*([^*]+)\*\*/g, '<span class="h-mark">**</span><span class="h-bold">$1</span><span class="h-mark">**</span>')
+		.replace(/[「」]/g, '<span class="h-br">$&</span>')
+		.replace(/(→|-&gt;)/g, '<span class="h-arrow">$1</span>');
+}
+function paintLine(t) {
+	if (/^#{1,6} /.test(t)) return `<span class="h-head">${esc(t)}</span>`;
+	const m = t.match(/^([ \t]*)- (.*)$/);
+	if (!m) return paintInline(t);
+	const d = Math.min(3, [...m[1]].reduce((n, c) => n + (c === "\t" ? 2 : 1), 0) >> 1);
+	let body = m[2], head = "";
+	const f = d === 0 && body.match(FIELD);
+	if (f) { head = `<span class="h-key">${f[1]}${f[2]}</span>`; body = body.slice(f[0].length); }
+	else if (d === 0 && body.startsWith("사례:")) { head = '<span class="h-case">사례:</span>'; body = body.slice(3); }
+	const text = d ? `<span class="h-d${d}">${paintInline(body)}</span>` : paintInline(body);
+	return `${esc(m[1])}<span class="h-b${d}">-</span> ${head}${text}`;
+}
+function highlight(src) {
+	let inC = false;
+	return src.split("\n").map((line) => {
+		let rest = line, html = "", first = true;
+		while (rest.length) {
+			if (inC) {
+				const i = rest.indexOf("-->");
+				const part = i < 0 ? rest : rest.slice(0, i + 3);
+				html += `<span class="h-com">${esc(part)}</span>`;
+				rest = i < 0 ? "" : rest.slice(i + 3);
+				if (i >= 0) inC = false;
+			} else {
+				const i = rest.indexOf("<!--");
+				const part = i < 0 ? rest : rest.slice(0, i);
+				if (part) html += first ? paintLine(part) : paintInline(part);
+				rest = i < 0 ? "" : rest.slice(i);
+				if (i >= 0) inC = true;
+			}
+			first = false;
+		}
+		return html;
+	}).join("\n") + " ";   // 원문이 줄바꿈으로 끝나면 pre 는 마지막 빈 줄을 그리지 않는다 — 공백 한 칸으로 높이를 맞춘다
+}
 const md = $("md"), frame = $("preview"), status = $("status");
 const say = (text, cls = "") => { status.textContent = text; status.className = cls; };
 
@@ -61,6 +130,12 @@ let stopped = false;                   // 충돌 뒤에는 새로고침할 때�
 	md.value = d.md; base = d.mtime;
 }
 say("불러왔습니다. 고치면 오른쪽에 바로 반영되고, 잠시 멈추면 저장됩니다.");
+const hl = $("hl");
+const repaintCode = () => { hl.innerHTML = highlight(md.value); hl.scrollTop = md.scrollTop; };
+md.addEventListener("input", repaintCode);
+md.addEventListener("scroll", () => { hl.scrollTop = md.scrollTop; });
+new ResizeObserver(repaintCode).observe(md);
+repaintCode();
 
 // 미리보기: 같은 출처라 iframe 안의 표시 구간만 갈아 끼운다(새로고침 없이).
 function paint() {
@@ -172,6 +247,14 @@ function moveLine(dir) {
 		replace(s, ne, next + "\n" + block, ns + offA, ns + offB);
 	}
 }
+function indent(dir) {
+	const [s, e] = lineBounds();
+	const lines = md.value.slice(s, e).split("\n");
+	const out = lines.map((l) => (dir > 0 ? "  " + l : l.replace(/^(\t| {1,2})/, ""))).join("\n");
+	const a = md.selectionStart, b = md.selectionEnd;
+	const firstShift = dir > 0 ? 2 : -(lines[0].length - lines[0].replace(/^(\t| {1,2})/, "").length);
+	replace(s, e, out, Math.max(s, a + firstShift), Math.max(s, b + (out.length - (e - s))));
+}
 function duplicateLine() {
 	const [s, e] = lineBounds();
 	const block = md.value.slice(s, e);
@@ -184,6 +267,7 @@ md.addEventListener("keydown", (e) => {
 		mod && k === "b" ? () => wrap("**", "**", "굵게") :
 		mod && k === "k" ? link :
 		mod && k === "e" ? term :
+		e.key === "Tab" && !mod && !e.altKey ? () => indent(e.shiftKey ? -1 : 1) :
 		e.altKey && e.shiftKey && e.key === "ArrowDown" ? duplicateLine :
 		e.altKey && !e.shiftKey && e.key === "ArrowUp" ? () => moveLine(-1) :
 		e.altKey && !e.shiftKey && e.key === "ArrowDown" ? () => moveLine(1) :
