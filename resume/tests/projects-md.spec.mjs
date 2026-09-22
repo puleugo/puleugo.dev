@@ -30,3 +30,10 @@ test("들여쓴 목록은 하위 목록으로 그려진다", () => {
 	expect(html).toContain('<span class="duty">상위</span><ul class="how"><li>하위 1<ul class="how"><li>하위의 하위</li></ul></li><li>하위 2</li><li>탭 하위</li></ul></li>');
 	expect(html).toContain('<li class="task"><span class="duty">다음 상위</span></li>');
 });
+
+test("링크 주소 뒤 쉼표는 주소에 붙지 않는다", () => {
+	const html = render('## 시험\n- [글](https://www.ibm.com/a/b, "말풍선") · [둘](https://github.com/x/a,b)');
+	expect(html).toContain('href="https://www.ibm.com/a/b"');
+	expect(html).toContain('data-tip="말풍선"');
+	expect(html).toContain('href="https://github.com/x/a,b"');
+});

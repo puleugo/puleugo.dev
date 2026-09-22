@@ -19,7 +19,8 @@ function link(text, url, tip) {
 
 export function inline(s) {
 	return esc(s)
-		.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (_, t, u, tip) => link(inline(t), u, tip))
+		// [글](주소 "말풍선") — 주소와 말풍선 사이 쉼표( [글](주소, "말풍선") )도 받아 준다. 쉼표가 주소에 붙으면 링크가 깨진다.
+		.replace(/\[([^\]]+)\]\(([^)\s]+?),?(?:\s+"([^"]*)")?\)/g, (_, t, u, tip) => link(inline(t), u, tip))
 		.replace(/\{([^|{}]+)\|([^|{}]+)\}/g, (_, easy, term) => `<t data-x="${term}">${easy}</t>`)
 		.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
 }
