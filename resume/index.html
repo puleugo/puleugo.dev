@@ -203,6 +203,10 @@
 	/* sections */
 	.entry { margin-bottom: 9px; }
 	.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+	/* 학력·교육 한 건은 한 줄로. 점선 리더가 남는 폭을 먹으므로 이름·설명만 줄이면 된다 */
+	.entry.brief .entry-head, .entry.brief .entry-head > span:first-child { white-space: nowrap; }
+	.entry.brief .entry-head { gap: 6px; }   /* 화면에서 4px 모자라 잘리던 줄 — 리더 양옆 여백을 줄여 메운다 */
+	.entry.brief .entry-head > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 	.entry-head h3 { margin: 0; font-size: 13pt; letter-spacing: -.015em; }
 	.entry-head h3 .role { font-weight: 500; color: var(--sub); font-size: 10pt; }
 	.closed { border-bottom: 1px dotted var(--line); cursor: help; }
@@ -519,17 +523,17 @@
 <section class="sec">
 	<div class="lbl"><h2>학력 · 교육</h2></div>
 	<div class="val">
-<div class="entry">
+<div class="entry brief">
 	<div class="entry-head">
 		<span>SW마에스트로 13기 <span class="role">· 창업주도형 인재양성 부트캠프 (과학기술정보통신부)</span></span>
 		<span class="leader" aria-hidden="true"></span><span class="period">2022.04. – 2022.12. (수료)</span>
 	</div>
 </div>
 
-<div class="entry">
+<div class="entry brief">
 	<div class="entry-head">
 		<span>인제대학교 <span class="role">· 컴퓨터공학과</span></span>
-		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. 「졸업 예정」</span>
+		<span class="leader" aria-hidden="true"></span><span class="period">2022.03. – 2026.12. (졸업 예정)</span>
 	</div>
 </div>
 	</div>
